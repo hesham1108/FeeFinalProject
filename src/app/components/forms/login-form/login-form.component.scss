@@ -1,28 +1,76 @@
 $mainColor: #14213D;
+* {
+    // font-family: 'Almarai';
+}
+
 input.ng-invalid.ng-touched {
     border: 1px solid red;
 }
 
+.img {
+    background-image: url("https://image.freepik.com/free-vector/gradient-colored-dynamic-lines-background_52683-65631.jpg");
+    background-size: cover;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
 .form-group {
-    text-align: right;
+    text-align: center;
+    label {
+        margin-bottom: 2%;
+        font-size: 20px;
+        color: #cfcfcf;
+        text-transform: uppercase;
+    }
+    input {
+        margin-right: 25%;
+        width: 50%;
+        padding-bottom: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        margin-bottom: 4%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    }
+    input:focus {
+        box-shadow: none;
+    }
+    input:focus-within {
+        background-color: inherit;
+    }
 }
 
 .submit-btn {
-    border: 1px solid $mainColor;
+    border: 1px solid #c96903;
+    width: 40%;
     border-radius: 5px;
     padding: 2%;
-    background-color: $mainColor;
+    background-color: #FF880A;
     color: #fff;
-    padding-right: 5%;
-    padding-left: 5%;
+    // padding-right: 5%;
+    // padding-left: 5%;
     font-weight: bold;
+    border-radius: 30px;
+}
+
+.disabled-btn {
+    border: 1px solid #c96903;
+    width: 40%;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: #ff890a69;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 30px;
 }
 
 .submit-btn:hover {
     cursor: pointer;
     box-shadow: 0 8px 10px 0 #14213d9c, 0 6px 20px 0 #14213dd5;
-    padding-left: 8%;
-    padding-right: 8%;
+    // padding-left: 8%;
+    // padding-right: 8%;
+    width: 50%;
     transition: all 0.7s linear;
 }
 

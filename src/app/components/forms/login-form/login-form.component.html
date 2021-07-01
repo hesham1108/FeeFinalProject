@@ -1,32 +1,54 @@
-<div class="container" dir="rtl" lang="ar" style="margin-top: 5%; margin-bottom: 5%;">
-    <div class="row">
-        <div class="col-sm-12">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label for="email"> البريد الإلكترونى </label> :
-                    <input type="email" formControlName="email" id="email" class="form-control">
-                    <span class="error" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
-                      <span class="error" *ngIf="loginForm.get('email').errors['required']">
-                        رجاء أدخل البريد الإلكترونى
-                      </span>
-                    <span class="error" *ngIf="loginForm.get('email').errors['email']">
-                          هذا البريد الإلكتروني غير مسموح به
+<div class="container-fluid" style=" background-color:#EDEDED; padding-top: 5%; padding-bottom: 5%;">
+    <div class="container" dir="rtl" lang="ar" style="background-color: #fff; height: 600px; border-radius: 5PX;">
+        <div class="row" style="height: 100%;">
+            <div class="col-sm-4  img">
+                <div class="row justify-content-center" style=" background-color: rgba(255, 255, 255, 0.247);
+                margin-top: 30%;
+                ">
+                    <h1 style="color: #fff;  ">
+                        كلية الهندسة الإلكترونية
+                    </h1>
+                    <h1 style="color: #fff; ">
+                        جامعة المنوفية
+                    </h1>
+                </div>
+            </div>
+            <div class="col-sm-8 " style=" padding-top:6%;">
+                <h2 style="text-align: center; padding-bottom: 3%; font-size: 40px;"> أهلاً بك </h2>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="email"> البريد الإلكترونى </label>
+                        <input type="email" formControlName="email" id="email" class="form-control">
+                        <div style="height: 30px; width: 100%;">
+                            <span class="error" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+                        <span class="error" *ngIf="loginForm.get('email').errors['required']">
+                          رجاء أدخل البريد الإلكترونى
                         </span>
-                    </span>
+                            <span class="error" *ngIf="loginForm.get('email').errors['email']">
+                            هذا البريد الإلكتروني غير مسموح به
+                          </span>
+                            </span>
 
-                </div>
-                <div class="form-group">
-                    <label for="password"> كلمة المرور </label> :
-                    <input type="password" formControlName="password" id="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"> كلمة المرور </label>
+                        <input type="password" formControlName="password" id="password" class="form-control">
+                        <div style="height: 30px; width: 100%;">
+                            <span class="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+                    رجاء أدخل كلمة المرور
+                  </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="  " [ngClass]="{'submit-btn':loginForm.valid, 'disabled-btn ':loginForm.invalid}" [disabled]="loginForm.invalid">
+                          تسجيل الدخول
+                        </button>
+                    </div>
+                </form>
 
-                    <span class="error" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
-                      رجاء أدخل كلمة المرور
-                    </span>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">تسجل</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+
 </div>
