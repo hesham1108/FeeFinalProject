@@ -42,24 +42,24 @@ input.ng-invalid.ng-touched {
 }
 
 .submit-btn {
-    border: 1px solid #c96903;
+    // #c96903
+    border: 1px solid $mainColor;
     width: 40%;
-    border-radius: 5px;
     padding: 2%;
-    background-color: #FF880A;
+    // #FF880A
+    background-color: $mainColor;
     color: #fff;
-    // padding-right: 5%;
-    // padding-left: 5%;
     font-weight: bold;
     border-radius: 30px;
 }
 
 .disabled-btn {
-    border: 1px solid #c96903;
+    // #c96903
+    border: 1px solid $mainColor;
     width: 40%;
-    border-radius: 5px;
     padding: 2%;
-    background-color: #ff890a69;
+    // #ff890a69
+    background-color: #14213db7;
     color: #fff;
     font-weight: bold;
     border-radius: 30px;
@@ -72,6 +72,11 @@ input.ng-invalid.ng-touched {
     // padding-right: 8%;
     width: 50%;
     transition: all 0.7s linear;
+}
+
+.submit-btn:focus,
+.disabled-btn {
+    outline: 0;
 }
 
 .error {

@@ -26,4 +26,9 @@ export class LeftNavComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.router.navigate([dest]);
   }
+
+  logOut(){
+    this.loginSer.login.next(false);
+    this.goTo('');
+  }
 }

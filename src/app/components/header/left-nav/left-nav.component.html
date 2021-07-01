@@ -16,7 +16,7 @@
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
                 <a class="dropdown-item waves-light" mdbWavesEffect>حسابى</a>
                 <a *ngIf="admin" class="dropdown-item waves-light" (click)="goTo('dash')" mdbWavesEffect>لوحة القيادة</a>
-                <a class="dropdown-item waves-light" mdbWavesEffect>تسجيل الخروج</a>
+                <a class="dropdown-item waves-light" (click)="logOut()" mdbWavesEffect>تسجيل الخروج</a>
             </div>
         </li>
     </ng-template>
