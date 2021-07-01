@@ -1,0 +1,6 @@
+<div class="container" dir="rtl" lang="ar">
+    <app-single-event *ngFor="let e of eventsToDisplay; let i = index" [event]="e" [id]='i'></app-single-event>
+</div>
+
+
+<app-pagination [numberOfPages]="numberOfPages"></app-pagination>

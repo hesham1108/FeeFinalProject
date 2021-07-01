@@ -1,0 +1,13 @@
+<div class="container" dir="rtl" lang="ar">
+    <div class="row" style="margin-top: 5%; margin-bottom: 5%;">
+        <div class="pagination">
+
+            <a (click)='to(-1)'>&raquo;</a>
+            <a *ngFor="let i of indexes" (click)="changePage(i)" [ngClass]="{'active': i == currentPage}">
+              {{i}}
+            </a>
+            <a (click)='to(1)'>&laquo;</a>
+
+        </div>
+    </div>
+</div>

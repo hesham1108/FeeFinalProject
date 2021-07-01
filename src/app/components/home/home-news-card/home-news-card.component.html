@@ -1,22 +1,12 @@
-<div class="container-fluid mt-4 mb-4">
-    <div class="card col-sm-3">
-        <div class="card-image view overlay mt-2">
-            <img class="img-fluid " src="{{cards[0].img}}" alt="card image">
-            <div class="mask flex-center rgba-blue-light">
-                <a class="white-text"> see more... </a>
-            </div>
-        </div>
-        <div class="col-sm-12 card-content mt-2">
-            <h3>
-                {{cards[0].title}}
-            </h3>
-            <hr mr>
-            <p>{{cards[0].desc}}</p>
-        </div>
-        <div class="col-sm-12 read-more pb-3">
-            <a (click)="goTo(cards[0].link)" class="float-right">
-              READ MORE >>
-            </a>
+<div class="container mt-4 card-container">
+    <div class="row">
+        <app-card class="col-sm-4" *ngFor="let card of cards ; let id = index" [card]="card" [id]="id"></app-card>
+
+    </div>
+    <div class="row seemore-btn">
+        <div class="col-sm-3"></div>
+        <div (click)="goTo('news')" class="col-sm-6  read-more ">
+            المزيد من الأخبار
         </div>
     </div>
 </div>

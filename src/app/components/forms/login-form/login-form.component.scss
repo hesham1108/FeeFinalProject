@@ -1,0 +1,33 @@
+$mainColor: #14213D;
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.form-group {
+    text-align: right;
+}
+
+.submit-btn {
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: $mainColor;
+    color: #fff;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 10px 0 #14213d9c, 0 6px 20px 0 #14213dd5;
+    padding-left: 8%;
+    padding-right: 8%;
+    transition: all 0.7s linear;
+}
+
+.error {
+    margin-top: 2%;
+    color: red;
+    font-size: medium;
+}

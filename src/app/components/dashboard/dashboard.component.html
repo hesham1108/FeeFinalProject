@@ -1,0 +1,61 @@
+<div class="container-fluid body" dir="rtl">
+
+    <div class="leftmenubtn" id="open" (click)="openleftmenu()">
+        <i class="fas fa-arrow-right"></i>
+    </div>
+    <div class="leftmenu" id="leftmenu">
+
+        <i class="fas fa-arrow-left closeleft" id="close" (click)="closeleftmenu()"></i>
+        <ul>
+            <li>المستخدمين</li>
+            <li>النتائج</li>
+            <li>المواد</li>
+            <li>المبانى</li>
+            <li>الحماية</li>
+            <li>النقود</li>
+            <li>الخروج</li>
+        </ul>
+    </div>
+    <div class="container all-dash">
+        <div class="row navigator" style="text-align: center;">
+            <div class="col-sm-3 navigator-item">
+                الأخبار
+                <ul id="drop">
+                    <li id="dropi" (click)="goTo('add')">إضافة خبر </li>
+                    <li id="dropi">إزالة خبر </li>
+                    <li id="dropi">تعديل على خبر </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 navigator-item">
+                الأحداث
+                <ul id="drop">
+                    <li id="dropi">إضافة خبر </li>
+                    <li id="dropi">إزالة خبر </li>
+                    <li id="dropi">تعديل على خبر </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 navigator-item">
+                الأقسام
+                <ul id="drop">
+                    <li id="dropi">إضافة خبر </li>
+                    <li id="dropi">إزالة خبر </li>
+                    <li id="dropi">تعديل على خبر </li>
+                </ul>
+            </div>
+            <div class="col-sm-3 navigator-item">
+                البحر
+                <ul id="drop">
+                    <li id="dropi">إضافة خبر </li>
+                    <li id="dropi">إزالة خبر </li>
+                    <li id="dropi">تعديل على خبر </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row justify-content-right" style="margin-top: 3%;">
+            <div class="col-sm-12">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

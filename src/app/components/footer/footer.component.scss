@@ -1,0 +1,30 @@
+$mainColor: #14213D;
+.page-footer {
+    background-color: $mainColor;
+    // background-color: black;
+    .link {
+        padding-bottom: 9px;
+        padding: 10%;
+        border-radius: 5px;
+    }
+    .link:hover {
+        // border-bottom: 1px solid white;
+        padding: 15%;
+        box-shadow: 0 5px 5px 0 rgba(223, 221, 221, 0.2), 0 3px 10px 0 rgba(226, 223, 223, 0.19);
+        transition: padding 1s linear;
+    }
+}
+
+// .page-footer-black {
+//     background-color: black;
+//     .link {
+//         padding-bottom: 9px;
+//     }
+//     .link:hover {
+//         border-bottom: 1px solid white;
+//         transition: border-bottom 0.1s linear;
+//     }
+// }
+// box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+// transition: background-color 1s linear;
+// transition: box-shadow 0.3s linear;

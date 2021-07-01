@@ -1,0 +1,24 @@
+<div class="card col-md-10">
+    <div class="card-image view zoom overlay mt-2">
+        <img class="img-fluid " [src]="card.img" alt="card image">
+        <div class="mask flex-center rgba-blue-light" dir="rtl" lang="ar">
+            <a (click)="goToNews(id)" class="white-text"> مشاهدة المزيد </a>
+        </div>
+    </div>
+    <div class="col-sm-12 card-content mt-2">
+        <p>
+            {{card.date}}
+        </p>
+        <hr mr>
+
+        <h5 style="text-overflow: ellipsis; "> {{card.desc}} </h5>
+    </div>
+    <hr class="divider">
+
+    <div class="col-sm-5 read-more offset-sm-7" dir="rtl">
+        <a (click)="goToNews(id)">
+               قراءةالمزيد
+          </a>
+    </div>
+
+</div>

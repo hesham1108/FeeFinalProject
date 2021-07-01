@@ -1,0 +1,9 @@
+$mainColor: #14213D;
+.content {
+    text-align: right;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.521), 0 12px 22px 0 rgba(0, 0, 0, 0.397);
+    height: 500px;
+    margin-bottom: 4%;
+}

@@ -1,0 +1,158 @@
+$spin-duration: 10s;
+$spin-angel: 360deg;
+$mainColor: #14213D;
+.rotating-image {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    height: 20%;
+    .image {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120px;
+        height: 120px;
+        border-radius: 30%;
+        margin: -60px 0 0 -60px;
+        -webkit-animation: spin $spin-duration linear infinite;
+        -moz-animation: spin $spin-duration linear infinite;
+        animation: spin $spin-duration linear infinite;
+    }
+    -webkit-animation: run $spin-duration linear infinite;
+    -moz-animation: run $spin-duration linear infinite;
+    animation: run $spin-duration linear infinite;
+}
+
+.cover-image {
+    margin-bottom: 4%;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    // img:hover {
+    //     opacity: .8;
+    // }
+    .centered {
+        position: absolute;
+        top: 40%;
+        left: 43%;
+        background-color: #fff;
+        padding: 1%;
+        border-radius: 10%;
+        p {
+            font-size: 25px;
+            font-weight: bold;
+            border-bottom: 2px solid $mainColor;
+            margin-bottom: 0;
+        }
+    }
+    .centered:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.76);
+        padding: 2%;
+        transition: padding 1s linear;
+    }
+}
+
+.cover-image:hover {
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.37);
+    transition: box-shadow 0.3s linear;
+}
+
+.profile {
+    border-radius: 5px;
+    box-shadow: 0 8px 10px 0 rgba(75, 75, 75, 0.473), 0 6px 20px 0 rgba(82, 82, 82, 0.37);
+}
+
+.ameed {
+    padding: 6%;
+    font-size: 30px;
+    margin-bottom: 3%;
+    border-radius: 5px;
+}
+
+.profile:hover {
+    box-shadow: none;
+    transition: box-shadow 0.3s linear;
+}
+
+.ameed:hover,
+.profile:hover {
+    .ameed {
+        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.37);
+        transition: box-shadow 0.3s linear;
+        background-color: $mainColor;
+        color: #fff;
+    }
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate($spin-angel);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate($spin-angel);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate($spin-angel);
+        transform: rotate($spin-angel);
+    }
+}
+
+@-moz-keyframes run {
+    0% {
+        right: 0;
+    }
+    25% {
+        right: -35%;
+    }
+    50% {
+        right: 0;
+    }
+    75% {
+        right: 50%;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@-webkit-keyframes run {
+    0% {
+        right: 0;
+    }
+    25% {
+        right: -35%;
+    }
+    50% {
+        right: 0;
+    }
+    75% {
+        right: 50%;
+    }
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes run {
+    0% {
+        right: 0;
+    }
+    25% {
+        right: -35%;
+    }
+    50% {
+        right: 0;
+    }
+    75% {
+        right: 50%;
+    }
+    100% {
+        right: 0;
+    }
+}

@@ -1,25 +1,35 @@
-<header class="h-100">
-    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar intro-fixed-nav" [containerInside]="false">
+<header class="h-100" dir="rtl">
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg  navbar-dark scrolling-navbar" class="navCss " [containerInside]="false">
+        <!-- style="border-left: 1px solid #fff; padding-left: 20px;" -->
         <mdb-navbar-brand>
-            <a class="navbar-brand" href="#">
-                <img src="../../../assets/images/fee.jpeg" height="30" class="d-inline-block align-top" alt="">
-            </a>
+            <div class="row">
+                <div class="col-sm-4">
+                    <a class="navbar-brand">
+                        <img src="../../../assets/images/fee.jpeg" height="45px" class="d-inline-block align-top" alt="">
+                    </a>
+                </div>
+
+                <div class="col-sm-8 " style="text-align: right; color: #fff; padding-top: 2%;">
+                    <h6>
+                        كلية الهندسة الألكترونية
+                    </h6>
+                    <h6>
+                        جامعة المنوفية
+                    </h6>
+
+
+                </div>
+            </div>
+
         </mdb-navbar-brand>
         <links>
-            <app-left-nav></app-left-nav>
-            <app-right-nav class="navbar-nav ml-auto"></app-right-nav>
+            <app-right-nav></app-right-nav>
+            <app-left-nav class="navbar-nav mr-auto"></app-left-nav>
+            <!-- <app-right-nav class="navbar-nav mr-auto"></app-right-nav> -->
 
         </links>
     </mdb-navbar>
     <!-- Main -->
-    <div class="view intro-2">
-        <div class="full-bg-img">
-            <div class="mask rgba-blue-light flex-center">
-                <div class="container text-center white-text wow fadeInUp">
 
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- /.Main -->
 </header>

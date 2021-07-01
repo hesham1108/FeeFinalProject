@@ -1,0 +1,19 @@
+$mainColor: #14213D;
+.centered {
+    padding: 3%;
+    background-color: #fff;
+    color: $mainColor;
+    margin-bottom: 2%;
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.centered:hover,
+.active {
+    cursor: pointer;
+    background-color: $mainColor;
+    color: #fff;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.37);
+    transition: box-shadow 0.3s linear;
+}

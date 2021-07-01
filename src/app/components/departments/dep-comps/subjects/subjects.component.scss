@@ -1,0 +1,12 @@
+$mainColor: #14213D;
+::ng-deep .hehe {
+    background-color: $mainColor;
+}
+
+.choose:hover {
+    cursor: pointer;
+    background-color: $mainColor;
+    color: #fff;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.521), 0 7px 18px 0 rgba(0, 0, 0, 0.397);
+    transition: box-shadow 0.3s linear;
+}

@@ -1,0 +1,62 @@
+$mainColor: #14213D;
+.dep-nav {
+    padding: 1%;
+    border: 1px solid $mainColor;
+    color: $mainColor;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dep-nav:hover {
+    background-color: $mainColor;
+    color: #fff;
+    cursor: pointer;
+    -moz-animation: bgColor 0.2s linear;
+    -webkit-animation: bgColor 0.2s linear;
+    animation: bgColor 0.2s linear;
+    box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.521), 0 12px 22px 0 rgba(0, 0, 0, 0.397);
+    transition: box-shadow 0.5s linear;
+    font-weight: bold;
+}
+
+.empty {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: $mainColor;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 15px 18px 0 rgba(0, 0, 0, 0.521), 0 12px 22px 0 rgba(0, 0, 0, 0.397);
+}
+
+@-moz-keyframes bgColor {
+    from {
+        background-color: #fff;
+        color: $mainColor;
+    }
+    to {
+        background-color: $mainColor;
+        color: #fff;
+    }
+}
+
+@-webkit-keyframes bgColor {
+    from {
+        background-color: #fff;
+        color: $mainColor;
+    }
+    to {
+        background-color: $mainColor;
+        color: #fff;
+    }
+}
+
+@keyframes bgColor {
+    from {
+        background-color: #fff;
+        color: $mainColor;
+    }
+    to {
+        background-color: $mainColor;
+        color: #fff;
+    }
+}

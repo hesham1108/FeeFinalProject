@@ -1,0 +1,32 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: right;
+    margin: 4%;
+    padding-bottom: 2%;
+}
+
+.card-content {
+    overflow: hidden;
+}
+
+.divider {
+    width: 50%;
+    margin-left: auto;
+}
+
+$mainColor: #14213D;
+.read-more {
+    padding: 3%;
+    font-weight: bold;
+    color: $mainColor;
+}
+
+.read-more:hover {
+    background-color: $mainColor;
+    color: #FFFFFF;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: background-color 1s linear;
+    transition: box-shadow 0.3s linear;
+    cursor: pointer;
+    border-radius: 5px;
+}

@@ -1,0 +1,24 @@
+<table class="table" dir="rtl" lang="ar">
+    <thead class="hehe white-text" style="text-align: center;">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">كود المادة</th>
+            <th scope="col">اسم المادة</th>
+            <th scope="col">Subject Name</th>
+            <th scope="col">الفرقة</th>
+            <th scope="col">الفصل</th>
+        </tr>
+    </thead>
+    <tbody style="text-align: center;">
+        <tr *ngFor="let s of subjects ; let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td> {{s.code}} </td>
+            <td (click)="goTo(s)" class="choose"> {{s.arName}} </td>
+            <td> {{s.enName}} </td>
+            <td> {{s.group}} </td>
+            <td> {{s.sem}} </td>
+
+        </tr>
+
+    </tbody>
+</table>

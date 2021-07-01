@@ -1,0 +1,27 @@
+<div class="card col-md-10">
+    <div class="card-image view zoom overlay mt-2">
+        <img class="img-fluid " [src]="table.img" alt="card image">
+        <div class="mask flex-center rgba-blue-light" dir="rtl" lang="ar">
+            <a (click)="goToTable(id)" class="white-text"> مشاهدة المزيد </a>
+        </div>
+    </div>
+    <div class="col-sm-12 card-content mt-2">
+        <p>
+            {{table.title}}
+        </p>
+        <p>
+            تم النشر : {{table.date}}
+        </p>
+        <hr mr>
+
+        <h5> {{table.desc}} </h5>
+    </div>
+    <hr class="divider">
+
+    <div class="col-sm-5 read-more offset-sm-7" dir="rtl">
+        <a (click)="goToTable(id)">
+             قراءةالمزيد
+        </a>
+    </div>
+
+</div>

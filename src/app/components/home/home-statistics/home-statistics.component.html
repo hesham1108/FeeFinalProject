@@ -1,0 +1,28 @@
+<div class="container-fluid statistics">
+    <div class="container">
+        <div class="row justify-content-center statistics-head">
+            <h1>إحصائيات هندسة منوف لعام 2021</h1>
+        </div>
+
+        <br>
+        <div class="row statistics-body ">
+
+            <div class="col-md-3" *ngFor="let s of statistics">
+
+                <div class="row sc justify-content-center">
+                    <i [class]="s.icon"></i>
+                </div>
+                <br>
+                <div class="row justify-content-center">
+                    <h4 style="font-weight: bold;">{{s.title}}</h4>
+                </div>
+                <br>
+                <div class="row sc justify-content-center">
+                    <h4>{{s.startnumber}}</h4>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

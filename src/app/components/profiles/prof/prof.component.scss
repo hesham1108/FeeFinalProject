@@ -1,0 +1,62 @@
+$mainColor: #14213D;
+$secondColor: #FCA311;
+.head,
+.personal {
+    padding: 1%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bottom-border {
+    width: 25%;
+    height: 8px;
+    margin-left: 3%;
+    border-radius: 8px;
+    background-color: $secondColor;
+}
+
+.cart {
+    position: relative;
+    justify-content: right;
+    text-align: right;
+    // border: 1px solid #000;
+    border-radius: 5px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    box-shadow: 0 8px 10px 0 rgba(75, 75, 75, 0.473), 0 6px 20px 0 rgba(82, 82, 82, 0.37);
+    margin-bottom: 10%;
+    .image {
+        position: absolute;
+        left: -8%;
+        top: -6%;
+        img {
+            border-radius: 5px;
+        }
+    }
+    .image-back {
+        position: absolute;
+        left: -4%;
+        top: -15%;
+        background-color: $secondColor;
+        width: 220px;
+        height: 220px;
+        border-radius: 5px;
+    }
+    .rows {
+        margin-bottom: 1%;
+        .right {
+            font-weight: bold;
+            padding: 1%;
+            padding-right: 2%;
+            font-size: 20px;
+        }
+        .left {
+            padding: 1%;
+            font-size: 20px;
+        }
+    }
+}
+
+.content {
+    padding: 1%;
+}
