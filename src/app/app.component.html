@@ -2,5 +2,12 @@
 <div class="container-fluid">
     <div class="row" style="height: 83px;position: relative;; background-color:#FFFFFF;"></div>
 </div>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="load"></router-outlet>
+<div class="container" dir="rtl" *ngIf="!load">
+    <div class="row justify-content-center">
+        <div class="col-sm-5" style="padding: 5;">
+            <h1>جاري التحميل</h1>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

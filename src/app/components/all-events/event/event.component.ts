@@ -16,7 +16,7 @@ export class EventComponent implements OnInit {
   constructor(private eventSer: EventCardService , private route: ActivatedRoute , private router: Router) { }
 
   ngOnInit(): void {
-    this.eventsLength = this.eventSer.getAllEvents();
+    this.eventsLength = this.eventSer.getAllEventsLength();
     this.route.params.subscribe(
       (p: Params) => {
         this.id = +p['id'];

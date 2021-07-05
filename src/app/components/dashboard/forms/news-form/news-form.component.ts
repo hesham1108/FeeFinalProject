@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
 import { Card } from 'src/app/services/news/card.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -20,10 +21,9 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     private newsSer: HomeNewsCardServiceService ) {
     this.newsFrom = this.fb.group({
       title: [null , [Validators.required , Validators.maxLength(50)]],
-      category:[null , [Validators.required]],
       date:[null , [Validators.required ]],
-      image:[null,[Validators.required]],
-      desc:[null,[Validators.required]]
+      imagePath:[null,[Validators.required]],
+      description:[null,[Validators.required]]
     })
    }
 
@@ -33,20 +33,28 @@ export class NewsFormComponent implements OnInit , OnDestroy{
         if(data['id']){
           this.edit = true;
           this.id = +data['id'];
-          this.news = this.newsSer.getCardFromAllCards(this.id);
-          console.log(this.news.date);
-          var recDate =new Date(this.news.date) ;
-          console.log(recDate);
+          console.log(this.id);
 
-          var validDate = recDate.getDate()+"/"+recDate.getMonth()+"/"+recDate.getFullYear();
-          console.log(validDate);
+          this.newsSer.getCardFromAllCards(this.id).subscribe(
+            (res)=> {
+              console.log(res);
+              if(res.status == 200){
+                this.news = res.body;
+                this.newsFrom.get('title').setValue(this.news.title) ;
+                this.newsFrom.get('date').setValue(this.news.createdAt);
+                this.newsFrom.get('description').setValue(this.news.description);
+                this.newsFrom.get('imagePath').setValue(this.news.imagePath);
+              }
 
 
-          this.newsFrom.get('title').setValue(this.news.title) ;
-          this.newsFrom.get('category').value = this.news.category;
-          this.newsFrom.get('date').setValue(validDate);
-          this.newsFrom.get('image').setValue(this.news.img);
-          this.newsFrom.get('desc').setValue(this.news.desc);
+            }
+          );
+
+
+          // var recDate =new Date(this.news.createdAt) ;
+
+          // var validDate = recDate.getDate()+"/"+recDate.getMonth()+"/"+recDate.getFullYear();
+
         }else{
           this.edit = false;
         }
@@ -55,37 +63,44 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
   onSubmit(){
     // console.log(this.newsFrom);
-    // var currentNews:Card = {
-    //   title: this.newsFrom.get('title').value,
-    //   category:this.newsFrom.get('category').value,
-    //   date:this.newsFrom.get('date').value,
-    //   img:this.newsFrom.get('image').value,
-    //   desc:this.newsFrom.get('desc').value,
-    // }
-    // if(this.edit){
-    //   if(this.newsFrom.valid){
-    //     document.documentElement.scrollTop = 0;
-    //     // this.newsSer.allCards.splice(this.id ,1 ,currentNews);
-    //     // this.router.navigate(['']);
-
-    //   }
-    // }else{
-    //   if(this.newsFrom.valid){
-    //     document.documentElement.scrollTop = 0;
+    let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
+      id : this.id,
+      title : this.newsFrom.get('title').value,
+      createdAt: this.newsFrom.get('date').value,
+      imagePath: this.newsFrom.get('imagePath').value,
+      description : this.newsFrom.get('description').value,
+    };
 
 
-    //     // this.newsSer.allCards.push(currentNews);
+    if(this.edit){
+      if(this.newsFrom.valid){
+        document.documentElement.scrollTop = 0;
+        this.newsSer.putNews(dataToPost).subscribe(
+          (res)=>{
+            console.log(res);
+          }
+        );
+        // this.newsSer.allCards.splice(this.id ,1 ,currentNews);
+        //this.newsSer.deleteNews().subscribe((res)=>{console.log(res);});
+        // this.router.navigate(['news']);
+      }
+    }else{
+      if(this.newsFrom.valid){
+        document.documentElement.scrollTop = 0;
+        this.newsSer.postNews(dataToPost).subscribe(
+          (res)=>{
+            console.log(res);
 
-    //   }
-    // }
+          }
+        );
+      }
+    }
 
 
   }
 
   deleteNews(i:number){
-    console.log(i);
-
-    this.newsSer.allCards.splice(i , 1);
+    this.newsSer.deleteNews(i).subscribe((res)=>{console.log(res);});
     this.newsFrom.reset();
   }
 

@@ -7,7 +7,7 @@ import { Event } from '../../services/events/event.model';
   selector: 'app-all-events',
   templateUrl: './all-events.component.html',
   styleUrls: ['./all-events.component.scss'],
-  providers:[EventCardService]
+  providers:[]
 })
 export class AllEventsComponent implements OnInit , OnDestroy {
 
@@ -19,6 +19,7 @@ export class AllEventsComponent implements OnInit , OnDestroy {
 
 
   constructor(private eventSer: EventCardService ) {
+    this.events = this.eventSer.getAllEvents();
    this.currsub= this.eventSer.currentPage.subscribe(
       (data)=>{
           this.getdisplayedEvents(data);
@@ -27,7 +28,9 @@ export class AllEventsComponent implements OnInit , OnDestroy {
    }
 
   ngOnInit(): void {
-    this.events = this.eventSer.getAllEvents();
+
+
+
 
     this.numberOfPages = Math.ceil(this.eventSer.getAllEventsLength() / this.divider);
 
@@ -41,8 +44,8 @@ export class AllEventsComponent implements OnInit , OnDestroy {
         this.eventsToDisplay.push(this.events[i]);
     }
     document.documentElement.scrollTop = 0;
-    console.log(this.eventsToDisplay);
-    console.log(id);
+    // console.log(this.eventsToDisplay);
+    // console.log(id);
 }
 ngOnDestroy():void{
   this.currsub.unsubscribe();

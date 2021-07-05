@@ -18,12 +18,14 @@ export class CardComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+
   }
   goTo(dest:string){
     this.router.navigate([dest]);
   }
   goToNews(id:number){
     document.documentElement.scrollTop = 0;
-    this.router.navigate(['news/',id]);
+    this.router.navigate(['news/',this.card.id]);
   }
 }

@@ -14,6 +14,7 @@ export class NewsComponent implements OnInit {
   news: Card|any;
   newsLength:number| any;
   admin:boolean = true;
+  load:boolean = true;
 
 
   constructor(private newSer: HomeNewsCardServiceService ,
@@ -25,14 +26,21 @@ export class NewsComponent implements OnInit {
     this.route.params.subscribe(
       (p: Params) => {
         this.id = +p['id'];
-        this.news = this.newSer.getCardFromAllCards(this.id);
-        console.log(this.news);
+        this.newSer.getCardFromAllCards(this.id).subscribe(
+          (res)=>{
+            this.news = res.body;
+            this.load = false;
+            // console.log('http result '+res);
+
+          }
+        );
+        // console.log(this.news);
 
       }
     );
 
     this.newsLength = this.newSer.getallCardsLength();
-    console.log(this.newsLength);
+    // console.log(this.newsLength);
 
 
 
@@ -56,6 +64,7 @@ export class NewsComponent implements OnInit {
     this.router.navigate(['news/',this.id]);
   }
   goToEdit(dest:string){
-    this.router.navigate([dest , this.id]);
+
+    this.router.navigate([dest , this.news.id]);
   }
 }

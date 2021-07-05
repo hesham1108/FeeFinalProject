@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: #E9E9E9; padding-top: 1%; padding-bottom: 5%;">
+<div class="container-fluid" style="background-color: #E9E9E9; padding-top: 1%; padding-bottom: 5%;" *ngIf="!load">
     <div class="container the-whole-body" dir="rtl" lang="ar">
 
         <div class="col-sm-8" style="background-color: #fff; padding-top: 4%; padding-right: 3%; padding-left: 3%; padding-bottom: 6%; border-radius: 5px;">
@@ -57,4 +57,12 @@
 
     </div>
 
+</div>
+
+<div class="container" dir="rtl" *ngIf="load">
+    <div class="row justify-content-center">
+        <div class="col-sm-5" style="padding: 5;">
+            <h1>جاري التحميل</h1>
+        </div>
+    </div>
 </div>

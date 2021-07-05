@@ -17,6 +17,8 @@ export class AllNewsComponent implements OnInit , OnDestroy{
   numberOfPages:number| any ;
   cardsToDisplay: Card[] = [];
   divider:number = 10;
+
+
   constructor(private newsSer: HomeNewsCardServiceService , private router: Router) {
     this.news_cards = this.newsSer.getallCards();
     this.currsub= this.newsSer.currentPage.subscribe(
@@ -46,8 +48,6 @@ export class AllNewsComponent implements OnInit , OnDestroy{
         for(let i = (id*this.divider - this.divider) ; i < id*this.divider && i< this.newsSer.getallCardsLength() ;  i++ ){
             this.cardsToDisplay.push(this.news_cards[i]);
         }
-
-
 
         document.documentElement.scrollTop = 0;
 
