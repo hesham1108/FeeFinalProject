@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { EventCardService } from '../home/home-events-card/event-card.service';
-import { Events } from '../home/home-events-card/event.model';
+import { EventCardService } from '../../services/events/event-card.service';
+import { Event } from '../../services/events/event.model';
 
 @Component({
   selector: 'app-all-events',
@@ -11,9 +11,9 @@ import { Events } from '../home/home-events-card/event.model';
 })
 export class AllEventsComponent implements OnInit , OnDestroy {
 
-  events: Events[] = [];
+  events: Event[] = [];
   numberOfPages:number| any ;
-  eventsToDisplay: Events[] = [];
+  eventsToDisplay: Event[] = [];
   divider:number = 6;
   private currsub:Subscription|any;
 

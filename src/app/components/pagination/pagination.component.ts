@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { EventCardService } from '../home/home-events-card/event-card.service';
-import { HomeNewsCardServiceService } from '../home/home-news-card/home-news-card-service.service';
+import { EventCardService } from '../../services/events/event-card.service';
+import { HomeNewsCardServiceService } from '../../services/news/home-news-card-service.service';
 
 @Component({
   selector: 'app-pagination',
@@ -26,7 +26,7 @@ export class PaginationComponent implements OnInit {
     }
     this.url = this.router.url;
 
-    console.log(this.router.url);
+    // console.log(this.router.url);
 
   }
 

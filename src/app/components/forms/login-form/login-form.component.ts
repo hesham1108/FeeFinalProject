@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/services/login/login-service.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LoginServiceService } from 'src/app/services/login/login-service.servic
 export class LoginFormComponent implements OnInit {
 
   loginForm:any;
-  constructor(private fb: FormBuilder , private loginSer:LoginServiceService  ) { }
+  constructor(private fb: FormBuilder , private loginSer:LoginServiceService ,private router: Router ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -22,5 +23,8 @@ export class LoginFormComponent implements OnInit {
   onSubmit(){
     console.log(this.loginForm);
     this.loginSer.login.next(true);
+    document.documentElement.scrollTop = 0;
+    this.router.navigate(['']);
+
   }
 }

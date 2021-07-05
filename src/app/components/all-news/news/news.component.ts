@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Card } from '../../home/home-news-card/card.model';
-import { HomeNewsCardServiceService } from '../../home/home-news-card/home-news-card-service.service';
+import { Card } from '../../../services/news/card.model';
+import { HomeNewsCardServiceService } from '../../../services/news/home-news-card-service.service';
 
 @Component({
   selector: 'app-news',
@@ -13,6 +13,7 @@ export class NewsComponent implements OnInit {
   id:number|any;
   news: Card|any;
   newsLength:number| any;
+  admin:boolean = true;
 
 
   constructor(private newSer: HomeNewsCardServiceService ,
@@ -24,11 +25,15 @@ export class NewsComponent implements OnInit {
     this.route.params.subscribe(
       (p: Params) => {
         this.id = +p['id'];
-        this.news = this.newSer.getCard(this.id);
+        this.news = this.newSer.getCardFromAllCards(this.id);
+        console.log(this.news);
+
       }
     );
 
-    this.newsLength = this.newSer.getCardsLength();
+    this.newsLength = this.newSer.getallCardsLength();
+    console.log(this.newsLength);
+
 
 
   }
@@ -49,5 +54,8 @@ export class NewsComponent implements OnInit {
     }
     document.documentElement.scrollTop = 0;
     this.router.navigate(['news/',this.id]);
+  }
+  goToEdit(dest:string){
+    this.router.navigate([dest , this.id]);
   }
 }

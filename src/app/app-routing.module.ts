@@ -16,7 +16,8 @@ import { FormTest } from './components/test/form.components.ts/form-test.compone
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"dash" , component:DashboardComponent , children:[
-    {path: 'add' , component:NewsFormComponent}
+    {path: 'add' , component:NewsFormComponent},
+    {path: 'add/:id' , component:NewsFormComponent}
   ]},
   {path:"about", component:AboutComponent},
   {path:"prof/:id", component:ProfComponent},

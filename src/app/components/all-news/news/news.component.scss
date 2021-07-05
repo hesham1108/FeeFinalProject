@@ -7,7 +7,19 @@ $mainColor: #14213D;
     background-color: rgba(219, 219, 219, 0.61);
     font-size: large;
     font-weight: bold;
+    // padding: 2%;
+}
+
+.edit {
     padding: 2%;
+    i {
+        font-size: larger;
+    }
+    i:hover {
+        cursor: pointer;
+        color: #254ca0;
+        // box-shadow: 0 4px 8px 0 #14213da4;
+    }
 }
 
 .more-photos {

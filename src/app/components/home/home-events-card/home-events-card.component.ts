@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventCardService } from './event-card.service';
-import { Events } from './event.model';
+import { EventCardService } from '../../../services/events/event-card.service';
+import { Event } from '../../../services/events/event.model';
 
 @Component({
   selector: 'app-home-events-card',
@@ -9,7 +9,7 @@ import { Events } from './event.model';
 })
 export class HomeEventsCardComponent implements OnInit {
 
-  events : Events[]=[];
+  events : Event[]=[];
   constructor( private eventSrv: EventCardService ) { }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 <div class="row  main-row">
     <div class="col-sm-5 ">
         <div class="card-image view zoom overlay mt-2">
-            <img class="img-fluid" [src]="event.img" alt="card image">
+            <img class="img-fluid" [src]="event.imagePath" alt="card image">
             <div class="mask flex-center rgba-blue-light">
                 <a (click)="goToEvents(id)" class="white-text" style="font-weight: bold;">مشاهدة المزيد  </a>
             </div>
@@ -13,7 +13,7 @@
                 {{event.title}}
             </h3>
 
-            <p class="event-desc"> {{event.desc}} </p>
+            <p class="event-desc"> {{event.description}} </p>
             <div class="button col-sm-5 offset-sm-7" (click)="goToEvents(id)">
                 قراءة المزيد
 

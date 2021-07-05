@@ -47,6 +47,7 @@ import { LoginServiceService } from './services/login/login-service.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
+import { HomeNewsCardServiceService } from './services/news/home-news-card-service.service';
 
 
 @NgModule({
@@ -103,7 +104,7 @@ import { LoginFormComponent } from './components/forms/login-form/login-form.com
   exports: [
 
   ],
-  providers: [ProfService , LoginServiceService],
+  providers: [ProfService , LoginServiceService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

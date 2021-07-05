@@ -1,5 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginServiceService } from 'src/app/services/login/login-service.service';
+import { Card } from 'src/app/services/news/card.model';
 
 @Component({
   selector: 'app-card',
@@ -8,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CardComponent implements OnInit {
 
-  @Input() card:{ title: string; img: string; desc: string; link: string; } | any ;
+  @Input() card:Card | any ;
   @Input() id:number| any ;
+  // admin:boolean = true;
   constructor( private router: Router) { }
 
 

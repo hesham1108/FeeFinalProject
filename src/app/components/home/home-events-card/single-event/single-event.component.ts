@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Events } from '../event.model';
+import { Event } from '../../../../services/events/event.model';
 
 @Component({
   selector: 'app-single-event',
@@ -9,7 +9,7 @@ import { Events } from '../event.model';
 })
 export class SingleEventComponent implements OnInit {
 
-  @Input() event: Events|any;
+  @Input() event: Event|any;
   @Input() id:number|any;
   constructor(private router: Router) { }
 
