@@ -30,41 +30,31 @@ export class NewsComponent implements OnInit {
           (res)=>{
             this.news = res.body;
             this.load = false;
-            // console.log('http result '+res);
-
           }
         );
-        // console.log(this.news);
-
       }
     );
-
-    this.newsLength = this.newSer.getallCardsLength();
-    // console.log(this.newsLength);
-
-
-
   }
 
   goto(dest:string){
     this.router.navigate([dest]);
   }
-  goTo(i: number){
-    this.id += i;
-    if(this.id < 0 ){
-        this.id = this.newsLength-1;
-        // console.log(this.id);
+  // goTo(i: number){
+  //   this.id += i;
+  //   if(this.id < 0 ){
+  //       this.id = this.newsLength-1;
+  //       // console.log(this.id);
 
-    }else if( this.id == this.newsLength){
-      this.id = 0;
-      // console.log(this.id);
+  //   }else if( this.id == this.newsLength){
+  //     this.id = 0;
+  //     // console.log(this.id);
 
-    }
-    document.documentElement.scrollTop = 0;
-    this.router.navigate(['news/',this.id]);
-  }
+  //   }
+  //   document.documentElement.scrollTop = 0;
+  //   this.router.navigate(['news/',this.id]);
+  // }
   goToEdit(dest:string){
-
+    this.newSer.nothing.next(false);
     this.router.navigate([dest , this.news.id]);
   }
 }

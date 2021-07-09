@@ -21,6 +21,6 @@ export class SingleEventComponent implements OnInit {
   }
   goToEvents(id: number){
     document.documentElement.scrollTop = 0;
-    this.router.navigate(['events/',id]);
+    this.router.navigate(['events/',this.event.id]);
   }
 }

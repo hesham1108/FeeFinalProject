@@ -1,0 +1,61 @@
+<div class="container" dir="rtl" style="margin-top:2% ; margin-bottom: 2%;" *ngIf="!load">
+    <div class="row justify-content-center">
+        <div class="col-sm-6" style="text-align: center; padding: 2%;">
+            <h1>جميع الأخبار</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 add" style="text-align: right;" (click)="goTo('dash/addNews')">
+            <div class="row justify-content-around">
+                <div class="col-sm-3 icon">
+                    <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
+                </div>
+                <div class="col-sm-9 text">
+                    <p style="display: inline;">إضافة خبر جديد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="padding: 0;">
+            <table class="table table-striped">
+                <thead style="background-color: #14213D; color: #fff; ">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">عنوان الخبر</th>
+                        <th scope="col">تاريخ الخبر </th>
+                        <th scope="col">صورة الخبر </th>
+                        <th scope="col">وصف الخبر </th>
+                        <th scope="col">تعديل </th>
+                        <th scope="col">مسح </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let news of allNews ; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td> {{news.title}} </td>
+                        <td> {{news.createdAt}} </td>
+                        <td>
+                            <img [src]="news.imagePath" width="120px" height="120px" alt="photo" style="border-radius: 75px;">
+                        </td>
+                        <td>
+                            <div style="width: 150px; height:150px ; overflow: hidden;">
+                                {{news.description}}
+                            </div>
+                        </td>
+                        <td>
+                            <i class="btn btn-success fa fa-edit" (click)="editMyNews(news.id)"></i>
+                        </td>
+                        <td>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                        </td>
+                        <app-confirm-deletion *ngIf="delete" content="الحدث" (cancel)="onCancel()" (res)="deleteMyNews(news.id)"></app-confirm-deletion>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-loader *ngIf="load"></app-loader>

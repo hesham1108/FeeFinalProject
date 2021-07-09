@@ -1,0 +1,24 @@
+.seemore-btn {
+    margin-top: 3%;
+}
+
+$mainColor: #14213D;
+.read-more {
+    padding: 1%;
+    background-color: #FFFFFF;
+    color: $mainColor;
+    border-top: 0.5px solid rgb(104, 104, 104);
+    border-bottom: 0.5px solid rgb(104, 104, 104);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.read-more:hover {
+    background-color: $mainColor;
+    color: #FFFFFF;
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: background-color 1s linear;
+    transition: box-shadow 0.3s linear;
+    cursor: pointer;
+    font-weight: bold;
+}

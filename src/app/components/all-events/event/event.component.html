@@ -1,12 +1,21 @@
-<div class="container-fluid" style="background-color: #E9E9E9; padding-top: 1%;">
+<div class="container-fluid" style="background-color: #E9E9E9; padding-top: 1%; padding-bottom: 3%;" *ngIf="!load">
     <div class="container the-whole-body" dir="rtl" lang="ar">
 
         <div class="col-sm-8" style="background-color: #fff; padding-top: 4%; padding-right: 3%; padding-left: 3%; padding-bottom: 6%; border-radius: 5px;">
-            <div class="row naving" style="border-radius: 5px;">
-                <a style="margin-left:15px ;" (click)="goTo('')">الرئيسية</a>
-                <i style="margin-left:15px ; padding-top: 5px" class="fas fa-angle-double-left "></i>
-                <a style="color:orange ">الأحداث</a>
+            <div class="row naving justify-content-between" style="border-radius: 5px;">
+                <div class="col-sm-5" style="text-align: right; padding: 2%;">
+                    <a style="margin-left:15px ;" (click)="goTo('')">الرئيسية</a>
+                    <i style="margin-left:15px ; padding-top: 5px" class="fas fa-angle-double-left "></i>
+                    <a style="color:#FCA311 ">الأحداث</a>
+                </div>
+                <div class="col-sm-2 edit " *ngIf="admin">
+
+                    <i class="fa fa-edit" (click)="goToEdit('dash/addEvent')"> تعديل   </i>
+
+
+                </div>
             </div>
+
             <div class="row" style="  margin-top: 4%;  overflow:auto;">
                 <h3 style="font-weight: bold;"> {{event.title}} </h3>
             </div>
@@ -19,14 +28,14 @@
             </div>
 
 
-            <div class="row justify-content-between" style="margin-top: 4%;">
+            <!-- <div class="row justify-content-between" style="margin-top: 4%;">
                 <div class="btnn" (click)="goToEvent(-1)">
                     السابق
                 </div>
                 <div class="btnn" (click)="goToEvent(1)">
                     التالي
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -36,3 +45,5 @@
     </div>
 
 </div>
+
+<app-loader *ngIf="load"></app-loader>

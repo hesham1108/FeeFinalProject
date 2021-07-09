@@ -1,13 +1,24 @@
-<app-header></app-header>
-<div class="container-fluid">
-    <div class="row" style="height: 83px;position: relative;; background-color:#FFFFFF;"></div>
-</div>
-<router-outlet *ngIf="load"></router-outlet>
-<div class="container" dir="rtl" *ngIf="!load">
-    <div class="row justify-content-center">
-        <div class="col-sm-5" style="padding: 5;">
-            <h1>جاري التحميل</h1>
-        </div>
+<div class="container-fluid" style="padding:0; margin:0;" *ngIf="load" dir="rtl">
+    <app-header></app-header>
+    <div class="container-fluid">
+        <div class="row" style="height: 83px;position: relative;; background-color:#FFFFFF;"></div>
     </div>
+    <!-- <app-form-test></app-form-test> -->
+
+    <router-outlet></router-outlet>
+
+
+
+    <app-footer></app-footer>
+
 </div>
-<app-footer></app-footer>
+<div class="container-fluid load" dir="rtl" *ngIf="!load">
+
+
+    <div class="o"></div>
+    <div class="t"></div>
+    <div class="h"></div>
+    <div class="f"></div>
+
+
+</div>

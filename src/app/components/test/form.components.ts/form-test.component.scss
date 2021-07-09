@@ -1,12 +1,32 @@
-.dis {
-    display: none;
-}
-
-input.ng-invalid.ng-touched {
-    border: 1px solid red;
-}
-
-.error {
-    color: red;
-    font-size: small;
+// .dis {
+//     display: none;
+// }
+// input.ng-invalid.ng-touched {
+//     border: 1px solid red;
+// }
+// .error {
+//     color: red;
+//     font-size: small;
+// }
+$mainColor: #14213D;
+.my-nav {
+    width: 100vh;
+    height: 10vh;
+    background-color: $mainColor;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    .right-nav {
+        width: 70%;
+        .right {
+            list-style: none;
+            li {
+                display: inline;
+                a {
+                    text-decoration: none;
+                    padding: 2%;
+                }
+            }
+        }
+    }
 }

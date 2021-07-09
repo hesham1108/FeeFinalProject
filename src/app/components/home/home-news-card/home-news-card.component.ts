@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventCardService } from 'src/app/services/events/event-card.service';
 import { Card } from '../../../services/news/card.model';
 import { HomeNewsCardServiceService } from '../../../services/news/home-news-card-service.service';
 
@@ -10,16 +11,23 @@ import { HomeNewsCardServiceService } from '../../../services/news/home-news-car
 })
 export class HomeNewsCardComponent implements OnInit {
 
-  cards:Card[]=[];
-  constructor( private router:Router , private cardSer: HomeNewsCardServiceService)  {
+  homeCards:Card[]=[];
+  constructor( private router:Router , private cardSer: HomeNewsCardServiceService , private eventSer:EventCardService)  {
 
   }
 
   ngOnInit(): void {
-
-    this.cards = this.cardSer.getallCards();
-    console.log(this.cards);
-
+    var firstThreeCards:Card[]=[];
+    this.cardSer.getAllCards().subscribe(
+      (res)=>{
+        // console.log(res);
+        for(let i = 0 ; i<3 ; i++){
+          firstThreeCards.push(res[i]);
+        }
+        this.cardSer.newsload.next(false);
+      }
+    );
+    this.homeCards = firstThreeCards;
   }
 
   goTo(dest:string){

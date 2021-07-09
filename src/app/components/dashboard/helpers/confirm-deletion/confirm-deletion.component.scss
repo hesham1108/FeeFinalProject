@@ -1,0 +1,58 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #11101054;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+}
+
+.delete-box {
+    z-index: 100;
+    position: fixed;
+    top: 30vh;
+    border-radius: 5px;
+    left: 25vw;
+    width: 45vw;
+    padding: 2%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    background-color: #fff;
+}
+
+.delete-message {
+    text-align: right;
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: 5%;
+}
+
+.delete-btn {
+    margin-top: 5px;
+    padding: 2%;
+    width: 10vw;
+    border-radius: 5px;
+    background-color: rgb(0, 99, 0);
+    color: #fff;
+    float: right;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+    background-color: rgba(0, 99, 0, 0.849);
+}
+
+.cancel-btn {
+    padding: 2%;
+    width: 10vw;
+    margin-top: 5px;
+    border-radius: 5px;
+    background-color: rgb(133, 0, 0);
+    color: #fff;
+    float: left;
+}
+
+.cancel-btn:hover {
+    cursor: pointer;
+    background-color: rgba(99, 0, 0, 0.733);
+}

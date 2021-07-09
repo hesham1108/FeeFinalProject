@@ -1,0 +1,9 @@
+<input type="search" [(ngModel)]="search">
+
+<div *ngFor="let f of (folderObjs | filter:search)as folder">
+    {{f.name}} {{f.size}}
+</div>
+
+<div *ngIf="(folderObjs | filter:search).length <1">
+    Not Found
+</div>

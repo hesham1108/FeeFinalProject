@@ -1,4 +1,4 @@
-<div class="col-sm-10" dir="rtl">
+<div class="col-sm-10" dir="rtl" *ngIf="!load">
     <form [formGroup]="newsFrom" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="title">عنوان الخبر</label> :
@@ -61,3 +61,4 @@
 
     </form>
 </div>
+<app-loader *ngIf="load"></app-loader>

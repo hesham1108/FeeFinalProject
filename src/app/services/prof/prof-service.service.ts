@@ -14,7 +14,7 @@ export class ProfService{
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'هبة عثمان',
         'استاذ متفرغ',
-        'قسم حاسبات ورقص شرقى',
+        'قسم حاسبات ',
         'أمين المكتبة'
       ),
       new ProfModel(
@@ -22,14 +22,14 @@ export class ProfService{
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'هشام عثمان' ,
        'استاذ متفرغ',
-       'قسم حاسبات ورقص شرقى',
+       'قسم حاسبات ',
         'عميد الكلية' ),
       new ProfModel(
         2,
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'محمد عثمان' ,
       'استاذ متفرغ' ,
-       'قسم حاسبات ورقص شرقى' ,
+       'قسم حاسبات  ' ,
        'وكيل الكلية'
        ),
       new ProfModel(
@@ -37,21 +37,21 @@ export class ProfService{
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'اميمة عثمان' ,
       'استاذ متفرغ' ,
-      'قسم تحكم ورقص شرقى' ,
+      'قسم تحكم  ' ,
       'رئيس قسم حاسبات' ),
       new ProfModel(
         4,
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'هدير عثمان' ,
       'استاذ متفرغ' ,
-      'قسم اتصالات ورقص شرقى' ,
+      'قسم اتصالات  ' ,
       'رئيس قسم تحكم' ),
       new ProfModel(
         5,
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGqeiMvcMA8ATx6McIgv0QgGq9njL6_9Q9Ww&usqp=CAU',
         'احمد عثمان' ,
       'استاذ متفرغ' ,
-       'قسم طبية ورقص غربي' ,
+       'قسم طبية  ' ,
        ' وكيل شئون الطلاب' ),
   ]
   // we need next instead of emit

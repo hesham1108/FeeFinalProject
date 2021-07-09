@@ -3,12 +3,13 @@ $mainColor: #14213D;
 .body {
     padding-top: 2%;
     padding-bottom: 2%;
-    background: #f2709c;
+    // background: #f2709c;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #fcb7a2, #f795b6);
+    // background: -webkit-linear-gradient(to top, #fcb7a2, #f795b6);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #fcb7a2, #f795b6);
+    // background: linear-gradient(to top, #fcb7a2, #f795b6);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color: #fff;
     position: relative;
     .leftmenubtn {
         position: fixed;
@@ -31,7 +32,7 @@ $mainColor: #14213D;
         height: 100%;
         top: 0;
         left: 0;
-        z-index: 2;
+        z-index: 20;
         text-align: right;
         background-color: $mainColor;
         color: #fff;
@@ -58,6 +59,7 @@ $mainColor: #14213D;
             li {
                 padding: 10%;
                 font-weight: bold;
+                background-color: $mainColor;
             }
             li:hover {
                 cursor: pointer;
@@ -67,7 +69,17 @@ $mainColor: #14213D;
             }
         }
     }
-    .leftmenu:hover {}
+}
+
+.sentance {
+    margin-top: 4%;
+    font-size: 25px;
+    font-weight: 400;
+    // background-color: #e2ebff;
+    color: #012064;
+    padding: 3%;
+    border-radius: 20px;
+    // box-shadow: 0 8px 10px 0 rgba(0, 20, 61, 0.336), 0 6px 20px 0 rgba(0, 20, 61, 0.514);
 }
 
 .all-dash {

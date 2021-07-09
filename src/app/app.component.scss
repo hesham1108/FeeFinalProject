@@ -1,1 +1,95 @@
 $mainColor: #14213D;
+$secondColor: #FCA311;
+$radious :50%;
+$wid :50px;
+$hei: 50px;
+$time:5s;
+.load {
+    height: 700px;
+    position: relative;
+    // background-color: #2e2e2e69;
+    .o {
+        position: absolute;
+        top: 45%;
+        left: 45%;
+        background-color: red;
+        width: $wid;
+        height: $wid;
+        border-radius: $radious;
+        animation: one $time linear infinite;
+    }
+    .t {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        background-color: blue;
+        width: $wid;
+        height: $wid;
+        border-radius: $radious;
+        animation: two $time linear infinite;
+    }
+    .h {
+        position: absolute;
+        top: 55%;
+        left: 45%;
+        background-color: rgb(231, 231, 9);
+        width: $wid;
+        height: $wid;
+        border-radius: $radious;
+        animation: three $time linear infinite;
+    }
+    .f {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        background-color: rgb(1, 150, 1);
+        width: $wid;
+        height: $wid;
+        border-radius: $radious;
+        animation: four $time linear infinite;
+    }
+}
+
+@keyframes one {
+    25% {
+        top: 25%;
+        left: 33%;
+    }
+    75% {
+        top: 80%;
+        left: 62%;
+    }
+}
+
+@keyframes two {
+    25% {
+        top: 25%;
+        left: 62%;
+    }
+    75% {
+        top: 80%;
+        left: 33%;
+    }
+}
+
+@keyframes three {
+    25% {
+        top: 80%;
+        left: 33%;
+    }
+    75% {
+        top: 25%;
+        left: 62%;
+    }
+}
+
+@keyframes four {
+    25% {
+        top: 80%;
+        left: 62%;
+    }
+    75% {
+        top: 25%;
+        left: 33%;
+    }
+}

@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay } from 'rxjs/operators';
 import { Card } from 'src/app/services/news/card.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -16,9 +15,13 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   id:number|any;
   edit:boolean =false;
   news:Card|any;
-  constructor(private fb: FormBuilder , private router: Router , private route:ActivatedRoute
-    ,
-    private newsSer: HomeNewsCardServiceService ) {
+  load:boolean = true;
+  constructor(
+    private fb: FormBuilder ,
+    private router: Router ,
+    private route:ActivatedRoute,
+    private newsSer: HomeNewsCardServiceService
+    ) {
     this.newsFrom = this.fb.group({
       title: [null , [Validators.required , Validators.maxLength(50)]],
       date:[null , [Validators.required ]],
@@ -28,12 +31,17 @@ export class NewsFormComponent implements OnInit , OnDestroy{
    }
 
   ngOnInit(): void {
+    this.newsSer.nothing.next(false);
     this.route.params.subscribe(
       (data)=>{
         if(data['id']){
+          console.log(this.edit);
+
           this.edit = true;
           this.id = +data['id'];
           console.log(this.id);
+          console.log(this.edit);
+
 
           this.newsSer.getCardFromAllCards(this.id).subscribe(
             (res)=> {
@@ -44,6 +52,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
                 this.newsFrom.get('date').setValue(this.news.createdAt);
                 this.newsFrom.get('description').setValue(this.news.description);
                 this.newsFrom.get('imagePath').setValue(this.news.imagePath);
+                this.load=false;
               }
 
 
@@ -57,12 +66,13 @@ export class NewsFormComponent implements OnInit , OnDestroy{
 
         }else{
           this.edit = false;
+          this.load=false;
         }
       }
     );
   }
   onSubmit(){
-    // console.log(this.newsFrom);
+
     let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
       id : this.id,
       title : this.newsFrom.get('title').value,
@@ -77,22 +87,28 @@ export class NewsFormComponent implements OnInit , OnDestroy{
         document.documentElement.scrollTop = 0;
         this.newsSer.putNews(dataToPost).subscribe(
           (res)=>{
-            console.log(res);
+            if(res){
+
+              this.router.navigate(['newsTable']);
+
+            }
           }
         );
-        // this.newsSer.allCards.splice(this.id ,1 ,currentNews);
-        //this.newsSer.deleteNews().subscribe((res)=>{console.log(res);});
-        // this.router.navigate(['news']);
+
+
       }
     }else{
       if(this.newsFrom.valid){
         document.documentElement.scrollTop = 0;
         this.newsSer.postNews(dataToPost).subscribe(
-          (res)=>{
-            console.log(res);
+          (respo)=>{
+            if(respo){
+              this.router.navigate(['newsTable']);
+            }
 
           }
         );
+
       }
     }
 
@@ -100,11 +116,18 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
 
   deleteNews(i:number){
-    this.newsSer.deleteNews(i).subscribe((res)=>{console.log(res);});
+    this.newsSer.deleteNews(i).subscribe((resp)=>{
+    } , error=>{
+      console.log(error);
+
+    });
     this.newsFrom.reset();
+
+
   }
 
   ngOnDestroy(): void {
+    this.newsSer.nothing.next(false);
     this.edit = false;
   }
 

@@ -9,15 +9,8 @@ import { HomeNewsCardServiceService } from './services/news/home-news-card-servi
 })
 export class AppComponent implements OnInit {
   title = 'FEE-TEST';
-  load:boolean = false;
+  load:boolean = true;
   constructor(private newSer: HomeNewsCardServiceService , private eventSer: EventCardService){
-    this.newSer.fetchData();
-    this.newSer.load.subscribe(
-      (data)=>{
-        this.load =  data;
-      }
-    )
-    this.eventSer.fetchData();
   }
   ngOnInit(){
 

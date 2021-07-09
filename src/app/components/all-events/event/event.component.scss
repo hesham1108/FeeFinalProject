@@ -1,5 +1,6 @@
 .the-whole-body {
     margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .naving {
@@ -7,6 +8,19 @@
     font-size: large;
     font-weight: bold;
     padding: 2%;
+}
+
+.edit {
+    padding: 2%;
+    i {
+        font-size: larger;
+    }
+    i:hover {
+        cursor: pointer;
+        color: #FCA311;
+        // #254ca0
+        // box-shadow: 0 4px 8px 0 #14213da4;
+    }
 }
 
 $mainColor: #14213D;

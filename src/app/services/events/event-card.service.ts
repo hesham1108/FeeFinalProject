@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { Event } from './event.model';
 
 @Injectable({
@@ -11,6 +12,8 @@ export class EventCardService {
 
   currentPage = new Subject<number>();
   currentPageNumber: number = 1;
+  private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Events';
+  load = new Subject<boolean>();
   // events:Events[] = [
   //   new Events(
   //     'هشام',
@@ -446,49 +449,44 @@ export class EventCardService {
   //     link: ''
   //   },
   // ] ;
- allEvents:Event[] = [];
+  allEvents:Observable<Event[]>|any = [];
 
   constructor( private http: HttpClient) { }
 
-  fetchData(){
-    this.http.get('http://ahmed1500019-001-site1.dtempurl.com/api/Events').subscribe(
-      (data:any) => {
-        for(let i in data){
-          if(data.hasOwnProperty(i)){
-          this.allEvents.push(data[i]);
-          }
-        }
-      }
-    );
-  }
-  getHomeEvents(){
-   var firstThreeEvents: any = [];
-   for(let i = 0 ; i<3 ; i++){
-     firstThreeEvents.push(this.allEvents[i]);
-   }
-    return firstThreeEvents.slice();
-  }
-
-  // getEvents(){
-  //   return this.allEvents;
+  // getHomeEvents(){
+  // var firstThreeEvents: Event[]|any = [];
+  // this.getAllEvents().subscribe(
+  //   (res)=>{
+  //     for(let i = 0 ; i<3 ; i++){
+  //       firstThreeEvents.push(res[i]);
+  //     }
+  //   }
+  // );
+  // return firstThreeEvents;
   // }
 
-  // getEvent(id:number){
-  //   return this.allEvents[id];
-  // }
 
-  // getEventsLenght(){
-  //   return this.allEvents.length;
-  // }
+  getAllEvents():Observable<any>{
+    return this.http.get(`${this.baseUrl}`);
+  }
 
-  getAllEvents(){
-    return this.allEvents.slice();
+
+  getEventFromAllEvents(id:number): Observable<any>{
+    return this.http.get(`${this.baseUrl}/${id}`);
   }
-  getEventFromAllEvents(id:number){
-    return this.allEvents[id];
+
+  postEvent(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>
+  {
+    return this.http.post(`${this.baseUrl}`,obj);
   }
-  getAllEventsLength(){
-    return this.allEvents.length;
+
+  putEvent(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>{
+   return this.http.put(`${this.baseUrl}`, obj);
+  }
+
+
+  deleteEvent(id:number):Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 
 }

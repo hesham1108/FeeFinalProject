@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { Card } from './card.model';
 
 
@@ -11,56 +10,50 @@ import { Card } from './card.model';
 })
 export class HomeNewsCardServiceService  {
 
-
+  nothing = new Subject<boolean>();
   allCards:Card[] = [];
   currentPage = new Subject<number>();
   currentPageNumber:number|any = 1;
   load = new Subject<boolean>() ;
+  newsload = new Subject<boolean>();
+
+  private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/News';
   constructor(private http:HttpClient) { }
 
 
-  fetchData(){
-    const tempArray = [];
-    this.http.get<Card[]>('http://ahmed1500019-001-site1.dtempurl.com/api/News')
-    .subscribe(
-     (data:Card[])=> {
-      for(let i in data){
-        if(data.hasOwnProperty(i)){
-          this.allCards.push(data[i]);
-          this.load.next(true);
-          }
-        }
-      }
-    );
+
+  getAllCards():Observable<any>{
+    return this.http.get(`${this.baseUrl}`);
   }
 
-
-
-  getallCards(){
-    return this.allCards;
-  }
 
   getCardFromAllCards(id:number){
-    return this.http.get(`http://ahmed1500019-001-site1.dtempurl.com/api/News/${id}` , {
+    return this.http.get(`${this.baseUrl}/${id}` , {
       observe:'response'
     });
   }
-  getallCardsLength(){
-    return this.allCards.length;
-  }
 
-  postNews(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}){
-    return this.http.post('http://ahmed1500019-001-site1.dtempurl.com/api/News',obj);
-  }
 
-  putNews(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}){
-   return this.http.put(`http://ahmed1500019-001-site1.dtempurl.com/api/News`, obj);
+  postNews(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}): Observable<Object> {
+
+    return this.http.post(`${this.baseUrl}`,obj);
 
   }
-  deleteNews(id:number){
-    return this.http.delete(`http://ahmed1500019-001-site1.dtempurl.com/api/News/${id}`);
+
+  putNews(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}):Observable<Object>{
+
+   return this.http.put(`${this.baseUrl}`, obj);
+
   }
-  // addNews(card: Card){
-  //   this.allCards.push(card);
-  // }
+
+
+
+  deleteNews(id:number):Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+
+
+
+
 }

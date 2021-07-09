@@ -1,0 +1,13 @@
+<div class="container-fluid backdrop" (click)="onCancel()">
+</div>
+<div class="delete-box">
+    <div class="row delete-message">
+        هل أنت متأكد من مسح هذا {{content}} ؟
+    </div>
+    <div class="row delete-btn justify-content-center" (click)="onDelete()">
+        نعم
+    </div>
+    <div class="row cancel-btn  justify-content-center" (click)="onCancel()">
+        لا
+    </div>
+</div>

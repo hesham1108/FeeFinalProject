@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Card } from '../../services/news/card.model';
 import { HomeNewsCardServiceService } from '../../services/news/home-news-card-service.service';
 
@@ -13,14 +13,14 @@ import { HomeNewsCardServiceService } from '../../services/news/home-news-card-s
 export class AllNewsComponent implements OnInit , OnDestroy{
 
   private currsub:Subscription|any;
-  news_cards : Card[] = [];
+  news_cards : Observable<Card[]>|any = [];
   numberOfPages:number| any ;
   cardsToDisplay: Card[] = [];
   divider:number = 10;
-
+  load:boolean =true;
 
   constructor(private newsSer: HomeNewsCardServiceService , private router: Router) {
-    this.news_cards = this.newsSer.getallCards();
+
     this.currsub= this.newsSer.currentPage.subscribe(
       (data)=>{
           this.getdisplayedCards(data);
@@ -30,22 +30,24 @@ export class AllNewsComponent implements OnInit , OnDestroy{
 
   ngOnInit(): void {
 
-    this.numberOfPages = Math.ceil(this.newsSer.getallCardsLength() / this.divider);
+    this.loadData();
 
+  }
 
-    console.log('all cards length '+ this.newsSer.getallCardsLength());
-
-    console.log('number of pages :- '+this.numberOfPages);
-
-    this.getdisplayedCards(1);
-
-
-
+  loadData(){
+    this.newsSer.getAllCards().subscribe(
+      (res)=>{
+        this.news_cards = res;
+        this.numberOfPages = Math.ceil(this.news_cards.length / this.divider);
+        this.getdisplayedCards(1);
+        this.load = false;
+      }
+    );
   }
 
   getdisplayedCards(id:number = 1){
         this.cardsToDisplay=[];
-        for(let i = (id*this.divider - this.divider) ; i < id*this.divider && i< this.newsSer.getallCardsLength() ;  i++ ){
+        for(let i = (id*this.divider - this.divider) ; i < id*this.divider && i< this.news_cards.length ;  i++ ){
             this.cardsToDisplay.push(this.news_cards[i]);
         }
 

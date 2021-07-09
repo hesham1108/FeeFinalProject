@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { EventCardService } from '../../../services/events/event-card.service';
 import { Event } from '../../../services/events/event.model';
 
@@ -9,12 +11,28 @@ import { Event } from '../../../services/events/event.model';
 })
 export class HomeEventsCardComponent implements OnInit {
 
-  events : Event[]=[];
-  constructor( private eventSrv: EventCardService ) { }
+  homeEvents : Observable<Event[]>|any=[];
+
+  constructor( private eventSrv: EventCardService , private router: Router ) { }
 
   ngOnInit(): void {
-    this.events = this.eventSrv.getHomeEvents();
+   this.loadData();
   }
-
+  loadData(){
+    var firstThreeEvents: Observable<Event[]>|any = [];
+    this.eventSrv.getAllEvents().subscribe(
+      (res)=>{
+        for(let i = 0 ; i<3 ; i++){
+          firstThreeEvents.push(res[i]);
+        }
+        this.eventSrv.load.next(false);
+      }
+    );
+    this.homeEvents = firstThreeEvents;
+  }
+  goTo(dest:string){
+    document.documentElement.scrollTop = 0;
+    this.router.navigate([dest]);
+  }
 
 }

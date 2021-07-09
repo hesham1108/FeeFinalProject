@@ -47,7 +47,16 @@ import { LoginServiceService } from './services/login/login-service.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
-import { HomeNewsCardServiceService } from './services/news/home-news-card-service.service';
+import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
+import { SearchComponent } from './components/search/search.component';
+import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { EventsTableComponent } from './components/dashboard/helpers/events-table/events-table.component';
+
+
+//filter
+import {FilterPipe} from './components/search/filter.pipe';
+import { ConfirmDeletionComponent } from './components/dashboard/helpers/confirm-deletion/confirm-deletion.component';
 
 
 @NgModule({
@@ -88,6 +97,14 @@ import { HomeNewsCardServiceService } from './services/news/home-news-card-servi
     DashboardComponent,
     NewsFormComponent,
     LoginFormComponent,
+    EventFormComponent,
+    SearchComponent,
+    NewsTableComponent,
+    LoaderComponent,
+    EventsTableComponent,
+    FilterPipe,
+    ConfirmDeletionComponent
+
 
   ],
   imports: [
@@ -100,6 +117,7 @@ import { HomeNewsCardServiceService } from './services/news/home-news-card-servi
     CarouselModule,
     WavesModule,
     CardsModule,
+
   ],
   exports: [
 

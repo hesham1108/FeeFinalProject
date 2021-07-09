@@ -1,0 +1,66 @@
+$mainColor: #14213D;
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.form-group {
+    text-align: right;
+}
+
+label {
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.submit-btn {
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: $mainColor;
+    color: #fff;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 10px 0 #14213d9c, 0 6px 20px 0 #14213dd5;
+    padding-left: 8%;
+    padding-right: 8%;
+    transition: all 0.7s linear;
+}
+
+.btn {
+    padding: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.error {
+    margin-top: 2%;
+    color: red;
+    font-size: medium;
+}
+
+.file-btn {
+    padding: 3%;
+    border-radius: 5px;
+    background-color: transparent;
+    // font-size: 15px;
+}
+
+.file-btn:focus,
+.file-btn:hover {
+    border-color: #235ad3;
+    color: #235ad3;
+    outline: 0;
+}
+
+.file-value {
+    padding: 3%;
+    color: #235ad3;
+    // margin-top: 2%;
+}

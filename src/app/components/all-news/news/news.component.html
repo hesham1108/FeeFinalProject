@@ -6,11 +6,11 @@
                 <div class="col-sm-5" style="text-align: right; padding: 2%;">
                     <a style="margin-left:15px ;" (click)="goto('')">الرئيسية</a>
                     <i style="margin-left:15px ; padding-top: 5px" class="fas fa-angle-double-left "></i>
-                    <a style="color:#740350 ">الأخبار</a>
+                    <a style="color:#FCA311 ">الأخبار</a>
                 </div>
                 <div class="col-sm-2 edit " *ngIf="admin">
 
-                    <i class="fa fa-edit" (click)="goToEdit('dash/add')"> تعديل   </i>
+                    <i class="fa fa-edit" (click)="goToEdit('dash/addNews')"> تعديل   </i>
 
 
                 </div>
@@ -41,14 +41,14 @@
                     <img src="https://cdn131.picsart.com/275433038015201.jpg?c256x256" alt="">
                 </div>
             </div>
-            <div class="row justify-content-between" style="margin-top: 4%;">
+            <!-- <div class="row justify-content-between" style="margin-top: 4%;">
                 <div class="btnn" (click)="goTo(-1)">
                     السابق
                 </div>
                 <div class="btnn" (click)="goTo(1)">
                     التالي
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
@@ -59,10 +59,4 @@
 
 </div>
 
-<div class="container" dir="rtl" *ngIf="load">
-    <div class="row justify-content-center">
-        <div class="col-sm-5" style="padding: 5;">
-            <h1>جاري التحميل</h1>
-        </div>
-    </div>
-</div>
+<app-loader *ngIf="load"></app-loader>

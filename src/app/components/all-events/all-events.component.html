@@ -1,6 +1,9 @@
-<div class="container" dir="rtl" lang="ar">
+<div class="container" dir="rtl" lang="ar" *ngIf="!load">
     <app-single-event *ngFor="let e of eventsToDisplay; let i = index" [event]="e" [id]='i'></app-single-event>
 </div>
 
 
-<app-pagination [numberOfPages]="numberOfPages"></app-pagination>
+<app-pagination [numberOfPages]="numberOfPages" *ngIf="!load"></app-pagination>
+
+
+<app-loader *ngIf="load"></app-loader>

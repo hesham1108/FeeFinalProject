@@ -1,9 +1,16 @@
 <div class="container" dir="rtl" lang="ar">
-
-    <app-single-event *ngFor="let e of events;let id = index" [event]="e" [id]="id"></app-single-event>
+    <app-single-event *ngFor="let e of homeEvents;let id = index" [event]="e" [id]="id"></app-single-event>
+    <br>
+    <br>
+    <br>
+    <div class="row seemore-btn">
+        <div class="col-sm-3"></div>
+        <div (click)="goTo('events')" class="col-sm-6  read-more ">
+            المزيد من الأحداث
+        </div>
+    </div>
     <br>
     <br>
     <br>
     <hr>
-
 </div>
