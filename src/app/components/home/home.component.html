@@ -1,6 +1,6 @@
-<div class="container-fluid" *ngIf="eventload && newsload" style="position: absolute; z-index: 10; top: 0; padding: 0; margin: 0; height: 300%; width: 100vw; background-color: white;">
-    <app-loader></app-loader>
-</div>
+<app-loader *ngIf="eventload && newsload">
+</app-loader>
+
 <app-home-cover></app-home-cover>
 <div class="row justify-content-center latest-news">
     <div class="news-head">

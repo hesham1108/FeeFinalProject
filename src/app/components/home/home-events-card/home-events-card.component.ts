@@ -22,13 +22,19 @@ export class HomeEventsCardComponent implements OnInit {
     var firstThreeEvents: Observable<Event[]>|any = [];
     this.eventSrv.getAllEvents().subscribe(
       (res)=>{
+        if(res.length < 3){
+          this.homeEvents = res;
+        }else{
         for(let i = 0 ; i<3 ; i++){
           firstThreeEvents.push(res[i]);
         }
+        this.homeEvents = firstThreeEvents;
+      }
         this.eventSrv.load.next(false);
+
       }
     );
-    this.homeEvents = firstThreeEvents;
+
   }
   goTo(dest:string){
     document.documentElement.scrollTop = 0;

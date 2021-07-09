@@ -21,13 +21,20 @@ export class HomeNewsCardComponent implements OnInit {
     this.cardSer.getAllCards().subscribe(
       (res)=>{
         // console.log(res);
-        for(let i = 0 ; i<3 ; i++){
-          firstThreeCards.push(res[i]);
-        }
+        if(res.length < 3){
+          this.homeCards = res;
+        }else{
+          for(let i = 0 ; i<3 ; i++){
+            firstThreeCards.push(res[i]);
+          }
+          this.homeCards = firstThreeCards;
+      }
+
         this.cardSer.newsload.next(false);
+
       }
     );
-    this.homeCards = firstThreeCards;
+
   }
 
   goTo(dest:string){

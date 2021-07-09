@@ -16,6 +16,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   edit:boolean =false;
   news:Card|any;
   load:boolean = true;
+  delete:boolean=false;
   constructor(
     private fb: FormBuilder ,
     private router: Router ,
@@ -99,10 +100,11 @@ export class NewsFormComponent implements OnInit , OnDestroy{
       }
     }else{
       if(this.newsFrom.valid){
-        document.documentElement.scrollTop = 0;
+
         this.newsSer.postNews(dataToPost).subscribe(
           (respo)=>{
             if(respo){
+              document.documentElement.scrollTop = 0;
               this.router.navigate(['newsTable']);
             }
 
@@ -116,7 +118,11 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
 
   deleteNews(i:number){
+    this.load = true;
     this.newsSer.deleteNews(i).subscribe((resp)=>{
+      this.load = false;
+      this.delete= false;
+
     } , error=>{
       console.log(error);
 
@@ -131,4 +137,10 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     this.edit = false;
   }
 
+  ondelete(){
+    this.delete=true;
+  }
+  onCancel(){
+    this.delete=false;
+  }
 }

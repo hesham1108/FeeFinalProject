@@ -1,109 +1,126 @@
-.load {
-    position: relative;
+.backdrop {
+    position: fixed;
+    top: 5vh;
+    left: 0;
     width: 100vw;
-    height: 800px;
+    height: 100vh;
+    z-index: 200;
     background-color: #fff;
-    // z-index: 999999999999999950;
-    top: 0;
-    background-attachment: fixed;
+}
+
+$pos13top: 28vh;
+$pos1left: 26vw;
+$pos3left: 38vw;
+$pos24left: 32vw;
+$pos2top: 18vh;
+$pos4top: 38vh;
+$circuleWidth: 3vw;
+.load {
+    position: fixed;
+    top: 15vh;
+    left: 14vw;
+    width: 70vw;
+    height: 70vh;
+    background-color: #fff;
+    z-index: 250;
     .d1 {
         position: absolute;
-        top: 40%;
-        left: 42%;
+        top: 28vh;
+        left: 26vw;
         border-radius: 100%;
         background-color: black;
-        width: 50px;
-        height: 50px;
+        width: $circuleWidth;
+        height: $circuleWidth;
         animation: move1 3s linear infinite;
     }
     .d2 {
         position: absolute;
-        top: 30%;
-        left: 47%;
+        top: 18vh;
+        left: 32vw;
         border-radius: 100%;
         background-color: red;
-        width: 50px;
-        height: 50px;
+        width: $circuleWidth;
+        height: $circuleWidth;
         animation: move2 3s linear infinite;
     }
     .d3 {
         position: absolute;
-        top: 40%;
-        left: 52%;
+        top: 28vh;
+        left: 38vw;
         border-radius: 100%;
         background-color: rgb(3, 170, 162);
-        width: 50px;
-        height: 50px;
+        width: $circuleWidth;
+        height: $circuleWidth;
         animation: move3 3s linear infinite;
     }
     .d4 {
         position: absolute;
-        top: 50%;
-        left: 47%;
+        top: 38vh;
+        left: 32vw;
         border-radius: 100%;
         background-color: rgb(176, 228, 55);
-        width: 50px;
-        height: 50px;
+        width: $circuleWidth;
+        height: $circuleWidth;
         animation: move4 3s linear infinite;
     }
 }
 
 @keyframes move1 {
     25% {
-        top: 30%;
-        left: 47%;
+        top: $pos2top;
+        left: $pos24left;
     }
     50% {
-        top: 40%;
-        left: 52%;
+        top: $pos13top;
+        left: $pos3left;
     }
     75% {
-        top: 50%;
-        left: 47%;
+        top: $pos4top;
+        left: $pos24left;
     }
 }
 
 @keyframes move2 {
     25% {
-        top: 40%;
-        left: 52%;
+        top: $pos13top;
+        left: $pos3left;
     }
     50% {
-        top: 50%;
-        left: 47%;
+        top: $pos4top;
+        left: $pos24left;
     }
     75% {
-        top: 40%;
-        left: 42%;
+        top: $pos13top;
+        left: $pos1left;
     }
 }
 
 @keyframes move3 {
     25% {
-        top: 50%;
-        left: 47%;
+        top: $pos4top;
+        left: $pos24left;
     }
     50% {
-        top: 40%;
-        left: 42%;
+        top: $pos13top;
+        left: $pos1left;
     }
     75% {
-        top: 30%;
-        left: 47%;
+        top: $pos2top;
+        left: $pos24left;
     }
 }
 
 @keyframes move4 {
     25% {
-        top: 40%;
-        left: 42%;
+        top: $pos13top;
+        left: $pos1left;
     }
     50% {
-        top: 30%;
-        left: 47%;
+        top: $pos2top;
+        left: $pos24left;
     }
     75% {
-        top: 40%;
-        left: 52%;
+        top: $pos13top;
+        left: $pos3left;
     }
 }

@@ -19,14 +19,11 @@ export class HomeComponent implements OnInit {
     this.eventSer.load.subscribe(
       (data)=>{
         this.eventload = data;
-        console.log('event load = ',data);
-
       }
     );
     this.newsSer.newsload.subscribe(
       (data)=>{
         this.newsload = data;
-        console.log('news load = ',data);
       }
     );
   }

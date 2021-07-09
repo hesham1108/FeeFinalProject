@@ -55,10 +55,11 @@
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
                 <button type="submit" class="submit-btn">تعديل</button>
-                <button type="button" class=" btn btn-danger" (click)="deleteNews(id)">مسح</button>
+                <button type="button" class=" btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
 
     </form>
 </div>
 <app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="الخبر" (cancel)="onCancel()" (res)="deleteNews(id)"></app-confirm-deletion>

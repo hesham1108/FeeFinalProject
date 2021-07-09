@@ -17,6 +17,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
   edit:boolean =false;
   event:Event|any;
   load:boolean = true;
+  delete:boolean = false;
   constructor(
     private fb:FormBuilder,
     private route: ActivatedRoute,
@@ -38,10 +39,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
       (data)=>{
         if(data['id']){
           this.edit = true;
-
-
           this.id = +data['id'];
-
           this.eventSer.getEventFromAllEvents(this.id).subscribe(
             (res)=> {
                 this.event = res;
@@ -64,7 +62,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
   }
 
   onSubmit(){
-    // console.log(this.eventForm);
+
     let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
       id : this.id,
       title : this.eventForm.get('title').value,
@@ -78,10 +76,9 @@ export class EventFormComponent implements OnInit , OnDestroy {
 
     if(this.edit){
       if(this.eventForm.valid){
-        document.documentElement.scrollTop = 0;
         this.eventSer.putEvent(dataToPost).subscribe(
           (res)=>{
-            // console.log(res);
+            document.documentElement.scrollTop = 0;
             this.router.navigate(['eventsTable']);
 
           }
@@ -90,7 +87,6 @@ export class EventFormComponent implements OnInit , OnDestroy {
       }
     }else{
       if(this.eventForm.valid){
-
         this.eventSer.postEvent(dataToPost).subscribe(
           (res)=>{
             document.documentElement.scrollTop = 0;
@@ -104,8 +100,20 @@ export class EventFormComponent implements OnInit , OnDestroy {
 
   }
 
-  deleteNews(i:number){
-    this.eventSer.deleteEvent(i).subscribe();
+  deleteEvent(i:number){
+    this.load = true;
+
+
+    this.eventSer.deleteEvent(i).subscribe(
+      (res)=>{
+          if(res){
+
+            this.load = false;
+
+            this.delete=false;
+          }
+      }
+    );
     this.eventForm.reset();
 
 
@@ -115,4 +123,10 @@ export class EventFormComponent implements OnInit , OnDestroy {
     this.edit = false;
   }
 
+  ondelete(){
+    this.delete=true;
+  }
+  onCancel(){
+    this.delete=false;
+  }
 }

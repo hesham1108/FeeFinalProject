@@ -50,7 +50,7 @@
                         <td>
                             <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
                         </td>
-                        <app-confirm-deletion *ngIf="delete" content="الحدث" (cancel)="onCancel()" (res)="deleteMyNews(news.id)"></app-confirm-deletion>
+                        <app-confirm-deletion *ngIf="delete" content="الخبر" (cancel)="onCancel()" (res)="deleteMyNews(news.id)"></app-confirm-deletion>
                     </tr>
                 </tbody>
             </table>
