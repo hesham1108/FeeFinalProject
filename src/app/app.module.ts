@@ -57,6 +57,8 @@ import { EventsTableComponent } from './components/dashboard/helpers/events-tabl
 //filter
 import {FilterPipe} from './components/search/filter.pipe';
 import { ConfirmDeletionComponent } from './components/dashboard/helpers/confirm-deletion/confirm-deletion.component';
+import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
+import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
 
 
 @NgModule({
@@ -103,7 +105,9 @@ import { ConfirmDeletionComponent } from './components/dashboard/helpers/confirm
     LoaderComponent,
     EventsTableComponent,
     FilterPipe,
-    ConfirmDeletionComponent
+    ConfirmDeletionComponent,
+    SubjectFormComponent,
+    SubjectTableComponent
 
 
   ],

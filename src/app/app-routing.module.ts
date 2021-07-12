@@ -8,8 +8,10 @@ import { NewsComponent } from './components/all-news/news/news.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
+import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
 import { EventsTableComponent } from './components/dashboard/helpers/events-table/events-table.component';
 import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
+import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -22,11 +24,14 @@ const routes: Routes = [
   {path:"search", component: SearchComponent},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},
+  {path:'subjectsTable',component: SubjectTableComponent},
   {path:"dash" , component:DashboardComponent , children:[
     {path: 'addNews' , component:NewsFormComponent},
     {path: 'addNews/:id' , component:NewsFormComponent},
     {path: 'addEvent' , component:EventFormComponent},
     {path: 'addEvent/:id' , component:EventFormComponent},
+    {path: 'addSubject' , component:SubjectFormComponent},
+    {path: 'addSubject/:id' , component:SubjectFormComponent},
   ]},
   {path:"about", component:AboutComponent},
   {path:"prof/:id", component:ProfComponent},

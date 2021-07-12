@@ -16,18 +16,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row table-responsive">
         <div class="col-sm-12" style="padding: 0;">
             <table class="table table-striped">
                 <thead style="background-color: #14213D; color: #fff; ">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" style="border-top-right-radius:5px;">#</th>
                         <th scope="col">عنوان الخبر</th>
                         <th scope="col">تاريخ الخبر </th>
                         <th scope="col">صورة الخبر </th>
                         <th scope="col">وصف الخبر </th>
                         <th scope="col">تعديل </th>
-                        <th scope="col">مسح </th>
+                        <th scope="col" style="border-top-left-radius:5px;">مسح </th>
 
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                             <img [src]="news.imagePath" width="120px" height="120px" alt="photo" style="border-radius: 75px;">
                         </td>
                         <td>
-                            <div style="width: 150px; height:150px ; overflow: hidden;">
+                            <div style="width: 150px; height:150px ;overflow: hidden;">
                                 {{news.description}}
                             </div>
                         </td>

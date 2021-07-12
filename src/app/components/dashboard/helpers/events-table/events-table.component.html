@@ -4,9 +4,9 @@
             <h1>جميع الأحداث</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-2 offset-sm-2 add" style="text-align: right;" (click)="goTo('dash/addEvent')">
-            <div class="row justify-content-around">
+    <div class="row ">
+        <div class="col-sm-3 offset-sm-2 add " style="text-align: right;" (click)="goTo('dash/addEvent')">
+            <div class="row justify-content-around ">
                 <div class="col-sm-3 icon">
                     <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
                 </div>
@@ -16,18 +16,18 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row  table-responsive">
         <div class="col-sm-12" style="padding: 0;">
-            <table class="table">
+            <table class="table" aria-describedby="event table">
                 <thead style="background-color: #14213D; color: #fff;">
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" style="border-top-right-radius:5px;">#</th>
                         <th scope="col">عنوان الحدث</th>
                         <th scope="col">تاريخ الحدث </th>
                         <th scope="col">صورة الحدث </th>
                         <th scope="col">وصف الحدث </th>
                         <th scope="col">تعديل </th>
-                        <th scope="col">مسح </th>
+                        <th scope="col" style="border-top-left-radius:5px;">مسح </th>
                     </tr>
                 </thead>
                 <tbody>

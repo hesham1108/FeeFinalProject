@@ -1,0 +1,132 @@
+$mainColor: #14213D;
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.form-group {
+    text-align: right;
+}
+
+label {
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.error {
+    // margin-top: 2%;
+    // display: inline;
+    color: red;
+    font-size: medium;
+    text-align: right;
+}
+
+.search {
+    padding: 2%;
+    font-size: 20px;
+    color: #909192;
+}
+
+.drop-down-select {
+    text-align: right;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    #input {
+        font-size: 20px;
+        float: right;
+        padding: 2%;
+        border: none;
+    }
+    #input:focus-visible {
+        outline: none;
+    }
+    i {
+        float: left;
+        padding: 4%;
+    }
+    #options {
+        border-right: 1px solid #ced4da;
+        border-left: 1px solid #ced4da;
+        border-bottom: 1px solid #ced4da;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        right: 0;
+        top: 100%;
+        list-style: none;
+        background-color: #fff;
+        color: #14213D;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        text-align: right;
+        padding-right: 0;
+        display: none;
+        .check {
+            padding: 2%;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border: 1px solid $mainColor;
+            border-radius: 5px;
+        }
+    }
+}
+
+.add {
+    padding: 4%;
+    border: 1px solid $mainColor;
+    color: #fff;
+    background-color: $mainColor;
+    border-radius: 5px;
+    float: left;
+}
+
+.add:active {
+    border: none;
+}
+
+.add:focus {
+    outline: none;
+}
+
+.add:focus-visible {
+    outline: none;
+}
+
+.submit-btn {
+    border: 1px solid $mainColor;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: $mainColor;
+    color: #fff;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 8px 10px 0 #14213d9c, 0 6px 20px 0 #14213dd5;
+    padding-left: 8%;
+    padding-right: 8%;
+    transition: all 0.7s linear;
+}
+
+.btn {
+    padding: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+i {
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+i:hover {
+    background-color: #cfcecebd;
+    border-radius: 5px;
+}
