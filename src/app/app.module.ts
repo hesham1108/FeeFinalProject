@@ -59,7 +59,10 @@ import {FilterPipe} from './components/search/filter.pipe';
 import { ConfirmDeletionComponent } from './components/dashboard/helpers/confirm-deletion/confirm-deletion.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
+import { DepartmentTableComponent } from './components/dashboard/helpers/department-table/department-table.component';
+import { DepartmentFormComponent } from './components/dashboard/forms/department-form/department-form.component';
 
+//PrimeNg
 
 @NgModule({
   declarations: [
@@ -107,7 +110,9 @@ import { SubjectTableComponent } from './components/dashboard/helpers/subject-ta
     FilterPipe,
     ConfirmDeletionComponent,
     SubjectFormComponent,
-    SubjectTableComponent
+    SubjectTableComponent,
+    DepartmentTableComponent,
+    DepartmentFormComponent
 
 
   ],
@@ -121,6 +126,8 @@ import { SubjectTableComponent } from './components/dashboard/helpers/subject-ta
     CarouselModule,
     WavesModule,
     CardsModule,
+
+
 
   ],
   exports: [

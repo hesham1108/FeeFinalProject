@@ -1,0 +1,196 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+        <!-- name -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="name">اسم القسم</label> :
+            </div>
+            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control" />
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('name').invalid &&
+          departmentForm.get('name').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('name').errors['required']"
+        >
+          رجاء أدخل اسم القسم
+        </span>
+            </span>
+        </div>
+        <br />
+        <!-- about -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="about">عن القسم</label> :
+            </div>
+            <textarea formControlName="about" id="about" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('about').invalid &&
+          departmentForm.get('about').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('about').errors['required']"
+        >
+          رجاء أدخل معلومات القسم
+        </span>
+            </span>
+        </div>
+        <br />
+        <!-- sight -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="sight">رؤية القسم</label> :
+            </div>
+            <textarea formControlName="sight" id="sight" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('sight').invalid &&
+          departmentForm.get('sight').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('sight').errors['required']"
+        >
+          رجاء أدخل رؤية القسم
+        </span>
+            </span>
+        </div>
+        <br />
+        <!-- message -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="message">رسالة القسم</label> :
+            </div>
+            <textarea formControlName="message" id="message" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('message').invalid &&
+          departmentForm.get('message').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('message').errors['required']"
+        >
+          رجاء أدخل رسالة القسم
+        </span>
+            </span>
+        </div>
+        <br />
+        <!-- goal -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="goal">أهداف القسم</label> :
+            </div>
+            <textarea formControlName="goal" id="goal" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('goal').invalid &&
+          departmentForm.get('goal').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('goal').errors['required']"
+        >
+          رجاء أدخل أهداف القسم
+        </span>
+            </span>
+        </div>
+        <br />
+        <!-- BossWord -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="bossWord">كلمة رئيس القسم</label> :
+            </div>
+            <textarea formControlName="bossWord" id="bossWord" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+          departmentForm.get('bossWord').invalid &&
+          departmentForm.get('bossWord').touched
+        ">
+        <span
+          class="error"
+          *ngIf="departmentForm.get('bossWord').errors['required']"
+        >
+          رجاء أدخل كلمة رئيس القسم
+        </span>
+            </span>
+        </div>
+        <br />
+
+        <!-- labs -->
+        <div class="row" formArrayName="labs">
+            <div class="col-sm-12">
+                <div class="row " style="text-align: right;">
+                    <div class="col-sm-3">
+                        <label>معامل القسم </label>:
+                    </div>
+                    <div class="col-sm-4" style="padding: 0;">
+                        <p class="search">
+                            * اضغط على إضافة قسم و أضف معمل
+                        </p>
+                    </div>
+                    <div class="col-sm-3 " style="padding-left: 0;">
+                        <button type="button" class="add" (click)="addLab()">
+                      <i class="fa fa-plus" style="margin-left:4px;"></i>
+                      إضافة معمل
+                    </button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3 new" *ngFor="let sub of departmentForm.get('labs').controls; let i =index">
+                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="اسم المعمل" style="float: right;">
+                        <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteLab(i)"></i>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <br>
+
+        <!-- Council -->
+        <div class="row" formArrayName="council">
+            <div class="col-sm-12">
+                <div class="row " style="text-align: right;">
+                    <div class="col-sm-3">
+                        <label>مجالس القسم </label>:
+                    </div>
+                    <div class="col-sm-4" style="padding: 0;">
+                        <p class="search">
+                            * اضغط على إضافة مجلس و أضف مجلس
+                        </p>
+                    </div>
+                    <div class="col-sm-3 " style="padding-left: 0;">
+                        <button type="button" class="add" (click)="addCouncil()">
+                    <i class="fa fa-plus" style="margin-left:4px;"></i>
+                    إضافة مجلس
+                  </button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-3 new" *ngFor="let sub of departmentForm.get('council').controls; let i =index">
+                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="اسم المجلس" style="float: right;">
+                        <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteCouncil(i)"></i>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <br>
+
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="departmentForm.invalid">تأكيد</button>
+        </div>
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="departmentForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+    </form>
+
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="القسم" (cancel)="onCancel()" (res)="deleteDepartment(id)"></app-confirm-deletion>

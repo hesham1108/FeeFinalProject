@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.router.url);
+    this.closeleftmenu();
     if(this.router.url == '/dash'){
       this.newsSer.nothing.next(true);
     }else{
@@ -42,11 +42,13 @@ export class DashboardComponent implements OnInit {
   }
 
   goTo(dest:string){
+    this.closeleftmenu();
     this.newsSer.nothing.next(false);
     document.documentElement.scrollTop = 0;
     this.router.navigate([dest ],{relativeTo: this.route})
   }
   goToOut(dest:string){
+    this.closeleftmenu();
     document.documentElement.scrollTop = 0;
     this.router.navigate([dest]);
   }
@@ -55,7 +57,7 @@ export class DashboardComponent implements OnInit {
     leftmenu.style.display = "block";
     var leftmenubtn: HTMLElement|any = document.getElementById('open');
     leftmenubtn.style.display ="none";
-    console.log(leftmenu.style.display);
+
 
   }
   closeleftmenu(){

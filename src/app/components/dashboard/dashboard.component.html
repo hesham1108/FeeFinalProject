@@ -39,13 +39,9 @@
             <div class="col-sm-3 navigator-item">
                 الأقسام
                 <ul id="drop">
-                    <li id="dropi">قسم حاسبات </li>
-                    <li id="dropi">قسم تحكم </li>
-                    <li id="dropi">قسم إتصالات </li>
-                    <li id="dropi">القسم العام </li>
-                    <li id="dropi">قسم شبكات </li>
-                    <li id="dropi">قسم طبية </li>
-                    <li id="dropi">قسم تحكم صناعى </li>
+                    <li id="dropi" (click)="goToOut('departmentTable')">كل الأقسام </li>
+                    <li id="dropi" (click)="goTo('addDepartment')">إضافة قسم </li>
+
                 </ul>
             </div>
             <div class="col-sm-3 navigator-item">

@@ -20,7 +20,7 @@ export class HeadDepartmentComponent implements OnInit {
 
   }
 
-  goTo(id:number){
+  goToDepartment(id:number){
     document.documentElement.scrollTop = 0;
     this.router.navigate(['departments/',id]);
   }

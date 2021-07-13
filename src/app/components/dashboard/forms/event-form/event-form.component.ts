@@ -96,14 +96,10 @@ export class EventFormComponent implements OnInit , OnDestroy {
 
       }
     }
-
-
   }
 
   deleteEvent(i:number){
     this.load = true;
-
-
     this.eventSer.deleteEvent(i).subscribe(
       (res)=>{
           if(res){
@@ -115,8 +111,6 @@ export class EventFormComponent implements OnInit , OnDestroy {
       }
     );
     this.eventForm.reset();
-
-
   }
   ngOnDestroy():void{
     this.newsSer.nothing.next(false);

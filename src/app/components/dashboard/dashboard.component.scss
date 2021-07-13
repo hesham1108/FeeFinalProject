@@ -3,6 +3,8 @@ $mainColor: #14213D;
 .body {
     padding-top: 2%;
     padding-bottom: 2%;
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
     // background: #f2709c;
     /* fallback for old browsers */
     // background: -webkit-linear-gradient(to top, #fcb7a2, #f795b6);
@@ -45,8 +47,8 @@ $mainColor: #14213D;
         }
         i:hover {
             cursor: pointer;
-            padding: 12%;
-            box-shadow: 0 8px 10px 0 #0000009c, 0 6px 20px 0 #101218d5;
+            padding-right: 12%;
+            // box-shadow: 0 8px 10px 0 #0000009c, 0 6px 20px 0 #101218d5;
             transition: all 0.5s linear;
         }
         ul {
@@ -63,8 +65,8 @@ $mainColor: #14213D;
             }
             li:hover {
                 cursor: pointer;
-                padding: 15%;
-                box-shadow: 0 8px 10px 0 #0000009c, 0 6px 20px 0 #101218d5;
+                padding-right: 15%;
+                // box-shadow: 0 8px 10px 0 #0000009c, 0 6px 20px 0 #101218d5;
                 transition: all 0.5s linear;
             }
         }

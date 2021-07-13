@@ -54,7 +54,7 @@
         </div>
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
-                <button type="submit" class="submit-btn">تعديل</button>
+                <button type="submit" class="submit-btn" [disabled]="newsFrom.invalid">تعديل</button>
                 <button type="button" class=" btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
