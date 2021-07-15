@@ -11,11 +11,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DepartmentFormComponent } from './components/dashboard/forms/department-form/department-form.component';
 import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
+import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
+import { UserFormComponent } from './components/dashboard/forms/user-form/user-form.component';
+import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
 import { DepartmentTableComponent } from './components/dashboard/helpers/department-table/department-table.component';
 import { EventsTableComponent } from './components/dashboard/helpers/events-table/events-table.component';
 import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
+import { UsersTableComponent } from './components/dashboard/helpers/users-table/users-table.component';
 import { AboutDepartmentComponent } from './components/departments/dep-comps/about-department/about-department.component';
 import { BossOfDepartmentComponent } from './components/departments/dep-comps/boss-of-department/boss-of-department.component';
 import { BosswordComponent } from './components/departments/dep-comps/bossword/bossword.component';
@@ -40,10 +44,6 @@ const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:"home", component:HomeComponent},
   {path:"search", component: SearchComponent},
-  {path:'newsTable' , component: NewsTableComponent},
-  {path:'eventsTable' , component: EventsTableComponent},
-  {path:'subjectsTable',component: SubjectTableComponent},
-  {path:'departmentTable',component: DepartmentTableComponent},
   {path:'myprofile', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
   {path:'departments/:id',component: DepartmentsComponent,children:[
@@ -75,7 +75,17 @@ const routes: Routes = [
     {path: 'addSubject/:id' , component:SubjectFormComponent},
     {path: 'addDepartment' , component:DepartmentFormComponent},
     {path: 'addDepartment/:id' , component:DepartmentFormComponent},
+    {path: 'addUser' , component:UserFormComponent},
+    {path: 'addUser/:id' , component:UserFormComponent},
+    {path: 'addResult' , component:ResultFormComponent},
+    {path: 'addResult/:id' , component:ResultFormComponent},
   ]},
+  {path:'newsTable' , component: NewsTableComponent},
+  {path:'eventsTable' , component: EventsTableComponent},
+  {path:'subjectsTable',component: SubjectTableComponent},
+  {path:'departmentTable',component: DepartmentTableComponent},
+  {path:'usersTable',component:UsersTableComponent},
+  {path:'allPrivilages',component:AllPrivilagesComponent},
 
   {path:"**", component:NotFoundComponent},
 ];

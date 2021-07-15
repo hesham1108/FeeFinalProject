@@ -76,6 +76,10 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
 import { ProfileService } from './services/profile/profile.service';
 import { FillerComponent } from './components/filler/filler.component';
+import { UserFormComponent } from './components/dashboard/forms/user-form/user-form.component';
+import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
+import { UsersTableComponent } from './components/dashboard/helpers/users-table/users-table.component';
+import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
 
 //PrimeNg
 
@@ -139,7 +143,11 @@ import { FillerComponent } from './components/filler/filler.component';
     SubjectCardComponent,
     ContactUsComponent,
     MyProfileComponent,
-    FillerComponent
+    FillerComponent,
+    UserFormComponent,
+    ResultFormComponent,
+    UsersTableComponent,
+    AllPrivilagesComponent
 
 
   ],

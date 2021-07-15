@@ -1,10 +1,11 @@
 <div class="col-sm-12" dir="rtl" *ngIf="!load">
     <form [formGroup]="subjectForm" (ngSubmit)="onSubmit()">
+        <!-- name -->
         <div class="row ">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="title">عنوان المادة</label> :
             </div>
-            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control">
+            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control form-control-lg ">
             <span class="error col-sm-2" *ngIf="subjectForm.get('title').invalid && subjectForm.get('title').touched">
               <span class="error" *ngIf="subjectForm.get('title').errors['required']">
                 رجاء أدخل العنوان
@@ -13,11 +14,12 @@
             </span>
         </div>
         <br>
+        <!-- codeAr -->
         <div class="row">
             <div class="col-sm-4" style="text-align: right;">
                 <label for="codeAr">كود المادة باللغة العربية</label> :
             </div>
-            <input type="text" formControlName="codeAr" id="codeAr" class="form-control col-sm-6">
+            <input type="text" formControlName="codeAr" id="codeAr" class="form-control form-control-lg col-sm-6">
             <span class="error col-sm-2" *ngIf="subjectForm.get('codeAr').invalid && subjectForm.get('codeAr').touched">
             <span class="error" *ngIf="subjectForm.get('codeAr').errors['required']">
               رجاء أدخل الكود العربي
@@ -26,11 +28,12 @@
             </span>
         </div>
         <br>
+        <!-- codeEn -->
         <div class="row">
             <div class="col-sm-4" style="text-align: right;">
                 <label for="codeEn">كود المادة باللغة الإنجليزية</label> :
             </div>
-            <input type="text" formControlName="codeEn" id="codeEn" class="form-control col-sm-6">
+            <input type="text" formControlName="codeEn" id="codeEn" class="form-control form-control-lg  col-sm-6">
             <span class="error col-sm-2" *ngIf="subjectForm.get('codeEn').invalid && subjectForm.get('codeEn').touched">
               <span class="error" *ngIf="subjectForm.get('codeEn').errors['required']">
                 رجاء أدخل الكود الإنجليزي
@@ -39,26 +42,28 @@
             </span>
         </div>
         <br>
+        <!-- numOfHours -->
         <div class="row">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="numOfHours">عدد ساعات المادة</label>:
             </div>
-            <input type="number" class="form-control col-sm-7" id="numOfHours" formControlName="numOfHours" min="1">
+            <input type="number" class="form-control  form-control-lg  col-sm-7" id="numOfHours" formControlName="numOfHours" min="1">
 
 
             <span class="error col-sm-2" *ngIf="subjectForm.get('numOfHours').invalid && subjectForm.get('numOfHours').touched">
-          <span class="error" *ngIf="subjectForm.get('numOfHours').errors['required']">
-            رجاء أدخل عدد الساعات
-          </span>
+              <span class="error" *ngIf="subjectForm.get('numOfHours').errors['required']">
+                رجاء أدخل عدد الساعات
+              </span>
 
             </span>
         </div>
         <br>
+        <!-- maxDegree -->
         <div class="row">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="maxDegree">الدرجة العظمى</label>:
             </div>
-            <input type="number" class="form-control col-sm-7" id="maxDegree" formControlName="maxDegree" min="50">
+            <input type="number" class="form-control form-control-lg  col-sm-7" id="maxDegree" formControlName="maxDegree" min="50">
 
 
             <span class="error col-sm-2" *ngIf="subjectForm.get('maxDegree').invalid && subjectForm.get('maxDegree').touched">
@@ -69,11 +74,12 @@
             </span>
         </div>
         <br>
+        <!-- minDegree -->
         <div class="row">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="minDegree">الدرجة الصغرى</label>:
             </div>
-            <input type="number" class="form-control col-sm-7" id="minDegree" formControlName="minDegree" min="25">
+            <input type="number" class="form-control form-control-lg  col-sm-7" id="minDegree" formControlName="minDegree" min="25">
 
 
             <span class="error col-sm-2" *ngIf="subjectForm.get('minDegree').invalid && subjectForm.get('minDegree').touched">
@@ -84,11 +90,12 @@
             </span>
         </div>
         <br>
+        <!-- content -->
         <div class="row ">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="content">محتوى المادة</label>:
             </div>
-            <input type="text" formControlName="content" id="content" class="col-sm-7 form-control">
+            <input type="text" formControlName="content" id="content" class="col-sm-7 form-control form-control-lg ">
             <span class="error col-sm-2" *ngIf="subjectForm.get('content').invalid && subjectForm.get('content').touched">
             <span class="error" *ngIf="subjectForm.get('content').errors['required']">
               رجاء أدخل المحتوى
@@ -97,6 +104,7 @@
             </span>
         </div>
         <br>
+        <!-- dependOn -->
         <div class="row" formArrayName="dependOn">
             <div class="col-sm-12">
                 <div class="row " style="text-align: right;">
@@ -116,7 +124,7 @@
                     </div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-3 new" *ngFor="let sub of subjectForm.get('dependOn').controls; let i =index">
-                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="كود المادة" style="float: right;">
+                        <input type="text" class="form-control form-control-lg  col-sm-10" [formControlName]="i" placeholder="كود المادة" style="float: right;">
                         <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteDepend(i)"></i>
                         <br>
                         <br>
@@ -127,6 +135,7 @@
 
         </div>
         <br>
+        <!-- departments -->
         <div class="row" formArrayName="departments">
             <div class="col-sm-12">
                 <div class="row " style="text-align: right;">
@@ -146,7 +155,7 @@
                     </div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-3 new" *ngFor="let sub of subjectForm.get('departments').controls; let i =index">
-                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="اسم القسم" style="float: right;">
+                        <input type="text" class="form-control form-control-lg  col-sm-10" [formControlName]="i" placeholder="اسم القسم" style="float: right;">
                         <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteDepartment(i)"></i>
                         <br>
                         <br>
@@ -158,9 +167,11 @@
         </div>
         <br>
 
+        <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" [disabled]="subjectForm.invalid">تأكيد</button>
         </div>
+        <!-- edit & delete -->
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
                 <button type="submit" class="submit-btn" [disabled]="subjectForm.invalid">تعديل</button>
@@ -175,6 +186,7 @@
 
 <app-loader *ngIf="load"></app-loader>
 <app-confirm-deletion *ngIf="delete" content="المادة" (cancel)="onCancel()" (res)="deleteSubject(id)"></app-confirm-deletion>
+
 <!-- <div class="col-sm-7 drop-down-select" style="padding: 0;">
 
   <div (click)="showMenu()">

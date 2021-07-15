@@ -1,20 +1,77 @@
 <div class="container-fluid body" dir="rtl">
 
     <div class="leftmenubtn" id="open" (click)="openleftmenu()">
-        <i class="fas fa-arrow-left"></i>
+        المزيد
+        <!-- <i class="fas fa-arrow-left"></i> -->
+        <i class="fas fa-bars"></i>
     </div>
     <div class="leftmenu" id="leftmenu">
 
-        <i class="fas fa-arrow-right closeleft" id="close" (click)="closeleftmenu()"></i>
-        <br>
-        <ul>
-            <li>المستخدمين</li>
-            <li>النتائج</li>
-            <li>الجداول</li>
-            <li>الصلاحيات</li>
-            <li>تسجيل المواد للطلاب</li>
-            <li (click)="logOut()">الخروج</li>
-        </ul>
+        <div class="close-icon">
+
+            <i class="fas fa-times " id="close" (click)="closeleftmenu()"></i>
+
+        </div>
+
+        <div class="side-menu">
+            <ul>
+                <li>
+                    المستخدمين
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('usersTable')">كل المستخدمين </li>
+                            <li id="dropi" (click)="goTo('addUser')"> إضافة مستخدم جديد </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    النتائج
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('resultTable')">كل النتائج </li>
+                            <li id="dropi" (click)="goTo('addResult')"> إضافة نتيجة الجديدة </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    جداول المحاضرات
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('lecTable')">عرض جداول المحاضرات </li>
+                            <li id="dropi" (click)="goTo('addLecTable')"> إضافة جدول محاضرات جديد </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    جداول الإمتحانات
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('examTable')">عرض جداول الامتحانات </li>
+                            <li id="dropi" (click)="goTo('addExamtable')"> إضافة جدول إمتحانات جديد </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    الصلاحيات
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('allPrivilages')">كل الصلاحيات </li>
+                            <li id="dropi" (click)="goTo('addPrivilage')"> إضافة صلاحية جديدة </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>تسجيل المواد للطلاب
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="openRegisterForm()">فتح التسجيل </li>
+                            <li id="dropi" (click)="closeRegisterForm()"> إغلاق التسجيل </li>
+                            <li id="dropi" (click)="goTo('registerForm')"> عرض نتائج التسجيل </li>
+                        </ul>
+                    </div>
+                </li>
+                <li (click)="logOut()">الخروج</li>
+            </ul>
+        </div>
     </div>
 
 

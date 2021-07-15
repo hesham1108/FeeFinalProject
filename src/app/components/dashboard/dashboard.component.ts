@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute ,
     private newsSer: HomeNewsCardServiceService,
     private profileSer: ProfileService,
+    private toastr:ToastrService
       ) {
         this.newsSer.nothing.subscribe(
           (data)=>{
@@ -91,5 +93,13 @@ export class DashboardComponent implements OnInit {
   logOut(){
     this.profileSer.login.next(false);
     this.router.navigate(['home']);
+  }
+  openRegisterForm(){
+    this.closeleftmenu();
+    this.toastr.success('تم فتح التسجيل بنجاح');
+  }
+  closeRegisterForm(){
+    this.closeleftmenu();
+    this.toastr.success('تم غلق التسجيل بنجاح');
   }
 }

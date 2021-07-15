@@ -1,0 +1,168 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <!-- nameAr -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="nameAr">الاسم باللغة العربية</label> :
+            </div>
+            <input type="text" placeholder="الاسم كما فى البطاقة الشخصية" formControlName="nameAr" id="nameAr" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('nameAr').invalid && userForm.get('nameAr').touched">
+          <span class="error" *ngIf="userForm.get('nameAr').errors['required']">
+            رجاء أدخل الاسم
+          </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- nameEn -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="nameEn">الاسم باللغة الإنجليزية</label> :
+            </div>
+            <input type="text" formControlName="nameEn" id="nameEn" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('nameEn').invalid && userForm.get('nameEn').touched">
+        <span class="error" *ngIf="userForm.get('nameEn').errors['required']">
+          رجاء أدخل الاسم
+        </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- phone -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="phone">رقم الهاتف</label> :
+            </div>
+            <input type="tel" formControlName="phone" id="phone" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('phone').invalid && userForm.get('phone').touched">
+      <span class="error" *ngIf="userForm.get('phone').errors['required']">
+        رجاء أدخل رقم الهاتف
+      </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- role -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="role">الوظيفة</label> :
+            </div>
+            <select formControlName="role" id="role" aria-placeholder="اختر وظيفة" class="col-sm-7 form-control form-control-lg">
+                <option value="user">مستخدم</option>
+                <option value="student">طالب</option>
+                <option value="prof">عضو هيئة تدريس</option>
+                <option value="admin">مسؤل</option>
+            </select>
+            <span class="error col-sm-2" *ngIf="userForm.get('role').invalid && userForm.get('role').touched">
+            <span class="error" *ngIf="userForm.get('role').errors['required']">
+              رجاء اختر الوظيفة
+            </span>
+            </span>
+        </div>
+        <br>
+        <!--academicNumber  -->
+        <div class="row" *ngIf="userForm.get('role').value == 'student'">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="academicNumber">الرقم الأكاديمي</label> :
+            </div>
+            <input type="number" formControlName="academicNumber" id="academicNumber" class="col-sm-7 form-control form-control-lg">
+
+        </div>
+
+        <!-- postion  -->
+        <div class="row" *ngIf="userForm.get('role').value == 'prof'">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="postion">المنصب</label> :
+            </div>
+            <input type="text" formControlName="postion" id="postion" class="col-sm-7 form-control form-control-lg">
+        </div>
+
+        <!-- entity -->
+        <div class="row" *ngIf="userForm.get('role').value == 'user'">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="entity">الكيان</label> :
+            </div>
+            <input type="text" formControlName="entity" id="entity" class="col-sm-7 form-control form-control-lg">
+        </div>
+        <br>
+        <!-- department -->
+        <div class="row" *ngIf="userForm.get('role').value != 'admin'">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="department">القسم</label> :
+            </div>
+            <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
+              <option value="user">حاسبات</option>
+              <option value="student">تحكم</option>
+              <option value="prof">اتصالات</option>
+              <option value="admin">طبية</option>
+          </select>
+            <span class="error col-sm-2" *ngIf="userForm.get('department').invalid && userForm.get('department').touched">
+          <span class="error" *ngIf="userForm.get('department').errors['required']">
+            رجاء اختر القسم
+          </span>
+            </span>
+        </div>
+        <br>
+        <!--username  -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="username">اسم المستخدم</label> :
+            </div>
+            <input type="text" formControlName="username" id="username" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('username').invalid && userForm.get('username').touched">
+            <span class="error" *ngIf="userForm.get('username').errors['required']">
+              رجاء أدخل اسم المستخدم
+            </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- email  -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="email">البريد الإلكترونى</label> :
+            </div>
+            <input type="text" formControlName="email" id="email" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('email').invalid && userForm.get('email').touched">
+          <span class="error" *ngIf="userForm.get('email').errors['required']">
+            رجاء أدخل البريد الإلكترونى
+          </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- password -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="password">الرقم السري</label> :
+            </div>
+            <input type="text" formControlName="password" id="password" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('password').invalid && userForm.get('password').touched">
+              <span class="error" *ngIf="userForm.get('password').errors['required']">
+                 رجاء أدخل الرقم السري
+              </span>
+            <span class="error" *ngIf="userForm.get('password').errors['email']">
+                هذا البريد غير صالح
+              </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- submit or edit&delete -->
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="userForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="userForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المستخدم" (cancel)="onCancel()" (res)="deleteUser(id)"></app-confirm-deletion>

@@ -1,0 +1,24 @@
+$mainColor: #14213D;
+.table-responsive {
+    border-radius: 5px;
+    text-align: right;
+    box-shadow: 0 8px 10px 0 rgba(75, 75, 75, 0.473), 0 6px 20px 0 rgba(82, 82, 82, 0.37);
+}
+
+.add {
+    border-radius: 5px;
+    padding: 1%;
+    color: #fff;
+    background-color: #14213D;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 1%;
+    .text {
+        padding-top: 1%;
+    }
+}
+
+.add:hover {
+    cursor: pointer;
+    background-color: #14213dc4;
+}
