@@ -57,31 +57,14 @@ $mainColor: #14213D;
     transition: box-shadow 0.3s linear;
 }
 
-.profile {
-    border-radius: 5px;
-    box-shadow: 0 8px 10px 0 rgba(75, 75, 75, 0.473), 0 6px 20px 0 rgba(82, 82, 82, 0.37);
-}
-
 .ameed {
     padding: 6%;
     font-size: 30px;
     margin-bottom: 3%;
     border-radius: 5px;
-}
-
-.profile:hover {
-    box-shadow: none;
-    transition: box-shadow 0.3s linear;
-}
-
-.ameed:hover,
-.profile:hover {
-    .ameed {
-        box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.37);
-        transition: box-shadow 0.3s linear;
-        background-color: $mainColor;
-        color: #fff;
-    }
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.473), 0 6px 20px 0 rgba(0, 0, 0, 0.37);
+    background-color: $mainColor;
+    color: #fff;
 }
 
 @-moz-keyframes spin {

@@ -1,0 +1,23 @@
+$mainColor: #14213D;
+.container {
+    text-align: center;
+    margin-top: 5%;
+    padding-top: 5%;
+    margin-bottom: 5%;
+    padding-bottom: 5%;
+    h1 {
+        font-size: 50px;
+        margin-bottom: 5%;
+    }
+    button {
+        margin-top: 5%;
+        background-color: $mainColor;
+        padding: 2%;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+    }
+    button:hover {
+        background-color: #14213dd5;
+    }
+}

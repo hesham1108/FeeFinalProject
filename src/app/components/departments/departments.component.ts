@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from 'src/app/services/departments/department-service.service';
 
 
@@ -14,15 +14,25 @@ export class DepartmentsComponent implements OnInit {
 
   departments:{name:string , children:boolean , content:[] , tables:[] }|any=[];
   departmentContent:any = [];
-  constructor(private depSer: DepartmentService , private router: Router) {
+  num:number = 1;
+  id:number|any;
+  init:boolean|any;
+  constructor(
+    private depSer: DepartmentService ,
+    private router: Router,
+    private route: ActivatedRoute,
+     ) {
 
 
   }
 
   ngOnInit(): void {
-   if(this.departmentContent.length == 0){
-    this.departments = this.depSer.getDepartments();
-   }
+    this.init = true;
+    this.route.params.subscribe(
+      (data)=>{
+        this.id = +data['id'];
+        }
+    );
   }
 
   displayContent(body:any){
@@ -32,8 +42,10 @@ export class DepartmentsComponent implements OnInit {
     this.departmentContent = dep.content;
   }
 
-  goTo(id:number){
-    document.documentElement.scrollTop = 0;
-    this.router.navigate(['departments/',id]);
+  goTo(dest:string , i:number){
+    this.init = false;
+    this.num = i;
+    document.documentElement.scrollTop = 350;
+    this.router.navigate([dest],{relativeTo: this.route});
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EventCardService } from 'src/app/services/events/event-card.service';
 
@@ -14,7 +15,7 @@ export class EventsTableComponent implements OnInit {
   load:boolean = true;
   delete:boolean = false;
 
-  constructor(private eventSer: EventCardService, private router:Router) { }
+  constructor(private eventSer: EventCardService, private router:Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.reloadData();
@@ -43,9 +44,14 @@ export class EventsTableComponent implements OnInit {
     this.eventSer.deleteEvent(id).subscribe(
       (res)=>{
         if(res){
+          this.toastr.success('لقد تم مسح الحدث بنجاح');
           this.delete=false;
           this.reloadData();
         }
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء مسح الحدث ');
+        this.toastr.info('حاول مرة اخري');
       }
     );
   }

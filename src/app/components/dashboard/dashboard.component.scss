@@ -15,7 +15,7 @@ $mainColor: #14213D;
     position: relative;
     .leftmenubtn {
         position: fixed;
-        left: -0.5%;
+        right: -0.5%;
         top: 35%;
         padding: 1%;
         background-color: $mainColor;
@@ -33,21 +33,22 @@ $mainColor: #14213D;
         width: 20%;
         height: 100%;
         top: 0;
-        left: 0;
+        right: 0;
         z-index: 20;
         text-align: right;
         background-color: $mainColor;
         color: #fff;
         display: none;
         i {
+            float: left;
             padding: 8%;
             margin-top: 2%;
-            margin-right: 1%;
+            margin-left: 1%;
             border-radius: 5px;
         }
         i:hover {
             cursor: pointer;
-            padding-right: 12%;
+            padding-left: 12%;
             // box-shadow: 0 8px 10px 0 #0000009c, 0 6px 20px 0 #101218d5;
             transition: all 0.5s linear;
         }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginServiceService } from 'src/app/services/login/login-service.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-left-nav',
@@ -11,15 +12,31 @@ export class LeftNavComponent implements OnInit {
 
   login : boolean = false;
   admin: boolean = true;
-  constructor(private loginSer: LoginServiceService , private router: Router) {
-    this.loginSer.login.subscribe(
-      (data:boolean)=>{
-        this.login = data;
-      }
-    );
-   }
+  constructor(
+     private router: Router ,
+      private route: ActivatedRoute,
+      private profileSer: ProfileService
+      ) {}
 
   ngOnInit(): void {
+    this.profileSer.login.subscribe(
+      (data:boolean)=>{
+        this.login = data;
+        console.log('login :',data);
+
+      }
+    );
+    this.profileSer.role.subscribe(
+      (data)=>{
+        console.log('role : ',data);
+
+        if(data){
+          this.admin = true;
+        }else{
+          this.admin = false;
+        }
+      }
+    );
   }
 
   goTo(dest:string){
@@ -28,7 +45,7 @@ export class LeftNavComponent implements OnInit {
   }
 
   logOut(){
-    this.loginSer.login.next(false);
-    this.goTo('');
+    this.profileSer.login.next(false);
+    this.goTo('home');
   }
 }

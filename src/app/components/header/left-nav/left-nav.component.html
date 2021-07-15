@@ -4,9 +4,10 @@
             <i class="fa fa-search "></i>
         </a>
     </li>
-    <li class="nav-item ">
+    <li class="nav-item " (click)="goTo('contactus')">
         <a class="nav-link waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="envelope"></mdb-icon> تواصل معنا<span class="sr-only">(current)</span></a>
+            <mdb-icon fas icon="envelope"></mdb-icon> تواصل معنا<span class="sr-only">(current)</span>
+        </a>
     </li>
     <li (click)="goTo('loginForm')" class="nav-item" style="border: 1px solid #fff; border-radius: 5px;" *ngIf="!login ; else logged">
         <a class="nav-link waves-light" mdbWavesEffect>
@@ -19,7 +20,7 @@
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
                 <mdb-icon fas icon="user"></mdb-icon> الملف الشخصي<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect> الصفحة الشخصية </a>
+                <a class="dropdown-item waves-light" mdbWavesEffect (click)="goTo('myprofile')"> الصفحة الشخصية </a>
                 <a *ngIf="admin" class="dropdown-item waves-light" (click)="goTo('dash')" mdbWavesEffect>لوحة القيادة</a>
                 <a class="dropdown-item waves-light" (click)="logOut()" mdbWavesEffect>تسجيل الخروج</a>
             </div>

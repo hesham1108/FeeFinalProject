@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/services/news/card.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
@@ -14,7 +15,7 @@ export class NewsTableComponent implements OnInit {
   allNews: Observable<Card[]>|any;
   load:boolean = true;
   delete:boolean = false;
-  constructor(private newsSer: HomeNewsCardServiceService , private router: Router) { }
+  constructor(private newsSer: HomeNewsCardServiceService , private router: Router , private toastr:ToastrService) { }
 
   ngOnInit(): void {
    this.reloadData();
@@ -23,8 +24,8 @@ export class NewsTableComponent implements OnInit {
   reloadData(){
     this.newsSer.getAllCards().subscribe(
       (res)=>{
-      this.allNews = res;
-      this.load = false;
+        this.allNews = res;
+        this.load = false;
       }
     );
 
@@ -42,11 +43,17 @@ export class NewsTableComponent implements OnInit {
     this.newsSer.deleteNews(id).subscribe(
       (resp)=>{
       if(resp){
+        this.toastr.success('لقد تم مسح الخبر بنجاح');
         this.delete=false;
         this.reloadData();
 
       }
-    });
+    },
+    (error)=>{
+      this.toastr.error('حدث خطأ أثناء مسح الخبر ');
+      this.toastr.info('حاول مرة اخري');
+    }
+    );
   }
 
   goTo(dest:string){

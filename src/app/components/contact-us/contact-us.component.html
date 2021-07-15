@@ -1,0 +1,125 @@
+<!-- map -->
+<div class="container-fluid" dir="rtl" *ngIf="!load">
+
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="map">
+                <iframe title="FEE" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1719.348903701668!2d30.926019976860108!3d30.472996393377166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14587e447c6fc38b%3A0xc47ca8046df9b6d6!2sFaculty%20Of%20Electronic%20Engineering%20-%20Menofia%20University!5e0!3m2!1sen!2sus!4v1626254238732!5m2!1sen!2sus"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+
+<!-- form -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-5">
+            <h2>تواصل معنا</h2>
+            <hr class="orange">
+        </div>
+    </div>
+
+    <div class="col-sm-12 myform" dir="rtl">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <!-- name -->
+            <div class="row">
+                <div class="col-sm-2" style="text-align: right">
+                    <label for="name">الإسم</label> :
+                </div>
+                <input type="text" formControlName="name" id="name" class="col-sm-7 form-control form-control-lg" />
+            </div>
+            <br/>
+            <br>
+            <!-- email -->
+            <div class="row">
+                <div class="col-sm-2" style="text-align: right">
+                    <label for="email">عنوان البريد الإلكترونى</label> :
+                </div>
+                <input type="email" formControlName="email" id="email" class="col-sm-7 form-control form-control-lg" />
+
+                <span class="error col-sm-2" *ngIf="
+                        contactForm.get('email').invalid &&
+                        contactForm.get('email').touched
+                        ">
+                          <span
+                            class="error"
+                            *ngIf="contactForm.get('email').errors['email']"
+                          >
+                            هذا البريد غير صحيح
+                          </span>
+                </span>
+            </div>
+            <br/>
+            <br>
+            <!-- phone -->
+            <div class="row">
+                <div class="col-sm-2" style="text-align: right">
+                    <label for="phone">رقم التليفون</label> :
+                </div>
+                <input type="tel" formControlName="phone" id="phone" class="col-sm-7 form-control form-control-lg" />
+            </div>
+            <br/>
+            <br>
+            <!-- topic -->
+            <div class="row">
+                <div class="col-sm-2" style="text-align: right">
+                    <label for="topic">الموضوع</label> :
+                </div>
+                <input type="text" formControlName="topic" id="topic" class="col-sm-7 form-control form-control-lg" />
+                <span class="error col-sm-3" *ngIf="
+                        contactForm.get('topic').invalid &&
+                        contactForm.get('topic').touched
+                        ">
+                          <span
+                            class="error"
+                            *ngIf="contactForm.get('topic').errors['required']"
+                          >
+                            رجاء أدخل الموضوع
+                          </span>
+                </span>
+            </div>
+            <br/>
+            <br>
+            <!-- message -->
+            <div class="row">
+                <div class="col-sm-2" style="text-align: right">
+                    <label for="message">الرسالة</label> :
+                </div>
+                <textarea formControlName="message" rows="10" id="message" class="col-sm-7 form-control"></textarea>
+
+                <span class="error col-sm-3" *ngIf="
+                        contactForm.get('message').invalid &&
+                        contactForm.get('message').touched
+                        ">
+                          <span
+                            class="error"
+                            *ngIf="contactForm.get('message').errors['required']"
+                          >
+                            رجاء أدخل الرسالة
+                          </span>
+                </span>
+            </div>
+            <br/>
+            <br>
+            <br>
+            <br>
+
+            <!-- submit-button -->
+            <div class="row justify-content-center">
+
+                <button type="submit" class=" col-sm-2 " [ngClass]="{'submit-btn':contactForm.valid, 'disabled-btn ':contactForm.invalid}" [disabled]="contactForm.invalid">
+                        إرسال
+                        </button>
+
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+
+<app-loader *ngIf="load"></app-loader>

@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { FormTest } from './components/test/form.components.ts/form-test.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 // For MDB Angular Free
 import { CarouselModule, WavesModule , CardsModule  } from 'angular-bootstrap-md';
 import { AboutComponent } from './components/about/about.component';
@@ -61,6 +63,19 @@ import { SubjectFormComponent } from './components/dashboard/forms/subject-form/
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
 import { DepartmentTableComponent } from './components/dashboard/helpers/department-table/department-table.component';
 import { DepartmentFormComponent } from './components/dashboard/forms/department-form/department-form.component';
+import { AboutDepartmentComponent } from './components/departments/dep-comps/about-department/about-department.component';
+import { BossOfDepartmentComponent } from './components/departments/dep-comps/boss-of-department/boss-of-department.component';
+import { BosswordComponent } from './components/departments/dep-comps/bossword/bossword.component';
+import { SightOfDepartmentComponent } from './components/departments/dep-comps/sight-of-department/sight-of-department.component';
+import { MessageOfDepartmentComponent } from './components/departments/dep-comps/message-of-department/message-of-department.component';
+import { GoalOfDepartmentComponent } from './components/departments/dep-comps/goal-of-department/goal-of-department.component';
+import { LabsOfDepartmentComponent } from './components/departments/dep-comps/labs-of-department/labs-of-department.component';
+import { CouncilOfDepartmentComponent } from './components/departments/dep-comps/council-of-department/council-of-department.component';
+import { SubjectCardComponent } from './components/subject/subject-card/subject-card.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
+import { ProfileService } from './services/profile/profile.service';
+import { FillerComponent } from './components/filler/filler.component';
 
 //PrimeNg
 
@@ -112,7 +127,19 @@ import { DepartmentFormComponent } from './components/dashboard/forms/department
     SubjectFormComponent,
     SubjectTableComponent,
     DepartmentTableComponent,
-    DepartmentFormComponent
+    DepartmentFormComponent,
+    AboutDepartmentComponent,
+    BossOfDepartmentComponent,
+    BosswordComponent,
+    SightOfDepartmentComponent,
+    MessageOfDepartmentComponent,
+    GoalOfDepartmentComponent,
+    LabsOfDepartmentComponent,
+    CouncilOfDepartmentComponent,
+    SubjectCardComponent,
+    ContactUsComponent,
+    MyProfileComponent,
+    FillerComponent
 
 
   ],
@@ -126,14 +153,14 @@ import { DepartmentFormComponent } from './components/dashboard/forms/department
     CarouselModule,
     WavesModule,
     CardsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
 
 
   ],
-  exports: [
-
-  ],
-  providers: [ProfService , LoginServiceService ],
+  exports: [],
+  providers: [ProfService , ProfileService ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -27,11 +27,11 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class=" profile col-sm-7 " style="margin-bottom: 8%;font-weight: bold; justify-content: center; padding-bottom: 1%;">
+        <div class="row profile-card">
+            <div class="col-sm-3"></div>
+            <div class=" profile col-sm-5 " style="margin-bottom: 8%;font-weight: bold; justify-content: center; padding-bottom: 1%;">
                 <div class="row  justify-content-center" style="margin-bottom: 3%;">
-                    <div class=" col-sm-6">
+                    <div class=" col-sm-4">
                         <div class="row ameed justify-content-center">
                             عميد الكلية
                         </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row  prof justify-content-center " style="margin-bottom: 1%;">
                     <div class="col-sm-5">
-                        <app-prof-profile-card class="col-sm-2" [prof]="ameed" (click)="goToProfile(ameed.id)"></app-prof-profile-card>
+                        <app-prof-profile-card (click)="goToProfile(ameed.id)" class="col-sm-2" [prof]="ameed"></app-prof-profile-card>
                     </div>
                 </div>
             </div>

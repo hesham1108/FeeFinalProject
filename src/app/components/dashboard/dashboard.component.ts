@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,25 +12,47 @@ export class DashboardComponent implements OnInit {
 
 
   nothing = true;
+  admin:boolean|any;
+  constructor(
+    private router: Router ,
+    private route: ActivatedRoute ,
+    private newsSer: HomeNewsCardServiceService,
+    private profileSer: ProfileService,
+      ) {
+        this.newsSer.nothing.subscribe(
+          (data)=>{
+            this.nothing = data;
+            console.log(data);
 
-  constructor(private router: Router , private route: ActivatedRoute , private newsSer: HomeNewsCardServiceService) {
-    this.newsSer.nothing.subscribe(
-      (data)=>{
-        this.nothing = data;
-
+          }
+        );
 
       }
-    );
-   }
 
   ngOnInit(): void {
+    this.profileSer.role.subscribe(
+      (data)=>{
+        console.log(data);
+        if(data){
+          console.log('data from true');
+          this.admin = true;
+          console.log('admin =',this.admin);
 
-    this.closeleftmenu();
+        }else{
+          // this.router.navigate(['notfound']);
+          this.admin=false;
+          console.log('admin =',this.admin);
+          console.log('data from false');
+        }
+      }
+    );
+    console.log(this.admin);
+
+    // this.closeleftmenu();
     if(this.router.url == '/dash'){
       this.newsSer.nothing.next(true);
     }else{
       this.newsSer.nothing.next(false);
-
     }
 
     this.newsSer.nothing.subscribe(
@@ -65,5 +87,9 @@ export class DashboardComponent implements OnInit {
     leftmenu.style.display = "none";
     var leftmenubtn: HTMLElement|any = document.getElementById('open');
     leftmenubtn.style.display ="block";
+  }
+  logOut(){
+    this.profileSer.login.next(false);
+    this.router.navigate(['home']);
   }
 }

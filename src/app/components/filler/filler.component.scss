@@ -1,0 +1,25 @@
+//filler
+.filler {
+    // height: 83px;
+    width: 100%;
+    position: relative;
+    background-color: #FFFFFF;
+}
+
+@media (min-width: 576px) {
+    .filler {
+        height: 83px;
+    }
+}
+
+@media (max-width: 576px) {
+    .filler {
+        height: 130px;
+    }
+}
+
+@media (max-width: 325px) {
+    .filler {
+        height: 169px;
+    }
+}

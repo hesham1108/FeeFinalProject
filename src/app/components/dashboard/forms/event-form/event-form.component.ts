@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EventCardService } from 'src/app/services/events/event-card.service';
 import { Event } from 'src/app/services/events/event.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
@@ -23,7 +24,8 @@ export class EventFormComponent implements OnInit , OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private eventSer: EventCardService,
-    private newsSer: HomeNewsCardServiceService
+    private newsSer: HomeNewsCardServiceService,
+    private toastr:ToastrService
   ) {
     this.eventForm = this.fb.group({
       title: [null , [Validators.required , Validators.maxLength(50)]],
@@ -78,9 +80,14 @@ export class EventFormComponent implements OnInit , OnDestroy {
       if(this.eventForm.valid){
         this.eventSer.putEvent(dataToPost).subscribe(
           (res)=>{
+            this.toastr.success('لقد تم تعديل الحدث بنجاح');
             document.documentElement.scrollTop = 0;
             this.router.navigate(['eventsTable']);
 
+          },
+          (error)=>{
+            this.toastr.error('حدث خطأ أثناء تعديل الحدث ');
+            this.toastr.info('حاول مرة اخري');
           }
         );
 
@@ -89,8 +96,13 @@ export class EventFormComponent implements OnInit , OnDestroy {
       if(this.eventForm.valid){
         this.eventSer.postEvent(dataToPost).subscribe(
           (res)=>{
+            this.toastr.success('لقد تم إضافة الحدث بنجاح');
             document.documentElement.scrollTop = 0;
             this.router.navigate(['eventsTable']);
+          },
+          (error)=>{
+            this.toastr.error('حدث خطأ أثناء إضافة الحدث ');
+            this.toastr.info('حاول مرة اخري');
           }
         );
 
@@ -103,11 +115,15 @@ export class EventFormComponent implements OnInit , OnDestroy {
     this.eventSer.deleteEvent(i).subscribe(
       (res)=>{
           if(res){
-
+            this.toastr.success('لقد تم مسح الحدث بنجاح');
             this.load = false;
 
             this.delete=false;
           }
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء مسح الحدث ');
+        this.toastr.info('حاول مرة اخري');
       }
     );
     this.eventForm.reset();

@@ -1,0 +1,60 @@
+$mainColor: #14213D;
+.container-fluid {
+    background-color: #EDEDED;
+    text-align: right;
+    padding-top: 5%;
+    padding-bottom: 7%;
+    .container {
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    .tc {
+        padding: 0;
+        margin-bottom: 3%;
+        .top-card {
+            text-align: right;
+            .row {
+                // justify-content: center;
+                .col-sm-2 {
+                    img {
+                        width: 120px;
+                        height: 120px;
+                        border-radius: 50%;
+                    }
+                }
+                .col-sm-8 {
+                    padding-top: 2%;
+                    p {
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin-bottom: 1%;
+                    }
+                }
+            }
+        }
+    }
+    .t {
+        padding: 0;
+        margin-bottom: 5px;
+        .tabs {
+            .row {
+                .tab {
+                    padding: 2%;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    text-align: center;
+                }
+                .tab:hover,
+                .active {
+                    background-color: $mainColor;
+                    color: #fff;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .c {
+        height: 500px;
+        font-size: 20px;
+    }
+}

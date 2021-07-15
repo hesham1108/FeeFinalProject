@@ -1,4 +1,7 @@
 $mainColor: #14213D;
+$secondColor: #FCA311;
+$spin-duration: 0.6s;
+$spin-angel:-360deg;
 .container {
     margin-top: 3%;
     margin-bottom: 3%;
@@ -33,19 +36,76 @@ $mainColor: #14213D;
 }
 
 .container {
-    .rightnav {
-        box-shadow: 1px 1px 10px 5px #F7F7F7;
-        border-radius: 8px;
-        padding: 1% 2% 1% 2%;
-        text-align: right;
-        h2 {}
-        ul {
-            padding-right: 6%;
-            list-style-type: square;
-            li {
-                padding: 2%;
+    .row {
+        .rightnav {
+            box-shadow: 1px 1px 10px 5px #F7F7F7;
+            border-radius: 8px;
+            padding: 1% 2%;
+            text-align: right;
+            .orange {
+                margin-top: 5px;
+                width: 60%;
+                padding: 1%;
+                background-color: $secondColor;
+                float: right;
+                border-radius: 15px;
+            }
+            .row {
+                padding-top: 3%;
+                padding-bottom: 3%;
+                .col-sm-1 {
+                    padding: 1%;
+                    text-align: center;
+                    i {
+                        font-size: 1.6rem;
+                    }
+                }
+                p {
+                    text-align: right;
+                    font-size: 18px;
+                    margin-bottom: 0;
+                }
+            }
+            hr {
+                margin: 0;
+            }
+            .row:hover,
+            .active {
+                // #d3d1d1
+                background-color: #14213D;
+                color: #fff;
+                cursor: pointer;
+                i {
+                    -webkit-animation: spin $spin-duration linear;
+                    -moz-animation: spin $spin-duration linear;
+                    animation: spin $spin-duration linear;
+                }
             }
         }
+        .content {
+            text-align: right;
+            padding-top: 3%;
+            padding-right: 3%;
+        }
+    }
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate($spin-angel);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate($spin-angel);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate($spin-angel);
+        transform: rotate($spin-angel);
     }
 }
 

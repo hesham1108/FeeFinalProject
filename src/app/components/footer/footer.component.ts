@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   links: {title:string , link: string}[]=[
     {
       title: 'الصفحة الرئيسية',
-      link: ''
+      link: 'home'
     },
     {
       title: 'الأقسام',
@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
     },
     {
       title: 'التسجيل',
-      link: 'f'
+      link: 'loginForm'
     },
     {
       title: 'الأخبار',

@@ -34,25 +34,137 @@
             <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80" alt="">
         </div>
         <div class="banner">
-            <p>اسم القسم</p>
+            <p>
+                اسم القسم
+            </p>
         </div>
     </div>
 </div>
 <div class="container" dir="rtl" lang="ar">
-    <div class="rightnav col-sm-3">
-        <h2>اسم القسم</h2>
-        <ul>
-            <li></li>
+    <div class="row">
+        <div class="rightnav col-sm-4">
+            <h3>
+                اسم القسم القسم القسم
+            </h3>
+            <hr class="orange">
+            <br>
+            <br>
+            <!-- about -->
+            <div class="row  justify-content-right" [ngClass]="{'active': num == 1}" (click)="goTo('about',1)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>عن القسم</p>
+                </div>
+            </div>
             <hr>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+            <!-- Boss Word -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 2}" (click)="goTo('bossword',2)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>كلمة رئيس القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- Boss -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 3}" (click)="goTo('boss',3)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>رئيس القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- sight  -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 4}" (click)="goTo('sight',4)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>رؤية القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- message -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 5}" (click)="goTo('message',5)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>رسالة القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- goal -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 6}" (click)="goTo('goal',6)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>هدف القسم</p>
+                </div>
+            </div>
+            <hr>
+
+            <!-- staff -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 7}" (click)="goTo('staff',7)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>أعضاء هيئة التدريس بالقسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- subject -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 8}" (click)="goTo('subject',8)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>مواد القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- labs -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 9}" (click)="goTo('labs',9)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>معامل القسم</p>
+                </div>
+            </div>
+            <hr>
+            <!-- council -->
+            <div class="row justify-content-right" [ngClass]="{'active': num == 10}" (click)="goTo('council',10)">
+                <div class="col-sm-1">
+                    <i class="fa fa-caret-left"></i>
+                </div>
+
+                <div class="col-sm-10">
+                    <p>مجالس القسم</p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="content col-sm-8">
+            <app-about-department *ngIf='init'></app-about-department>
+            <router-outlet *ngIf='!init'></router-outlet>
+        </div>
     </div>
 </div>

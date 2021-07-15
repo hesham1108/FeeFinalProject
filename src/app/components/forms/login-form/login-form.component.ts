@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginServiceService } from 'src/app/services/login/login-service.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-login-form',
@@ -11,20 +12,57 @@ import { LoginServiceService } from 'src/app/services/login/login-service.servic
 export class LoginFormComponent implements OnInit {
 
   loginForm:any;
-  constructor(private fb: FormBuilder , private loginSer:LoginServiceService ,private router: Router ) { }
+  load:boolean=false;
+  role:string|any;
+  constructor(
+    private fb: FormBuilder ,
+    private router: Router,
+    private profileSer:ProfileService,
+    private taostr: ToastrService
+    ) {
+      this.loginForm = this.fb.group({
+        email:[null , [Validators.required , Validators.email]],
+        password: [null , [Validators.required , Validators.minLength(8)]]
+      });
+    }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      email:[null , [Validators.required , Validators.email]],
-      password: [null , [Validators.required , Validators.minLength(8)]]
-    });
+
   }
 
   onSubmit(){
-    console.log(this.loginForm);
-    this.loginSer.login.next(true);
-    document.documentElement.scrollTop = 0;
-    this.router.navigate(['']);
+    // this.load = true;
+    if(this.checkAuth()){
+      this.profileSer.role.next(true);
+      this.profileSer.login.next(true);
+      setTimeout(() => {
+        console.log('2 sec');
+        this.profileSer.role.subscribe(
+          (data)=>{
+            console.log(data);
+            if(data){
+              this.router.navigate(['dash']);
+            }else{
+              this.router.navigate(['home']);
+            }
+          }
+        );
+        }
+      , 2000);
 
+    }else{
+      this.load = false;
+      this.taostr.error('not allowed')
+      this.loginForm.reset();
+    }
+
+}
+
+checkAuth():boolean|any{
+  if(this.loginForm.value.email == 'ha@ha.ha' && this.loginForm.value.password == '12345678'){
+    return true;
+  }else{
+    return false;
   }
+}
 }

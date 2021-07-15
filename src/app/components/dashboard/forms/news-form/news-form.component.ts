@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Card } from 'src/app/services/news/card.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -21,7 +22,8 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     private fb: FormBuilder ,
     private router: Router ,
     private route:ActivatedRoute,
-    private newsSer: HomeNewsCardServiceService
+    private newsSer: HomeNewsCardServiceService,
+    private toastr: ToastrService
     ) {
     this.newsFrom = this.fb.group({
       title: [null , [Validators.required , Validators.maxLength(50)]],
@@ -89,10 +91,13 @@ export class NewsFormComponent implements OnInit , OnDestroy{
         this.newsSer.putNews(dataToPost).subscribe(
           (res)=>{
             if(res){
-
+              this.toastr.success('لقد تم تعديل الخبر بنجاح');
               this.router.navigate(['newsTable']);
-
             }
+          },
+          (error)=>{
+            this.toastr.error('حدث خطأ أثناء تعديل الخبر ');
+            this.toastr.info('حاول مرة اخري');
           }
         );
 
@@ -104,10 +109,15 @@ export class NewsFormComponent implements OnInit , OnDestroy{
         this.newsSer.postNews(dataToPost).subscribe(
           (respo)=>{
             if(respo){
+              this.toastr.success('لقد تم إضافة الخبر بنجاح');
               document.documentElement.scrollTop = 0;
               this.router.navigate(['newsTable']);
             }
 
+          },
+          (error)=>{
+            this.toastr.error('حدث خطأ أثناء إضافة الخبر ');
+            this.toastr.info('حاول مرة اخري');
           }
         );
 
@@ -120,11 +130,14 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   deleteNews(i:number){
     this.load = true;
     this.newsSer.deleteNews(i).subscribe((resp)=>{
+      this.toastr.success('لقد تم مسح الخبر بنجاح');
       this.load = false;
       this.delete= false;
 
     } , error=>{
       console.log(error);
+      this.toastr.error('حدث خطأ أثناء مسح الخبر ');
+       this.toastr.info('حاول مرة اخري');
 
     });
     this.newsFrom.reset();
