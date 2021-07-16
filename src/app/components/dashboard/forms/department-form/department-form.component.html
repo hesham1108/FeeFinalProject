@@ -5,7 +5,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="name">اسم القسم</label> :
             </div>
-            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control" />
+            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control form-control-lg" />
             <span class="error col-sm-2" *ngIf="
             departmentForm.get('name').invalid &&
             departmentForm.get('name').touched
@@ -24,7 +24,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="about">عن القسم</label> :
             </div>
-            <textarea formControlName="about" id="about" class="col-sm-7 form-control"></textarea>
+            <textarea formControlName="about" id="about" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
           departmentForm.get('about').invalid &&
           departmentForm.get('about').touched
@@ -43,7 +43,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="sight">رؤية القسم</label> :
             </div>
-            <textarea formControlName="sight" id="sight" class="col-sm-7 form-control"></textarea>
+            <textarea formControlName="sight" id="sight" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
           departmentForm.get('sight').invalid &&
           departmentForm.get('sight').touched
@@ -62,7 +62,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="message">رسالة القسم</label> :
             </div>
-            <textarea formControlName="message" id="message" class="col-sm-7 form-control"></textarea>
+            <textarea formControlName="message" id="message" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
           departmentForm.get('message').invalid &&
           departmentForm.get('message').touched
@@ -81,7 +81,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="goal">أهداف القسم</label> :
             </div>
-            <textarea formControlName="goal" id="goal" class="col-sm-7 form-control"></textarea>
+            <textarea formControlName="goal" id="goal" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
           departmentForm.get('goal').invalid &&
           departmentForm.get('goal').touched
@@ -100,7 +100,7 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="bossWord">كلمة رئيس القسم</label> :
             </div>
-            <textarea formControlName="bossWord" id="bossWord" class="col-sm-7 form-control"></textarea>
+            <textarea formControlName="bossWord" id="bossWord" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
           departmentForm.get('bossWord').invalid &&
           departmentForm.get('bossWord').touched
@@ -116,7 +116,7 @@
         <br />
 
         <!-- labs -->
-        <div class="row" formArrayName="labs">
+        <!-- <div class="row" formArrayName="labs">
             <div class="col-sm-12">
                 <div class="row " style="text-align: right;">
                     <div class="col-sm-3">
@@ -145,10 +145,10 @@
 
 
         </div>
-        <br>
+        <br> -->
 
         <!-- Council -->
-        <div class="row" formArrayName="council">
+        <!-- <div class="row" formArrayName="council">
             <div class="col-sm-12">
                 <div class="row " style="text-align: right;">
                     <div class="col-sm-3">
@@ -177,17 +177,21 @@
 
 
         </div>
-        <br>
+        <br> -->
 
+        <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" [disabled]="departmentForm.invalid">تأكيد</button>
         </div>
+
+        <!-- edit & delete -->
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
                 <button type="submit" class="submit-btn" [disabled]="departmentForm.invalid">تعديل</button>
                 <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
+        <br>
     </form>
 
 </div>

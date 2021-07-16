@@ -7,7 +7,7 @@ import { EventCardService } from 'src/app/services/events/event-card.service';
 @Component({
   selector: 'app-events-table',
   templateUrl: './events-table.component.html',
-  styleUrls: ['./events-table.component.scss']
+  styleUrls: ['../tables-style.scss']
 })
 export class EventsTableComponent implements OnInit {
 

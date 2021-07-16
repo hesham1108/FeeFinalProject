@@ -48,7 +48,7 @@
                 <label for="role">الوظيفة</label> :
             </div>
             <select formControlName="role" id="role" aria-placeholder="اختر وظيفة" class="col-sm-7 form-control form-control-lg">
-                <option value="user">مستخدم</option>
+                <option id="opt" value="user">مستخدم</option>
                 <option value="student">طالب</option>
                 <option value="prof">عضو هيئة تدريس</option>
                 <option value="admin">مسؤل</option>
@@ -91,10 +91,10 @@
                 <label for="department">القسم</label> :
             </div>
             <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
-              <option value="user">حاسبات</option>
-              <option value="student">تحكم</option>
-              <option value="prof">اتصالات</option>
-              <option value="admin">طبية</option>
+              <option value="CSE">حاسبات</option>
+              <option value="Control">تحكم</option>
+              <option value="communication">اتصالات</option>
+              <option value="Biomedical">طبية</option>
           </select>
             <span class="error col-sm-2" *ngIf="userForm.get('department').invalid && userForm.get('department').touched">
           <span class="error" *ngIf="userForm.get('department').errors['required']">
@@ -148,8 +148,6 @@
         </div>
         <br>
 
-        <!-- submit or edit&delete -->
-
         <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" [disabled]="userForm.invalid">تأكيد</button>
@@ -161,6 +159,8 @@
                 <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
+        <br>
+
     </form>
 </div>
 

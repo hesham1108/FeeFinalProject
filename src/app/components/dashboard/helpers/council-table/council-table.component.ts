@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-users-table',
-  templateUrl: './users-table.component.html',
+  selector: 'app-council-table',
+  templateUrl: './council-table.component.html',
   styleUrls: ['../tables-style.scss']
 })
-export class UsersTableComponent implements OnInit {
+export class CouncilTableComponent implements OnInit {
 
   load:boolean = false;
   delete:boolean = false;
@@ -18,15 +18,15 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  editMyUser(id:number){
-    this.router.navigate(['dash/addUser' , id]);
+  editMyCouncil(id:number){
+    this.router.navigate(['dash/addCouncil' , id]);
   }
   ondelete(){
     this.delete = true;
   }
-  deleteUser(id:number){
+  deleteCouncil(id:number){
     console.log(id);
-    this.toastr.success('لقد تم مسح الصلاحية بنجاح')
+    this.toastr.success('لقد تم مسح المحضر بنجاح')
   }
   onCancel(){
     this.delete= false;

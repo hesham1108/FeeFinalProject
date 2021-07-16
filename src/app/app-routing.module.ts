@@ -8,16 +8,24 @@ import { AllNewsComponent } from './components/all-news/all-news.component';
 import { NewsComponent } from './components/all-news/news/news.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { CouncilFormComponent } from './components/dashboard/forms/department-form/council-form/council-form.component';
 import { DepartmentFormComponent } from './components/dashboard/forms/department-form/department-form.component';
+import { LabsFormComponent } from './components/dashboard/forms/department-form/labs-form/labs-form.component';
 import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
+import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
+import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
 import { UserFormComponent } from './components/dashboard/forms/user-form/user-form.component';
 import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
+import { CouncilTableComponent } from './components/dashboard/helpers/council-table/council-table.component';
 import { DepartmentTableComponent } from './components/dashboard/helpers/department-table/department-table.component';
 import { EventsTableComponent } from './components/dashboard/helpers/events-table/events-table.component';
+import { LabsTableComponent } from './components/dashboard/helpers/labs-table/labs-table.component';
 import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
+import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
+import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
 import { UsersTableComponent } from './components/dashboard/helpers/users-table/users-table.component';
 import { AboutDepartmentComponent } from './components/departments/dep-comps/about-department/about-department.component';
@@ -79,6 +87,14 @@ const routes: Routes = [
     {path: 'addUser/:id' , component:UserFormComponent},
     {path: 'addResult' , component:ResultFormComponent},
     {path: 'addResult/:id' , component:ResultFormComponent},
+    {path: 'addLab' , component:LabsFormComponent},
+    {path: 'addLab/:id' , component:LabsFormComponent},
+    {path: 'addCouncil' , component:CouncilFormComponent},
+    {path: 'addCouncil/:id' , component:CouncilFormComponent},
+    {path: 'addSubDepend' , component:SubDependFormComponent},
+    {path: 'addSubDepend/:id' , component:SubDependFormComponent},
+    {path: 'addPostion' , component:PostionFormComponent},
+    {path: 'addPostion/:id' , component:PostionFormComponent},
   ]},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},
@@ -86,7 +102,10 @@ const routes: Routes = [
   {path:'departmentTable',component: DepartmentTableComponent},
   {path:'usersTable',component:UsersTableComponent},
   {path:'allPrivilages',component:AllPrivilagesComponent},
-
+  {path:'labsTable',component:LabsTableComponent},
+  {path:'councilTable',component:CouncilTableComponent},
+  {path:'subDependTable',component:SubDependTableComponent},
+  {path:'postionTable', component:PostionTableComponent},
   {path:"**", component:NotFoundComponent},
 ];
 

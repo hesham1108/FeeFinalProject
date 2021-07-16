@@ -1,0 +1,62 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <form [formGroup]="subDependForm" (ngSubmit)="onSubmit()">
+        <!-- subject -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="subject">المادة</label> :
+            </div>
+            <input type="text" formControlName="subject" id="subject" class="col-sm-7 form-control form-control-lg" />
+            <span class="error col-sm-2" *ngIf="
+              subDependForm.get('subject').invalid &&
+              subDependForm.get('subject').touched
+              ">
+            <span
+              class="error"
+              *ngIf="subDependForm.get('subject').errors['required']"
+            >
+              رجاء اختر المادة
+            </span>
+            </span>
+        </div>
+        <br />
+
+        <!-- depend -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="depend">تعتمد على</label> :
+            </div>
+            <input type="text" formControlName="depend" id="depend" class="col-sm-7 form-control form-control-lg" />
+            <span class="error col-sm-2" *ngIf="
+                subDependForm.get('depend').invalid &&
+                subDependForm.get('depend').touched
+                ">
+            <span
+              class="error"
+              *ngIf="subDependForm.get('depend').errors['required']"
+            >
+            رجاء اختر المادة اللتى تعتمد عليها
+          </span>
+            </span>
+        </div>
+        <br />
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="subDependForm.invalid">تأكيد</button>
+        </div>
+
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="subDependForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+
+    </form>
+
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteDepend(id)"></app-confirm-deletion>

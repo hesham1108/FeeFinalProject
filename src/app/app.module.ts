@@ -80,6 +80,14 @@ import { UserFormComponent } from './components/dashboard/forms/user-form/user-f
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { UsersTableComponent } from './components/dashboard/helpers/users-table/users-table.component';
 import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
+import { LabsFormComponent } from './components/dashboard/forms/department-form/labs-form/labs-form.component';
+import { CouncilFormComponent } from './components/dashboard/forms/department-form/council-form/council-form.component';
+import { CouncilTableComponent } from './components/dashboard/helpers/council-table/council-table.component';
+import { LabsTableComponent } from './components/dashboard/helpers/labs-table/labs-table.component';
+import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
+import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
+import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
+import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
 
 //PrimeNg
 
@@ -147,7 +155,15 @@ import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privi
     UserFormComponent,
     ResultFormComponent,
     UsersTableComponent,
-    AllPrivilagesComponent
+    AllPrivilagesComponent,
+    LabsFormComponent,
+    CouncilFormComponent,
+    CouncilTableComponent,
+    LabsTableComponent,
+    SubDependFormComponent,
+    SubDependTableComponent,
+    PostionTableComponent,
+    PostionFormComponent
 
 
   ],

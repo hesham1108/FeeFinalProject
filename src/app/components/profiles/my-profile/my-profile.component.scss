@@ -16,14 +16,24 @@ $mainColor: #14213D;
             .row {
                 // justify-content: center;
                 .col-sm-2 {
+                    padding: 2%;
+                    padding-left: 0;
+                    // padding-bottom: 2%;
                     img {
                         width: 120px;
                         height: 120px;
                         border-radius: 50%;
                     }
+                    // @media (min-width:575px) {
+                    //     img {
+                    //         width: 90px;
+                    //         height: 90px;
+                    //     }
+                    // }
                 }
                 .col-sm-8 {
-                    padding-top: 2%;
+                    padding: 4%;
+                    padding-right: 0;
                     p {
                         font-size: 20px;
                         font-weight: bold;

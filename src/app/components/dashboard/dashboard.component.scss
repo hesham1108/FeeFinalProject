@@ -70,7 +70,11 @@ $secondColor: #FCA311;
                 list-style: none;
                 height: 100%;
                 li {
-                    padding: 10%;
+                    i {
+                        display: none;
+                        margin-left: 2%;
+                    }
+                    padding: 6%;
                     font-weight: bold;
                     background-color: $mainColor;
                     position: relative;
@@ -113,6 +117,9 @@ $secondColor: #FCA311;
                     color: #fff;
                     #drop {
                         display: block;
+                    }
+                    i {
+                        display: inline;
                     }
                 }
             }

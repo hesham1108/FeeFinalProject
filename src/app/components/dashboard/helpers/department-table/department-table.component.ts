@@ -1,18 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-department-table',
   templateUrl: './department-table.component.html',
-  styleUrls: ['./department-table.component.scss']
+  styleUrls: ['../tables-style.scss']
 })
 export class DepartmentTableComponent implements OnInit {
 
   load:boolean = false;
   delete:boolean = false;
-  constructor(private router:Router) { }
+  constructor(
+    private router:Router,
+    private toastr:ToastrService
+    ) { }
 
   ngOnInit(): void {
+  }
+  editMyDepartment(id:number){
+    this.router.navigate(['dash/addDepartment' , id]);
+  }
+  ondelete(){
+    this.delete = true;
+  }
+  deleteLab(id:number){
+    console.log(id);
+    this.toastr.success('لقد تم مسح القسم بنجاح')
+  }
+  onCancel(){
+    this.delete= false;
   }
   goTo(dest:string){
     this.router.navigate([dest]);

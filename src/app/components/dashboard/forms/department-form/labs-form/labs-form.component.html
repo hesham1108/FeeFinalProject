@@ -1,0 +1,90 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+
+    <!-- Labs Form -->
+    <form [formGroup]="labsForm" (ngSubmit)="onSubmit()">
+
+
+        <!-- name -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="name">اسم المعمل </label> :
+            </div>
+            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="labsForm.get('name').invalid && labsForm.get('name').touched">
+            <span class="error" *ngIf="labsForm.get('name').errors['required']">
+              رجاء أدخل اسم المعمل
+            </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- roomName -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="roomName">اسم الغرفة</label> :
+            </div>
+            <input type="text" formControlName="roomName" id="roomName" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="labsForm.get('roomName').invalid && labsForm.get('roomName').touched">
+      <span class="error" *ngIf="labsForm.get('roomName').errors['required']">
+        رجاء أدخل اسم الغرفة
+      </span>
+
+            </span>
+        </div>
+        <br>
+
+        <!-- description -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="description">الوصف</label> :
+            </div>
+            <textarea formControlName="description" id="description" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+                labsForm.get('description').invalid &&
+                labsForm.get('description').touched
+                  ">
+                <span
+                  class="error"
+                  *ngIf="labsForm.get('description').errors['required']"
+                  >
+                  رجاء أدخل الوصف
+                </span>
+            </span>
+        </div>
+        <br />
+        <!-- department -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="department">القسم</label> :
+            </div>
+            <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
+              <option value="CSE">حاسبات</option>
+              <option value="Control">تحكم</option>
+              <option value="communication">اتصالات</option>
+              <option value="Biomedical">طبية</option>
+            </select>
+            <span class="error col-sm-2" *ngIf="labsForm.get('department').invalid && labsForm.get('department').touched">
+              <span class="error" *ngIf="labsForm.get('department').errors['required']">
+                رجاء اختر القسم
+              </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="labsForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="labsForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المعمل" (cancel)="onCancel()" (res)="deleteLab(id)"></app-confirm-deletion>

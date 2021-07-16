@@ -1,0 +1,79 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+
+    <!-- Labs Form -->
+    <form [formGroup]="councilForm" (ngSubmit)="onSubmit()">
+
+
+        <!-- title -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="title">عنوان المحضر </label> :
+            </div>
+            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="councilForm.get('title').invalid && councilForm.get('title').touched">
+          <span class="error" *ngIf="councilForm.get('title').errors['required']">
+            رجاء أدخل عنوان المحضر
+          </span>
+
+            </span>
+        </div>
+        <br>
+
+        <!-- details -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="details">تفاصيل المحضر</label> :
+            </div>
+            <textarea formControlName="details" id="details" class="col-sm-7 form-control"></textarea>
+            <span class="error col-sm-2" *ngIf="
+              councilForm.get('details').invalid &&
+              councilForm.get('details').touched
+                ">
+              <span
+                class="error"
+                *ngIf="councilForm.get('details').errors['required']"
+                >
+                رجاء أدخل تفاصيل المحضر
+              </span>
+            </span>
+        </div>
+        <br />
+        <!-- department -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="department">القسم</label> :
+            </div>
+            <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
+            <option value="CSE">حاسبات</option>
+            <option value="Control">تحكم</option>
+            <option value="communication">اتصالات</option>
+            <option value="Biomedical">طبية</option>
+          </select>
+            <span class="error col-sm-2" *ngIf="councilForm.get('department').invalid && councilForm.get('department').touched">
+            <span class="error" *ngIf="councilForm.get('department').errors['required']">
+              رجاء اختر القسم
+            </span>
+            </span>
+        </div>
+        <br>
+
+
+        <!-- submit or edit&delete -->
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="councilForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="councilForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المعمل" (cancel)="onCancel()" (res)="deleteCouncil(id)"></app-confirm-deletion>

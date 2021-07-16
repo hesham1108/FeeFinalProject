@@ -8,7 +8,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 @Component({
   selector: 'app-news-table',
   templateUrl: './news-table.component.html',
-  styleUrls: ['./news-table.component.scss' ]
+  styleUrls: ['../tables-style.scss']
 })
 export class NewsTableComponent implements OnInit {
 

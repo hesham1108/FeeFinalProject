@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-users-table',
-  templateUrl: './users-table.component.html',
+  selector: 'app-sub-depend-table',
+  templateUrl: './sub-depend-table.component.html',
   styleUrls: ['../tables-style.scss']
 })
-export class UsersTableComponent implements OnInit {
+export class SubDependTableComponent implements OnInit {
 
   load:boolean = false;
   delete:boolean = false;
@@ -18,15 +18,15 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  editMyUser(id:number){
-    this.router.navigate(['dash/addUser' , id]);
-  }
   ondelete(){
     this.delete = true;
   }
-  deleteUser(id:number){
+  editMySubDepend(id:number){
+    this.router.navigate(['dash/addSubDepend' , id]);
+  }
+  deleteSubDepend(id:number){
     console.log(id);
-    this.toastr.success('لقد تم مسح الصلاحية بنجاح')
+    this.toastr.success('لقد تم مسح المتطلب بنجاح')
   }
   onCancel(){
     this.delete= false;
@@ -34,4 +34,5 @@ export class UsersTableComponent implements OnInit {
   goTo(dest:string){
     this.router.navigate([dest]);
   }
+
 }
