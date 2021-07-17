@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -10,7 +11,8 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
   styleUrls: ['./labs-form.component.scss']
 })
 export class LabsFormComponent implements OnInit  , OnDestroy{
-
+  departmentsList:any =[];
+  dropdownSettings: IDropdownSettings = {};
   labsForm:any;
   id:number|any;
   load:boolean = false;
@@ -32,6 +34,16 @@ export class LabsFormComponent implements OnInit  , OnDestroy{
    }
 
   ngOnInit(): void {
+    this.departmentsList = [
+      'حاسبات',
+      'تحكم',
+      'اتصالات'
+    ];
+    this.dropdownSettings={
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن القسم',
+      allowSearchFilter: true
+    }
     this.newsSer.nothing.next(false);
     this.route.params.subscribe(
       (data)=>{

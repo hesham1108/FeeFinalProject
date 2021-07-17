@@ -74,7 +74,12 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="postion">المنصب</label> :
             </div>
-            <input type="text" formControlName="postion" id="postion" class="col-sm-7 form-control form-control-lg">
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المنصب'" [settings]="posdropdownSettings" [data]="postionList" formControlName="postion" id="postion">
+            </ng-multiselect-dropdown>
+            <!-- <div class="col-sm-7">
+                <input type="text" formControlName="postion" id="postion" class="col-sm-7 form-control form-control-lg">
+            </div> -->
+
         </div>
 
         <!-- entity -->
@@ -90,12 +95,15 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="department">القسم</label> :
             </div>
-            <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر القسم'" [settings]="dropdownSettings" [data]="departmentsList" formControlName="department" id="department">
+            </ng-multiselect-dropdown>
+            <!-- <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
               <option value="CSE">حاسبات</option>
               <option value="Control">تحكم</option>
               <option value="communication">اتصالات</option>
               <option value="Biomedical">طبية</option>
-          </select>
+          </select> -->
+
             <span class="error col-sm-2" *ngIf="userForm.get('department').invalid && userForm.get('department').touched">
           <span class="error" *ngIf="userForm.get('department').errors['required']">
             رجاء اختر القسم

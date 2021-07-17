@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -11,6 +12,8 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 })
 export class SubjectFormComponent implements OnInit , OnDestroy {
 
+  departmentsList:any =[];
+  dropdownSettings: IDropdownSettings = {};
   private allSubjects:any = [];
   subjectForm:any;
   load: boolean = false;
@@ -37,6 +40,16 @@ export class SubjectFormComponent implements OnInit , OnDestroy {
    }
 
   ngOnInit(): void {
+    this.departmentsList = [
+      'حاسبات',
+      'تحكم',
+      'اتصالات'
+    ];
+    this.dropdownSettings={
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن القسم',
+      allowSearchFilter: true
+    }
     this.newsSer.nothing.next(false);
     this.route.params.subscribe(
       (data)=>{
@@ -84,3 +97,14 @@ export class SubjectFormComponent implements OnInit , OnDestroy {
     this.delete=false;
   }
 }
+
+
+
+
+
+
+// height: calc(1.5em + 1rem + 2px);
+//     padding: 0.5rem 1rem;
+//     font-size: 1.25rem;
+//     line-height: 1.5;
+//     border-radius: 0.3rem;

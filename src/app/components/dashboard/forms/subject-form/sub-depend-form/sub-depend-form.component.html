@@ -6,7 +6,7 @@
                 <label for="subject">المادة</label> :
             </div>
             <div class="col-sm-7">
-                <ng-multiselect-dropdown formControlName="subject" id="subject" [settings]="dropdownSettings" [data]="dropdownList" placeholder=" اختر المادة">
+                <ng-multiselect-dropdown (onSelect)="onSelect($event)" formControlName="subject" id="subject" [settings]="dropdownSettings" [data]="subjectList" placeholder=" اختر المادة">
                 </ng-multiselect-dropdown>
 
             </div>
@@ -31,7 +31,7 @@
                 <label for="depend">تعتمد على</label> :
             </div>
             <div class="col-sm-7">
-                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dropdownList" placeholder="اختر المادة" [disabled]="!subDependForm.get('subject').dirty || subDependForm.get('subject').invalid">
+                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dependList" placeholder="اختر المادة" [disabled]="!subDependForm.get('subject').dirty || subDependForm.get('subject').invalid">
                 </ng-multiselect-dropdown>
 
             </div>

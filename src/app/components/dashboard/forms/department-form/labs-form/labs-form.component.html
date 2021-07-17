@@ -57,12 +57,14 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="department">القسم</label> :
             </div>
-            <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر القسم'" [settings]="dropdownSettings" [data]="departmentsList" formControlName="department" id="department">
+            </ng-multiselect-dropdown>
+            <!-- <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
               <option value="CSE">حاسبات</option>
               <option value="Control">تحكم</option>
               <option value="communication">اتصالات</option>
               <option value="Biomedical">طبية</option>
-            </select>
+            </select> -->
             <span class="error col-sm-2" *ngIf="labsForm.get('department').invalid && labsForm.get('department').touched">
               <span class="error" *ngIf="labsForm.get('department').errors['required']">
                 رجاء اختر القسم

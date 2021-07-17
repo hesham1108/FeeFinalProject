@@ -12,8 +12,8 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class SubDependFormComponent implements OnInit , OnDestroy {
 
-  dropdownList:string[] = [];
-  selectedItems:string[] = [];
+  subjectList:string[] = [];
+  dependList:string[] = [];
   dropdownSettings:IDropdownSettings = {};
 
   subDependForm:any;
@@ -35,18 +35,13 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit(): void {
-    this.dropdownList = [
+    this.subjectList = [
       'مانجة','عنب','خوخ','نفاح'
-
-    ];
-    this.selectedItems = [
-      'تفاح'
     ];
     this.dropdownSettings= {
       singleSelection: true,
-
       enableCheckAll: false,
-      unSelectAllText: 'UnSelect All',
+      showSelectedItemsAtTop:true,
       itemsShowLimit: 3,
       allowSearchFilter: true,
       closeDropDownOnSelection:true
@@ -94,6 +89,15 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   ngOnDestroy():void{
     this.newsSer.nothing.next(false);
     this.edit = false;
+  }
+  onSelect(item:any){
+    var temp =[];
+    for(let l of this.subjectList){
+      if(l != item){
+        temp.push(l);
+      }
+    }
+    this.dependList = temp;
   }
 
 }

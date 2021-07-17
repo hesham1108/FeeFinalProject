@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
@@ -11,6 +12,10 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 })
 export class UserFormComponent implements OnInit , OnDestroy{
 
+  departmentsList:any =[];
+  dropdownSettings: IDropdownSettings = {};
+  postionList : any = [];
+  posdropdownSettings: IDropdownSettings={};
   userForm:any;
   load:boolean = false;
   edit:boolean =false;
@@ -40,6 +45,26 @@ export class UserFormComponent implements OnInit , OnDestroy{
     }
 
   ngOnInit(): void {
+    this.departmentsList = [
+      'حاسبات',
+      'تحكم',
+      'اتصالات'
+    ];
+    this.dropdownSettings={
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن القسم',
+      allowSearchFilter: true
+    }
+    this.postionList =[
+      'دكتور',
+      'عميد',
+      'مدير'
+    ]
+    this.posdropdownSettings={
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن المنصب',
+      allowSearchFilter: true
+    }
     this.newsSer.nothing.next(false);
     this.route.params.subscribe(
       (data)=>{

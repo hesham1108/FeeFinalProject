@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+
 
 @Component({
   selector: 'app-postion-form',
@@ -12,10 +12,6 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class PostionFormComponent implements OnInit {
 
-  // drop down---
-  dropdownList: {id:number , text:string}[]= [];
-  selectedItems:{id:number , text:string}[] = [];
-  dropdownSettings:IDropdownSettings = {};
   //------------------------
   postionForm:any;
   load:boolean = false;
@@ -35,26 +31,7 @@ export class PostionFormComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.dropdownList = [
-      { id: 1, text: 'Mumbai' },
-      { id: 2, text: 'Bangaluru' },
-      { id: 3, text: 'Pune' },
-      { id: 4, text: 'Navsari' },
-      { id: 5, text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { id: 3, text: 'Pune' },
-      { id: 4, text: 'Navsari' }
-    ];
-    this.dropdownSettings= {
-      singleSelection: true,
-      idField: 'id',
-      textField: 'text',
-      enableCheckAll: false,
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+
     this.newsSer.nothing.next(false);
     this.route.params.subscribe(
       (data)=>{
@@ -99,10 +76,5 @@ export class PostionFormComponent implements OnInit {
     this.newsSer.nothing.next(false);
     this.edit = false;
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
+
 }
