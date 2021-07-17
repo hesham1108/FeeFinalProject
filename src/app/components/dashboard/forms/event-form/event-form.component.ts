@@ -64,7 +64,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
   }
 
   onSubmit(){
-
+    this.load = true;
     let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
       id : this.id,
       title : this.eventForm.get('title').value,
@@ -72,9 +72,6 @@ export class EventFormComponent implements OnInit , OnDestroy {
       imagePath: this.eventForm.get('imagePath').value,
       description : this.eventForm.get('description').value,
     };
-
-    console.log(dataToPost);
-
 
     if(this.edit){
       if(this.eventForm.valid){
@@ -88,6 +85,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
           (error)=>{
             this.toastr.error('حدث خطأ أثناء تعديل الحدث ');
             this.toastr.info('حاول مرة اخري');
+            this.load=false;
           }
         );
 
@@ -103,6 +101,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
           (error)=>{
             this.toastr.error('حدث خطأ أثناء إضافة الحدث ');
             this.toastr.info('حاول مرة اخري');
+            this.load=false;
           }
         );
 

@@ -88,8 +88,13 @@ import { SubDependFormComponent } from './components/dashboard/forms/subject-for
 import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
 import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
 import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
+import { TableFormComponent } from './components/dashboard/forms/table-form/table-form.component';
+import { TablesTableComponent } from './components/dashboard/helpers/tables-table/tables-table.component';
 
 //PrimeNg
+// multiselecting drop-down
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 @NgModule({
   declarations: [
@@ -163,7 +168,9 @@ import { PostionFormComponent } from './components/dashboard/forms/user-form/pos
     SubDependFormComponent,
     SubDependTableComponent,
     PostionTableComponent,
-    PostionFormComponent
+    PostionFormComponent,
+    TableFormComponent,
+    TablesTableComponent
 
 
   ],
@@ -179,6 +186,8 @@ import { PostionFormComponent } from './components/dashboard/forms/user-form/pos
     CardsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
+
 
 
 

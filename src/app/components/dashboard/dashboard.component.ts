@@ -102,4 +102,7 @@ export class DashboardComponent implements OnInit {
     this.closeleftmenu();
     this.toastr.success('تم غلق التسجيل بنجاح');
   }
+  goToTable(dest:string , q:string){
+    this.router.navigate([dest],{queryParams:{type:q}});
+  }
 }

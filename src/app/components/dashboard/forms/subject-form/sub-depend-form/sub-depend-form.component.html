@@ -25,7 +25,12 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="depend">تعتمد على</label> :
             </div>
-            <input type="text" formControlName="depend" id="depend" class="col-sm-7 form-control form-control-lg" />
+            <div class="col-sm-7">
+                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dropdownList" placeholder="اختر المادة">
+                </ng-multiselect-dropdown>
+
+            </div>
+            <!-- <input type="text" formControlName="depend" id="depend" class="col-sm-7 form-control form-control-lg" /> -->
             <span class="error col-sm-2" *ngIf="
                 subDependForm.get('depend').invalid &&
                 subDependForm.get('depend').touched

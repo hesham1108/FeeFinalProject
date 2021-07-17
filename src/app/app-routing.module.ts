@@ -16,6 +16,7 @@ import { NewsFormComponent } from './components/dashboard/forms/news-form/news-f
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
+import { TableFormComponent } from './components/dashboard/forms/table-form/table-form.component';
 import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
 import { UserFormComponent } from './components/dashboard/forms/user-form/user-form.component';
 import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
@@ -27,6 +28,7 @@ import { NewsTableComponent } from './components/dashboard/helpers/news-table/ne
 import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
 import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
+import { TablesTableComponent } from './components/dashboard/helpers/tables-table/tables-table.component';
 import { UsersTableComponent } from './components/dashboard/helpers/users-table/users-table.component';
 import { AboutDepartmentComponent } from './components/departments/dep-comps/about-department/about-department.component';
 import { BossOfDepartmentComponent } from './components/departments/dep-comps/boss-of-department/boss-of-department.component';
@@ -95,6 +97,8 @@ const routes: Routes = [
     {path: 'addSubDepend/:id' , component:SubDependFormComponent},
     {path: 'addPostion' , component:PostionFormComponent},
     {path: 'addPostion/:id' , component:PostionFormComponent},
+    {path: 'addTable' , component:TableFormComponent},
+    {path: 'addTable/:id' , component:TableFormComponent},
   ]},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},
@@ -106,6 +110,7 @@ const routes: Routes = [
   {path:'councilTable',component:CouncilTableComponent},
   {path:'subDependTable',component:SubDependTableComponent},
   {path:'postionTable', component:PostionTableComponent},
+  {path:'Tables', component:TablesTableComponent},
   {path:"**", component:NotFoundComponent},
 ];
 

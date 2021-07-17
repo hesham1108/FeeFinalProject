@@ -75,7 +75,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     );
   }
   onSubmit(){
-
+    this.load = true;
     let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
       id : this.id,
       title : this.newsFrom.get('title').value,
@@ -98,6 +98,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
           (error)=>{
             this.toastr.error('حدث خطأ أثناء تعديل الخبر ');
             this.toastr.info('حاول مرة اخري');
+            this.load=false;
           }
         );
 
@@ -118,6 +119,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
           (error)=>{
             this.toastr.error('حدث خطأ أثناء إضافة الخبر ');
             this.toastr.info('حاول مرة اخري');
+            this.load=false;
           }
         );
 
