@@ -5,7 +5,12 @@
             <div class="col-sm-3" style="text-align: right">
                 <label for="subject">المادة</label> :
             </div>
-            <input type="text" formControlName="subject" id="subject" class="col-sm-7 form-control form-control-lg" />
+            <div class="col-sm-7">
+                <ng-multiselect-dropdown formControlName="subject" id="subject" [settings]="dropdownSettings" [data]="dropdownList" placeholder=" اختر المادة">
+                </ng-multiselect-dropdown>
+
+            </div>
+            <!-- <input type="text" formControlName="subject" id="subject" class="col-sm-7 form-control form-control-lg" /> -->
             <span class="error col-sm-2" *ngIf="
               subDependForm.get('subject').invalid &&
               subDependForm.get('subject').touched
@@ -26,7 +31,7 @@
                 <label for="depend">تعتمد على</label> :
             </div>
             <div class="col-sm-7">
-                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dropdownList" placeholder="اختر المادة">
+                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dropdownList" placeholder="اختر المادة" [disabled]="!subDependForm.get('subject').dirty || subDependForm.get('subject').invalid">
                 </ng-multiselect-dropdown>
 
             </div>

@@ -46,3 +46,10 @@ select {
     padding-left: 5%;
     font-weight: bold;
 }
+
+// div[_ngcontent-%COMP%]:before {
+//     display: inline;
+// }
+::ng-deep .multiselect-item-checkbox[_ngcontent-qpe-c74] input[type=checkbox][_ngcontent-qpe-c74] {
+    display: inline;
+}

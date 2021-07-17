@@ -12,8 +12,8 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class SubDependFormComponent implements OnInit , OnDestroy {
 
-  dropdownList: {id:number , text:string}[]= [];
-  selectedItems:{id:number , text:string}[] = [];
+  dropdownList:string[] = [];
+  selectedItems:string[] = [];
   dropdownSettings:IDropdownSettings = {};
 
   subDependForm:any;
@@ -36,24 +36,20 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
     this.dropdownList = [
-      { id: 1, text: 'Mumbai' },
-      { id: 2, text: 'Bangaluru' },
-      { id: 3, text: 'Pune' },
-      { id: 4, text: 'Navsari' },
-      { id: 5, text: 'New Delhi' }
+      'مانجة','عنب','خوخ','نفاح'
+
     ];
     this.selectedItems = [
-      { id: 3, text: 'Pune' },
-      { id: 4, text: 'Navsari' }
+      'تفاح'
     ];
     this.dropdownSettings= {
       singleSelection: true,
-      idField: 'id',
-      textField: 'text',
+
       enableCheckAll: false,
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+      closeDropDownOnSelection:true
     };
     this.newsSer.nothing.next(false);
     this.route.params.subscribe(
