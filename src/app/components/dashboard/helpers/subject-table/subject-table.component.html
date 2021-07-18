@@ -1,4 +1,4 @@
-<div class="container" style="padding: 0;" dir="rtl" *ngIf="!load">
+<div class="container" style="padding: 0; padding-bottom: 3%;" dir="rtl" *ngIf="!load">
     <div class="row justify-content-center">
         <div class="col-sm-6" style="text-align: center; padding: 2%;">
             <h1>جميع المواد</h1>
@@ -29,33 +29,34 @@
                         <th scope="col">الدرجة العظمى </th>
                         <th scope="col">الدرجة الصغرى </th>
                         <th scope="col"> المحتوى </th>
-                        <th scope="col"> الأقسام </th>
                         <th scope="col">تعديل </th>
                         <th scope="col" style="border-top-left-radius:5px;">مسح </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let e of events; let i = index">
+                    <tr *ngFor="let s of subjects; let i = index">
 
-                      <th scope="row"> {{i+1}} </th>
-                      <td> {{e.title}} </td>
-                      <td> {{e.createdAt}} </td>
-                      <td>
-                          <img [src]="e.imagePath" width="110px" height="110px" alt="photo" style="border-radius: 75px;">
-                      </td>
-                      <td>
-                          <div style="width: 150px; height:150px ; overflow: hidden;">
-                              {{e.description}}
-                          </div>
-                      </td>
-                      <td>
-                          <i class="btn btn-success fa fa-edit" (click)="editMyEvent(e.id)"></i>
-                      </td>
-                      <td>
-                          <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
-                      </td>
-                      <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteMyEvent(e.id)"></app-confirm-deletion>
-                  </tr> -->
+                        <th scope="row"> {{i+1}} </th>
+                        <td> {{s.name}} </td>
+                        <td> {{s.codeAR}} </td>
+                        <td> {{s.codeEN}} </td>
+                        <td> {{s.numOfHours}} </td>
+                        <td> {{s.maxDegree}} </td>
+                        <td> {{s.minDegree}} </td>
+
+                        <td>
+                            <div style="width: 150px; height:150px ; overflow: hidden;">
+                                {{s.content}}
+                            </div>
+                        </td>
+                        <td>
+                            <i class="btn btn-success fa fa-edit" (click)="editMySubject(s.id)"></i>
+                        </td>
+                        <td>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                        </td>
+                        <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="s.i" (cancel)="onCancel()" (res)="deleteSubject(s.id)"></app-confirm-deletion>
+                    </tr>
 
                 </tbody>
             </table>

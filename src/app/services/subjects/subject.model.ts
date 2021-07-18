@@ -1,35 +1,35 @@
 
 export class Subject{
   public id:number;
-  public title:string;
-  public codeAr:string;
-  public codeEn:string;
+  public name:string;
+  public codeAR:string;
+  public codeEN:string;
   public numOfHours:number;
   public maxDegree:number;
   public minDegree:number;
   public content:string;
-  public dependOn:[];
+  public departmentID:number;
 
   constructor(
     id:number,
-    title:string,
-    codeAr:string,
-    codeEn:string,
+    name:string,
+    codeAR:string,
+    codeEN:string,
     numOfHours:number,
     maxDegree:number,
     minDegree:number,
     content:string,
-    dependOn:[]
+    departmentID:number
     ){
     this.id = id ;
-    this.title=title;
-    this.codeAr = codeAr;
-    this.codeEn = codeEn;
+    this.name=name;
+    this.codeAR = codeAR;
+    this.codeEN = codeEN;
     this.numOfHours = numOfHours;
     this.maxDegree = maxDegree;
     this.minDegree = minDegree;
     this.content = content;
-    this.dependOn = dependOn
+    this.departmentID = departmentID
   }
 
 }

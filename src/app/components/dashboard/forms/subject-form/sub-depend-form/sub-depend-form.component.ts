@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { SubjectService } from 'src/app/services/subjects/subject-service.service';
+import { Subject } from 'src/app/services/subjects/subject.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sub-depend-form',
@@ -12,10 +15,10 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class SubDependFormComponent implements OnInit , OnDestroy {
 
-  subjectList:string[] = [];
-  dependList:string[] = [];
+  subjectList:Observable<Subject[]>|any = [];
+  dependList:Observable<Subject[]>|any = [];
   dropdownSettings:IDropdownSettings = {};
-
+  subject:any;
   subDependForm:any;
   id:number|any;
   load:boolean = false;
@@ -26,7 +29,8 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
     private router:Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private newsSer: HomeNewsCardServiceService
+    private newsSer: HomeNewsCardServiceService,
+    private subSer:SubjectService
   ) {
     this.subDependForm = this.fb.group({
       subject:[null,[Validators.required]],
@@ -35,23 +39,51 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subjectList = [
-      'مانجة','عنب','خوخ','نفاح'
-    ];
-    this.dropdownSettings= {
-      singleSelection: true,
-      enableCheckAll: false,
-      showSelectedItemsAtTop:true,
-      itemsShowLimit: 3,
-      allowSearchFilter: true,
-      closeDropDownOnSelection:true
-    };
     this.newsSer.nothing.next(false);
+    this.subSer.getAllSubjects().subscribe(
+      (res)=>{
+        this.subjectList = res;
+        this.load = false;
+      },
+      (error)=>{
+        this.toastr.error('لقد حدث خطأ أثناء تحميل المواد');
+        this.toastr.info('حاول مرة أخري');
+        this.load = false;
+      }
+    );
+    this.dropdownSettings= {
+      idField: 'id',
+      textField:'name',
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن المادة',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true,
+      closeDropDownOnSelection:true,
+      allowRemoteDataSearch:true
+    };
+
     this.route.params.subscribe(
       (data)=>{
         if(data['id']){
           this.edit = true;
           this.id = +data['id'];
+          this.subSer.getSingleSubject(this.id).subscribe(
+            (res)=>{
+              this.subject = res;
+              for(let s of this.subjectList){
+                if(s.id == this.subject.id){
+                  this.subDependForm.get('subject').setValue([{id:s.id , name:s.name}]);
+                }
+              }
+              for(let sd of this.subjectList){
+                if(sd.id == this.subject.dependID){
+                  this.subDependForm.get('depend').setValue([{id:sd.id , name:sd.name}]);
+                }
+              }
+                this.load = false;
+            }
+          );
         }else{
           this.edit = false;
           this.load=false;

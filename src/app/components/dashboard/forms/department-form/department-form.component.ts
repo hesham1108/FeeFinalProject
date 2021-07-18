@@ -35,8 +35,6 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
       message:[null , [Validators.required]],
       goal:[null , [Validators.required]],
       bossWord:[null , [Validators.required]],
-      // labs:this.fb.array([]),
-      // council:this.fb.array([]),
     })
   }
   ngOnInit(): void {

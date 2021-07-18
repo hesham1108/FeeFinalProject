@@ -3,39 +3,39 @@
         <!-- name -->
         <div class="row ">
             <div class="col-sm-3" style="text-align: right;">
-                <label for="title">عنوان المادة</label> :
+                <label for="name">عنوان المادة</label> :
             </div>
-            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control form-control-lg ">
-            <span class="error col-sm-2" *ngIf="subjectForm.get('title').invalid && subjectForm.get('title').touched">
-              <span class="error" *ngIf="subjectForm.get('title').errors['required']">
+            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control form-control-lg ">
+            <span class="error col-sm-2" *ngIf="subjectForm.get('name').invalid && subjectForm.get('name').touched">
+              <span class="error" *ngIf="subjectForm.get('name').errors['required']">
                 رجاء أدخل العنوان
               </span>
 
             </span>
         </div>
         <br>
-        <!-- codeAr -->
+        <!-- codeAR -->
         <div class="row">
             <div class="col-sm-4" style="text-align: right;">
-                <label for="codeAr">كود المادة باللغة العربية</label> :
+                <label for="codeAR">كود المادة باللغة العربية</label> :
             </div>
-            <input type="text" formControlName="codeAr" id="codeAr" class="form-control form-control-lg col-sm-6">
-            <span class="error col-sm-2" *ngIf="subjectForm.get('codeAr').invalid && subjectForm.get('codeAr').touched">
-            <span class="error" *ngIf="subjectForm.get('codeAr').errors['required']">
+            <input type="text" formControlName="codeAR" id="codeAR" class="form-control form-control-lg col-sm-6">
+            <span class="error col-sm-2" *ngIf="subjectForm.get('codeAR').invalid && subjectForm.get('codeAR').touched">
+            <span class="error" *ngIf="subjectForm.get('codeAR').errors['required']">
               رجاء أدخل الكود العربي
             </span>
 
             </span>
         </div>
         <br>
-        <!-- codeEn -->
+        <!-- codeEN -->
         <div class="row">
             <div class="col-sm-4" style="text-align: right;">
-                <label for="codeEn">كود المادة باللغة الإنجليزية</label> :
+                <label for="codeEN">كود المادة باللغة الإنجليزية</label> :
             </div>
-            <input type="text" formControlName="codeEn" id="codeEn" class="form-control form-control-lg  col-sm-6">
-            <span class="error col-sm-2" *ngIf="subjectForm.get('codeEn').invalid && subjectForm.get('codeEn').touched">
-              <span class="error" *ngIf="subjectForm.get('codeEn').errors['required']">
+            <input type="text" formControlName="codeEN" id="codeEN" class="form-control form-control-lg  col-sm-6">
+            <span class="error col-sm-2" *ngIf="subjectForm.get('codeEN').invalid && subjectForm.get('codeEN').touched">
+              <span class="error" *ngIf="subjectForm.get('codeEN').errors['required']">
                 رجاء أدخل الكود الإنجليزي
               </span>
 

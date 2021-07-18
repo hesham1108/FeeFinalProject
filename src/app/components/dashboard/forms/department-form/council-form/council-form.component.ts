@@ -72,7 +72,7 @@ export class CouncilFormComponent implements OnInit  , OnDestroy{
               this.toastr.error('حدث خطأ أثناء تحميل محضر المجلس');
               this.toastr.info('حاول مرة اخري');
               this.load= false;
-              this.router.navigate(['labsTable']);
+              this.router.navigate(['councilTable']);
             }
           );
 
@@ -100,7 +100,7 @@ export class CouncilFormComponent implements OnInit  , OnDestroy{
   onSubmit(){
     document.documentElement.scrollTop = 0;
     this.load = true;
-    console.log(this.councilForm.value);
+
 
     let dataToPost:{id?:number , title:string ,details:string ,departmentID:number}={
       id:this.id,
@@ -108,7 +108,7 @@ export class CouncilFormComponent implements OnInit  , OnDestroy{
       details:this.councilForm.get('details').value,
       departmentID:+this.councilForm.get('department').value[0].id
     };
-    console.log(dataToPost);
+
 
     if(this.edit){
       if(this.councilForm.valid){
