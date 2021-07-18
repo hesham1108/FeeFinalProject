@@ -1,1 +1,65 @@
-<p>tables-table works!</p>
+<div class="container" style="padding: 0; padding-bottom: 3%;" dir="rtl" *ngIf="!load">
+    <div class="row justify-content-center">
+        <div class="col-sm-6" style="text-align: center; padding: 2%;">
+            <h1> جداول المحاضرات</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 offset-sm-2 add" style="text-align: right;" (click)="goTo('dash/addTable')">
+            <div class="row justify-content-around">
+                <div class="col-sm-3 icon">
+                    <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
+                </div>
+                <div class="col-sm-9 text">
+                    <p style="display: inline;">إضافة جدول جديد</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row table-responsive">
+        <div class="col-sm-12" style="padding: 0;">
+            <table class="table">
+                <thead style="background-color: #14213D; color: #fff;">
+                    <tr>
+                        <th scope="col" style="border-top-right-radius:5px;">#</th>
+                        <th scope="col"> المادة</th>
+                        <th scope="col">الدكتور </th>
+                        <th scope="col">اليوم </th>
+                        <th scope="col"> النوع </th>
+                        <th scope="col">من </th>
+                        <th scope="col">إلى</th>
+                        <th scope="col"> المكان </th>
+                        <th scope="col">تعديل </th>
+                        <th scope="col" style="border-top-left-radius:5px;">مسح </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <tr *ngFor="let e of events; let i = index">
+
+                    <th scope="row"> {{i+1}} </th>
+                    <td> {{e.title}} </td>
+                    <td> {{e.createdAt}} </td>
+                    <td>
+                        <img [src]="e.imagePath" width="110px" height="110px" alt="photo" style="border-radius: 75px;">
+                    </td>
+                    <td>
+                        <div style="width: 150px; height:150px ; overflow: hidden;">
+                            {{e.description}}
+                        </div>
+                    </td>
+                    <td>
+                        <i class="btn btn-success fa fa-edit" (click)="editTale(e.id)"></i>
+                    </td>
+                    <td>
+                        <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                    </td>
+                    <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteTable(e.id)"></app-confirm-deletion>
+                </tr> -->
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-loader *ngIf="load"></app-loader>

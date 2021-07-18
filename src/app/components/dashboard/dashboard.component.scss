@@ -6,18 +6,13 @@ $secondColor: #FCA311;
     padding-bottom: 2%;
     border-bottom: 1px solid white;
     border-top: 1px solid white;
-    // background: #f2709c;
-    /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to top, #fcb7a2, #f795b6);
-    /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to top, #fcb7a2, #f795b6);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-color: #fff;
     position: relative;
     .leftmenubtn {
         position: fixed;
         right: -0.5%;
         top: 35%;
+        z-index: 20;
         padding: 1%;
         background-color: $mainColor;
         color: #fff;
@@ -31,7 +26,7 @@ $secondColor: #FCA311;
     }
     .leftmenu {
         position: absolute;
-        width: 20%;
+        width: 18%;
         height: 100%;
         top: 0;
         right: 0;

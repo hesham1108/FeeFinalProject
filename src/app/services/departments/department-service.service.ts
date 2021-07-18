@@ -24,7 +24,7 @@ export class DepartmentService{
 
   postDepartment(obj:{id?:number , name:string , description: string , vision:string , message:string , goals:string , headSpeech:string}|Object):Observable<Object>
   {
-    return this.http.post(`${this.baseUrl}`,obj);
+    return this.http.post(`${this.baseUrl}`,obj );
   }
 
   putDepartment(obj:{id?:number,name:string , description: string , vision:string , message:string , goals:string , headSpeech:string}|Object):Observable<Object>{

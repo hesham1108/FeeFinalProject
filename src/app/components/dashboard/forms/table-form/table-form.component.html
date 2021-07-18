@@ -1,1 +1,143 @@
-<p>table-form works!</p>
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <!-- table form -->
+    <form [formGroup]='tableForm' (ngSubmit)="onSubmit()">
+
+        <!-- subject -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="subject">المادة</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المادة'" [settings]="dropSubSettings" [data]="subjectList" formControlName="subject" id="subject">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="tableForm.get('subject').invalid && tableForm.get('subject').touched">
+                    <span class="error" *ngIf="tableForm.get('subject').errors['required']">
+                      رجاء اختر المادة
+                    </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- staff -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="staff">الدكتور</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر الدكتور'" [settings]="dropStaffSettings" [data]="staffList" formControlName="staff" id="staff">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="tableForm.get('staff').invalid && tableForm.get('staff').touched">
+            <span class="error" *ngIf="tableForm.get('staff').errors['required']">
+              رجاء اختر الدكتور
+            </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- weekDay -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="weekDay">اليوم</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر اليوم'" [settings]="dropWeekSettings" [data]="weekList" formControlName="weekDay" id="weekDay">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="tableForm.get('weekDay').invalid && tableForm.get('weekDay').touched">
+                <span class="error" *ngIf="tableForm.get('weekDay').errors['required']">
+                  رجاء اختر اليوم
+                </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- location  -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="location">المكان </label> :
+            </div>
+            <input type="text" formControlName="location" id="location" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="tableForm.get('location').invalid && tableForm.get('location').touched">
+              <span class="error" *ngIf="tableForm.get('location').errors['required']">
+                رجاء أدخل المكان
+              </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- sessionType -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="sessionType">النوع </label> :
+            </div>
+            <!-- <input type="text" formControlName="sessionType" id="sessionType" class="col-sm-7 form-control form-control-lg"> -->
+            <select formControlName="sessionType" id="sessionType" class="col-sm-7 form-control form-control-lg">
+            <option value=0 >محاضرة</option>
+            <option value=1 >سكشن</option>
+            <option value=2 >معمل</option>
+          </select>
+            <span class="error col-sm-2" *ngIf="tableForm.get('sessionType').invalid && tableForm.get('sessionType').touched">
+        <span class="error" *ngIf="tableForm.get('sessionType').errors['required']">
+          رجاء أدخل النوع
+        </span>
+
+            </span>
+        </div>
+        <br>
+
+
+        <!-- startAt -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="startAt">وقت البداية </label> :
+            </div>
+            <input type="time" formControlName="startAt" id="startAt" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="tableForm.get('startAt').invalid && tableForm.get('startAt').touched">
+              <span class="error" *ngIf="tableForm.get('startAt').errors['required']">
+                رجاء أدخل وقت البداية
+              </span>
+
+            </span>
+        </div>
+        <br>
+
+        <!-- endAt -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="endAt">وقت الإنتهاء </label> :
+            </div>
+            <input type="time" formControlName="endAt" id="endAt" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="tableForm.get('endAt').invalid && tableForm.get('endAt').touched">
+            <span class="error" *ngIf="tableForm.get('endAt').errors['required']">
+              رجاء أدخل وقت الإنتهاء
+            </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- academicYear -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="academicYear">السنة الدراسية </label> :
+            </div>
+            <input type="text" formControlName="academicYear" id="academicYear" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="tableForm.get('academicYear').invalid && tableForm.get('academicYear').touched">
+                <span class="error" *ngIf="tableForm.get('academicYear').errors['required']">
+                  رجاء أدخل السنة الدراسية
+                </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="tableForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="tableForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+</div>
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المعمل" (cancel)="onCancel()" (res)="deleteTable(id)"></app-confirm-deletion>

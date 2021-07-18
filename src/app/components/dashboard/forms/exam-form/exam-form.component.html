@@ -1,0 +1,79 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <!-- table form -->
+    <form [formGroup]='examForm' (ngSubmit)="onSubmit()">
+
+        <!-- subject -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="subject">المادة</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المادة'" [settings]="dropSubSettings" [data]="subjectList" formControlName="subject" id="subject">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="examForm.get('subject').invalid && examForm.get('subject').touched">
+                  <span class="error" *ngIf="examForm.get('subject').errors['required']">
+                    رجاء اختر المادة
+                  </span>
+            </span>
+        </div>
+        <br>
+
+        <!-- date -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="date">التاريخ  </label> :
+            </div>
+            <input type="date" formControlName="date" id="date" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="examForm.get('date').invalid && examForm.get('date').touched">
+        <span class="error" *ngIf="examForm.get('date').errors['required']">
+          رجاء أدخل التاريخ
+        </span>
+
+            </span>
+        </div>
+        <br>
+        <!-- time -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="time">وقت البداية </label> :
+            </div>
+            <input type="time" formControlName="time" id="time" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="examForm.get('time').invalid && examForm.get('time').touched">
+            <span class="error" *ngIf="examForm.get('time').errors['required']">
+              رجاء أدخل وقت البداية
+            </span>
+
+            </span>
+        </div>
+        <br>
+
+        <!-- duration -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="duration">مدة الإمتحان </label> :
+            </div>
+            <input type="number" formControlName="duration" min="1" id="duration" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="examForm.get('duration').invalid && examForm.get('duration').touched">
+          <span class="error" *ngIf="examForm.get('duration').errors['required']">
+            رجاء أدخل مدة الإمتحان مدة الإمتحان
+          </span>
+
+            </span>
+        </div>
+        <br>
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="examForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="examForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+</div>
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المعمل" (cancel)="onCancel()" (res)="deleteTable(id)"></app-confirm-deletion>

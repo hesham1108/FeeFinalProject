@@ -31,6 +31,8 @@ export class DepartmentTableComponent implements OnInit {
       (res)=>{
         this.departments = res;
         this.load=false;
+        console.log('get ... done');
+
       },
       (error)=>{
         this.toastr.error('حدث خطأ أثناء تحميل الأقسام');

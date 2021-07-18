@@ -94,6 +94,8 @@ import { TablesTableComponent } from './components/dashboard/helpers/tables-tabl
 //PrimeNg
 // multiselecting drop-down
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ExamTableComponent } from './components/dashboard/helpers/exam-table/exam-table.component';
+import { ExamFormComponent } from './components/dashboard/forms/exam-form/exam-form.component';
 
 
 @NgModule({
@@ -170,7 +172,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     PostionTableComponent,
     PostionFormComponent,
     TableFormComponent,
-    TablesTableComponent
+    TablesTableComponent,
+    ExamTableComponent,
+    ExamFormComponent
 
 
   ],

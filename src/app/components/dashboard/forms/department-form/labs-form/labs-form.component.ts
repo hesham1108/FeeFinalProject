@@ -3,6 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { DepartmentService } from 'src/app/services/departments/department-service.service';
+import { Department } from 'src/app/services/departments/department.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 
 @Component({
@@ -11,7 +14,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
   styleUrls: ['./labs-form.component.scss']
 })
 export class LabsFormComponent implements OnInit  , OnDestroy{
-  departmentsList:any =[];
+  departmentsList:Observable<Department[]>|any =[];
   dropdownSettings: IDropdownSettings = {};
   labsForm:any;
   id:number|any;
@@ -23,7 +26,8 @@ export class LabsFormComponent implements OnInit  , OnDestroy{
     private router:Router ,
     private route:ActivatedRoute ,
     private newsSer:HomeNewsCardServiceService ,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private depSer: DepartmentService
   ) {
     this.labsForm = this.fb.group({
       name:[null,[Validators.required]],
@@ -34,17 +38,23 @@ export class LabsFormComponent implements OnInit  , OnDestroy{
    }
 
   ngOnInit(): void {
-    this.departmentsList = [
-      'حاسبات',
-      'تحكم',
-      'اتصالات'
-    ];
-    this.dropdownSettings={
-      singleSelection:true,
-      searchPlaceholderText:'ابحث عن القسم',
-      allowSearchFilter: true
-    }
+    // this.departmentsList = [
+    //   'حاسبات',
+    //   'تحكم',
+    //   'اتصالات'
+    // ];
     this.newsSer.nothing.next(false);
+    this.depSer.getAllDepartments().subscribe(
+      (res)=>{
+        this.departmentsList = res;
+        this.load = false;
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء تحميل الأقسام');
+        this.toastr.info('حاول مرة اخري');
+        this.load = false;
+      }
+    );
     this.route.params.subscribe(
       (data)=>{
         if(data['id']){
@@ -55,6 +65,16 @@ export class LabsFormComponent implements OnInit  , OnDestroy{
         }
       }
     );
+    this.dropdownSettings={
+      idField: 'id',
+      textField:'name',
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن القسم',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true
+    }
+
   }
 
   onSubmit(){

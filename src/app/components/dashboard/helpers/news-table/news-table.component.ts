@@ -25,6 +25,7 @@ export class NewsTableComponent implements OnInit {
     this.newsSer.getAllCards().subscribe(
       (res)=>{
         this.allNews = res;
+        this.allNews.reverse();
         this.load = false;
       },
       (error)=>{

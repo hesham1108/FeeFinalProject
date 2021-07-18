@@ -27,6 +27,7 @@ export class EventsTableComponent implements OnInit {
     this.eventSer.getAllEvents().subscribe(
       (res)=>{
         this.events = res;
+        this.events.reverse();
         this.load = false;
       },
       (error)=>{

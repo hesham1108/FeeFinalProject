@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-tables-table',
-  templateUrl: './tables-table.component.html',
+  selector: 'app-exam-table',
+  templateUrl: './exam-table.component.html',
   styleUrls: ['../tables-style.scss']
 })
-export class TablesTableComponent implements OnInit {
+export class ExamTableComponent implements OnInit {
+
   load:boolean = false;
   delete:boolean = false;
   constructor(
@@ -18,13 +19,13 @@ export class TablesTableComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editTale(id:number){
-    this.router.navigate(['dash/addTable' , id]);
+  editExam(id:number){
+    this.router.navigate(['dash/addExam' , id]);
   }
   ondelete(){
     this.delete = true;
   }
-  deleteTable(id:number){
+  deleteExam(id:number){
     console.log(id);
     this.toastr.success('لقد تم مسح المادة بنجاح')
   }
