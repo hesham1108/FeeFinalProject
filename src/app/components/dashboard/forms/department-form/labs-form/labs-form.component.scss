@@ -16,6 +16,7 @@ select {
 .error {
     // margin-top: 2%;
     // display: inline;
+    padding: 1%;
     color: red;
     font-size: medium;
     text-align: right;
@@ -45,4 +46,11 @@ select {
     padding-right: 5%;
     padding-left: 5%;
     font-weight: bold;
+}
+
+.text {
+    text-align: right;
+    font-size: large;
+    font-weight: bold;
+    padding: 1%;
 }

@@ -18,15 +18,15 @@
             </span>
         </div>
         <br>
-        <!-- roomName -->
+        <!-- roomNum -->
         <div class="row ">
             <div class="col-sm-3" style="text-align: right;">
-                <label for="roomName">اسم الغرفة</label> :
+                <label for="roomNum">رقم الغرفة</label> :
             </div>
-            <input type="text" formControlName="roomName" id="roomName" class="col-sm-7 form-control form-control-lg">
-            <span class="error col-sm-2" *ngIf="labsForm.get('roomName').invalid && labsForm.get('roomName').touched">
-      <span class="error" *ngIf="labsForm.get('roomName').errors['required']">
-        رجاء أدخل اسم الغرفة
+            <input type="number" min="0" formControlName="roomNum" id="roomNum" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="labsForm.get('roomNum').invalid && labsForm.get('roomNum').touched">
+      <span class="error" *ngIf="labsForm.get('roomNum').errors['required']">
+        رجاء أدخل رقم الغرفة
       </span>
 
             </span>
@@ -59,12 +59,6 @@
             </div>
             <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر القسم'" [settings]="dropdownSettings" [data]="departmentsList" formControlName="department" id="department">
             </ng-multiselect-dropdown>
-            <!-- <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
-              <option value="CSE">حاسبات</option>
-              <option value="Control">تحكم</option>
-              <option value="communication">اتصالات</option>
-              <option value="Biomedical">طبية</option>
-            </select> -->
             <span class="error col-sm-2" *ngIf="labsForm.get('department').invalid && labsForm.get('department').touched">
               <span class="error" *ngIf="labsForm.get('department').errors['required']">
                 رجاء اختر القسم
