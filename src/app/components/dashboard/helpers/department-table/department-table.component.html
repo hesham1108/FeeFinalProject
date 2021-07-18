@@ -29,27 +29,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let e of events; let i = index">
+                    <tr *ngFor="let d of departments; let i = index">
 
-                    <th scope="row"> {{i+1}} </th>
-                    <td> {{e.title}} </td>
-                    <td> {{e.createdAt}} </td>
-                    <td>
-                        <img [src]="e.imagePath" width="110px" height="110px" alt="photo" style="border-radius: 75px;">
-                    </td>
-                    <td>
-                        <div style="width: 150px; height:150px ; overflow: hidden;">
-                            {{e.description}}
-                        </div>
-                    </td>
-                    <td>
-                        <i class="btn btn-success fa fa-edit" (click)="editMyEvent(e.id)"></i>
-                    </td>
-                    <td>
-                        <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
-                    </td>
-                    <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteMyEvent(e.id)"></app-confirm-deletion>
-                </tr> -->
+                        <th scope="row"> {{i+1}} </th>
+                        <td> {{d.name}} </td>
+
+
+                        <td>
+                            <i class="btn btn-success fa fa-edit" (click)="editMyDepartment(d.id)"></i>
+                        </td>
+                        <td>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                        </td>
+                        <app-confirm-deletion *ngIf="delete" content="القسم" [id]="d.i" (cancel)="onCancel()" (res)="deleteDepartment(d.id)"></app-confirm-deletion>
+                    </tr>
 
                 </tbody>
             </table>

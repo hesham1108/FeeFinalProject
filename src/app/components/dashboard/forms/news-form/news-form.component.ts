@@ -48,7 +48,6 @@ export class NewsFormComponent implements OnInit , OnDestroy{
 
           this.newsSer.getCardFromAllCards(this.id).subscribe(
             (res)=> {
-              console.log(res);
               if(res.status == 200){
                 this.news = res.body;
                 this.newsFrom.get('title').setValue(this.news.title) ;
@@ -57,8 +56,12 @@ export class NewsFormComponent implements OnInit , OnDestroy{
                 this.newsFrom.get('imagePath').setValue(this.news.imagePath);
                 this.load=false;
               }
-
-
+            },
+            (error)=>{
+              this.toastr.error('حدث خطأ أثناء تحميل الخبر');
+              this.toastr.info('حاول مرة اخري');
+              this.load= false;
+              this.router.navigate(['newsTable']);
             }
           );
 
@@ -135,15 +138,17 @@ export class NewsFormComponent implements OnInit , OnDestroy{
       this.toastr.success('لقد تم مسح الخبر بنجاح');
       this.load = false;
       this.delete= false;
+      document.documentElement.scrollTop = 0;
+      this.router.navigate(['newsTable']);
 
     } , error=>{
       console.log(error);
       this.toastr.error('حدث خطأ أثناء مسح الخبر ');
-       this.toastr.info('حاول مرة اخري');
-
+      this.toastr.info('حاول مرة اخري');
+      this.load=false;
     });
     this.newsFrom.reset();
-
+    this.onCancel();
 
   }
 

@@ -28,7 +28,11 @@ export class EventsTableComponent implements OnInit {
       (res)=>{
         this.events = res;
         this.load = false;
-
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء تحميل الأحداث');
+        this.toastr.info('حاول مرة اخري');
+        this.load = false;
       }
     );
   }
@@ -52,6 +56,7 @@ export class EventsTableComponent implements OnInit {
       (error)=>{
         this.toastr.error('حدث خطأ أثناء مسح الحدث ');
         this.toastr.info('حاول مرة اخري');
+        this.load = false;
       }
     );
   }

@@ -36,7 +36,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   displayContent(body:any){
-    this.depSer.body.emit(body);
+    // this.depSer.body.emit(body);
   }
   display(dep:any){
     this.departmentContent = dep.content;

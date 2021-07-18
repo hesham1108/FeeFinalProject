@@ -50,6 +50,12 @@ export class EventFormComponent implements OnInit , OnDestroy {
                 this.eventForm.get('description').setValue(this.event.description);
                 this.eventForm.get('imagePath').setValue(this.event.imagePath);
                 this.load=false;
+            },
+            (error)=>{
+              this.toastr.error('حدث خطأ أثناء تحميل الحدث ');
+              this.toastr.info('حاول مرة اخري');
+              this.load=false;
+              this.router.navigate(['eventsTable']);
             }
           );
           // var recDate =new Date(this.event.createdAt) ;
@@ -116,16 +122,20 @@ export class EventFormComponent implements OnInit , OnDestroy {
           if(res){
             this.toastr.success('لقد تم مسح الحدث بنجاح');
             this.load = false;
-
             this.delete=false;
+            document.documentElement.scrollTop = 0;
+            this.router.navigate(['eventsTable']);
+
           }
       },
       (error)=>{
         this.toastr.error('حدث خطأ أثناء مسح الحدث ');
         this.toastr.info('حاول مرة اخري');
+        this.load = false;
       }
     );
     this.eventForm.reset();
+    this.onCancel();
   }
   ngOnDestroy():void{
     this.newsSer.nothing.next(false);

@@ -9,12 +9,12 @@ import { DepartmentService } from 'src/app/services/departments/department-servi
 export class DisplayDepContentComponent implements OnInit {
   body:any;
   constructor(private depSer: DepartmentService) {
-    this.depSer.body.subscribe(
-      (data)=>{
-        this.body = data.body;
-      }
+    // this.depSer.body.subscribe(
+    //   (data)=>{
+    //     this.body = data.body;
+    //   }
 
-    );
+    // );
    }
 
   ngOnInit(): void {

@@ -9,11 +9,43 @@ import { Event } from './event.model';
 })
 export class EventCardService {
 
-
   currentPage = new Subject<number>();
   currentPageNumber: number = 1;
   private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Events';
   load = new Subject<boolean>();
+  // allEvents:Observable<Event[]>|any = [];
+
+  constructor( private http: HttpClient) { }
+
+
+
+  getAllEvents():Observable<any>{
+    return this.http.get(`${this.baseUrl}`);
+  }
+
+
+  getEventFromAllEvents(id:number): Observable<any>{
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  postEvent(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>
+  {
+    return this.http.post(`${this.baseUrl}`,obj);
+  }
+
+  putEvent(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>{
+   return this.http.put(`${this.baseUrl}`, obj);
+  }
+
+
+  deleteEvent(id:number):Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+
+
+
+
   // events:Events[] = [
   //   new Events(
   //     'هشام',
@@ -449,10 +481,6 @@ export class EventCardService {
   //     link: ''
   //   },
   // ] ;
-  allEvents:Observable<Event[]>|any = [];
-
-  constructor( private http: HttpClient) { }
-
   // getHomeEvents(){
   // var firstThreeEvents: Event[]|any = [];
   // this.getAllEvents().subscribe(
@@ -464,29 +492,5 @@ export class EventCardService {
   // );
   // return firstThreeEvents;
   // }
-
-
-  getAllEvents():Observable<any>{
-    return this.http.get(`${this.baseUrl}`);
-  }
-
-
-  getEventFromAllEvents(id:number): Observable<any>{
-    return this.http.get(`${this.baseUrl}/${id}`);
-  }
-
-  postEvent(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>
-  {
-    return this.http.post(`${this.baseUrl}`,obj);
-  }
-
-  putEvent(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>{
-   return this.http.put(`${this.baseUrl}`, obj);
-  }
-
-
-  deleteEvent(id:number):Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
-  }
 
 }

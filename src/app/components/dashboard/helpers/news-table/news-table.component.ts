@@ -26,6 +26,11 @@ export class NewsTableComponent implements OnInit {
       (res)=>{
         this.allNews = res;
         this.load = false;
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء تحميل الأخبار');
+        this.toastr.info('حاول مرة اخري');
+        this.load = false;
       }
     );
 
@@ -52,6 +57,7 @@ export class NewsTableComponent implements OnInit {
     (error)=>{
       this.toastr.error('حدث خطأ أثناء مسح الخبر ');
       this.toastr.info('حاول مرة اخري');
+      this.load = false;
     }
     );
   }

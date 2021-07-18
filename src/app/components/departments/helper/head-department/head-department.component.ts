@@ -14,8 +14,8 @@ export class HeadDepartmentComponent implements OnInit {
   constructor(private depSer :DepartmentService , private router: Router ) { }
 
   ngOnInit(): void {
-    this.departments = this.depSer.getDepartments();
-    this.children = this.depSer.getChildren();
+    // this.departments = this.depSer.getDepartments();
+    // this.children = this.depSer.getChildren();
 
 
   }
