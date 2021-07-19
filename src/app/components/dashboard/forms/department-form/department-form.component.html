@@ -57,19 +57,19 @@
             </span>
         </div>
         <br />
-        <!-- message -->
+        <!-- massage -->
         <div class="row">
             <div class="col-sm-3" style="text-align: right">
-                <label for="message">رسالة القسم</label> :
+                <label for="massage">رسالة القسم</label> :
             </div>
-            <textarea formControlName="message" id="message" class="col-sm-7 form-control form-control-lg"></textarea>
+            <textarea formControlName="massage" id="massage" class="col-sm-7 form-control form-control-lg"></textarea>
             <span class="error col-sm-2" *ngIf="
-          departmentForm.get('message').invalid &&
-          departmentForm.get('message').touched
+          departmentForm.get('massage').invalid &&
+          departmentForm.get('massage').touched
         ">
         <span
           class="error"
-          *ngIf="departmentForm.get('message').errors['required']"
+          *ngIf="departmentForm.get('massage').errors['required']"
         >
           رجاء أدخل رسالة القسم
         </span>

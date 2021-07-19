@@ -22,35 +22,26 @@
                 <thead style="background-color: #14213D; color: #fff;">
                     <tr>
                         <th scope="col" style="border-top-right-radius:5px;">#</th>
-                        <th scope="col">اسم المادة </th>
+                        <th scope="col"> المادة </th>
                         <th scope="col">تعتمد على</th>
                         <th scope="col">تعديل </th>
                         <th scope="col" style="border-top-left-radius:5px;">مسح </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let e of events; let i = index">
+                    <tr *ngFor="let s of subDepends; let i = index">
 
-              <th scope="row"> {{i+1}} </th>
-              <td> {{e.title}} </td>
-              <td> {{e.createdAt}} </td>
-              <td>
-                  <img [src]="e.imagePath" width="110px" height="110px" alt="photo" style="border-radius: 75px;">
-              </td>
-              <td>
-                  <div style="width: 150px; height:150px ; overflow: hidden;">
-                      {{e.description}}
-                  </div>
-              </td>
-              <td>
-                  <i class="btn btn-success fa fa-edit" (click)="editMyEvent(e.id)"></i>
-              </td>
-              <td>
-                  <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
-              </td>
-              <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteMyEvent(e.id)"></app-confirm-deletion>
-          </tr> -->
-                    <app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteSubDepend(1)"></app-confirm-deletion>
+                        <th scope="row"> {{i+1}} </th>
+                        <td> {{s.subject.name}} </td>
+                        <td> {{s.depend.name}} </td>
+                        <td>
+                            <i class="btn btn-success fa fa-edit" (click)="editMySubDepend(s.subjectID,s.dependID)"></i>
+                        </td>
+                        <td>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                        </td>
+                        <app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteSubDepend(s.subjectID,s.dependID)"></app-confirm-deletion>
+                    </tr>
                 </tbody>
             </table>
         </div>

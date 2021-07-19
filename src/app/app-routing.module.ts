@@ -49,6 +49,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
 import { ProfComponent } from './components/profiles/prof/prof.component';
 import { SearchComponent } from './components/search/search.component';
+import { DepResolver } from './services/departments/dep-resolver.service';
 
 
 
@@ -58,18 +59,22 @@ const routes: Routes = [
   {path:"search", component: SearchComponent},
   {path:'myprofile', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
-  {path:'departments/:id',component: DepartmentsComponent,children:[
-    {path:'about' , component:AboutDepartmentComponent},
-    {path:'boss' , component:BossOfDepartmentComponent},
-    {path:'bossword' , component:BosswordComponent},
-    {path:'sight' , component:SightOfDepartmentComponent},
-    {path:'message' , component:MessageOfDepartmentComponent},
-    {path:'goal' , component:GoalOfDepartmentComponent},
-    {path:'staff' , component:StaffComponent},
-    {path:'subject' , component:SubjectsComponent},
-    {path:'labs' , component:LabsOfDepartmentComponent},
-    {path:'council' , component:CouncilOfDepartmentComponent},
+
+
+  {path:'departments/:id',component: DepartmentsComponent,  children:[
+    {path:'about/:id' , component:AboutDepartmentComponent },
+    {path:'boss/:id' , component:BossOfDepartmentComponent},
+    {path:'bossword/:id' , component:BosswordComponent},
+    {path:'sight/:id' , component:SightOfDepartmentComponent},
+    {path:'message/:id' , component:MessageOfDepartmentComponent},
+    {path:'goal/:id' , component:GoalOfDepartmentComponent},
+    {path:'staff/:id' , component:StaffComponent},
+    {path:'subject/:id' , component:SubjectsComponent},
+    {path:'labs/:id' , component:LabsOfDepartmentComponent},
+    {path:'council/:id' , component:CouncilOfDepartmentComponent},
   ]},
+
+
   {path:"about", component:AboutComponent},
   {path:"prof/:id", component:ProfComponent},
   {path:"news", component:AllNewsComponent },
@@ -96,7 +101,7 @@ const routes: Routes = [
     {path: 'addCouncil' , component:CouncilFormComponent},
     {path: 'addCouncil/:id' , component:CouncilFormComponent},
     {path: 'addSubDepend' , component:SubDependFormComponent},
-    {path: 'addSubDepend/:id' , component:SubDependFormComponent},
+    {path: 'addSubDepend/:sid/:did' , component:SubDependFormComponent},
     {path: 'addPostion' , component:PostionFormComponent},
     {path: 'addPostion/:id' , component:PostionFormComponent},
     {path: 'addTable' , component:TableFormComponent},

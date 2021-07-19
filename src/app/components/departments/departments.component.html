@@ -28,23 +28,23 @@
     </div>
 </ng-template> -->
 
-<div class="container" style="padding: 0;" dir="rtl" lang="ar">
+<div class="container" style="padding: 0;" dir="rtl" lang="ar" *ngIf="!load">
     <div class="cover">
         <div class="photo">
             <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1955&q=80" alt="">
         </div>
         <div class="banner">
             <p>
-                اسم القسم
+                {{department.name}}
             </p>
         </div>
     </div>
 </div>
-<div class="container" dir="rtl" lang="ar">
+<div class="container" dir="rtl" lang="ar" *ngIf="!load">
     <div class="row">
         <div class="rightnav col-sm-4">
             <h3>
-                اسم القسم القسم القسم
+                {{department.name}}
             </h3>
             <hr class="orange">
             <br>
@@ -168,3 +168,5 @@
         </div>
     </div>
 </div>
+
+<app-loader *ngIf="load"></app-loader>

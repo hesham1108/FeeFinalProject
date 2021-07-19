@@ -10,7 +10,7 @@ import { EventCardService } from 'src/app/services/events/event-card.service';
   styleUrls: ['../tables-style.scss']
 })
 export class EventsTableComponent implements OnInit {
-
+  search:string ='';
   events:Observable<Event[]>|any = [];
   load:boolean = true;
   delete:boolean = false;

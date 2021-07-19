@@ -12,6 +12,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 })
 export class NewsFormComponent implements OnInit , OnDestroy{
 
+  imgSrc:string|any;
   newsFrom:any;
   id:number|any;
   edit:boolean =false;
@@ -86,6 +87,8 @@ export class NewsFormComponent implements OnInit , OnDestroy{
       imagePath: this.newsFrom.get('imagePath').value,
       description : this.newsFrom.get('description').value,
     };
+
+    console.log(this.newsFrom.value);
 
 
     if(this.edit){
@@ -162,5 +165,18 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
   onCancel(){
     this.delete=false;
+  }
+
+  onImageChange(event:any){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length){
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = ()=>{
+        this.imgSrc = reader.result as string;
+        console.log(this.imgSrc);
+
+      }
+    }
   }
 }

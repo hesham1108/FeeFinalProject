@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import {  Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { Department } from "./department.model";
 
 @Injectable({
@@ -9,6 +9,7 @@ import { Department } from "./department.model";
 
 export class DepartmentService{
 
+  loadDep = new Subject<boolean>();
   departments:Observable<Department[]>|any=[];
   private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Departments';
   private depLabUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/DepartmentLap';
@@ -17,18 +18,25 @@ export class DepartmentService{
   constructor(private http:HttpClient){}
 
   // Departments
-
+  getDeps(){
+    this.departments = this.http.get(`${this.baseUrl}`);
+    return this.departments;
+  }
+  getDep(id:number){
+    const department = this.http.get(`${this.baseUrl}/${id}`);
+    return department
+  }
   getAllDepartments():Observable<any>{
     return this.http.get(`${this.baseUrl}`);
   }
   getSingleDepartment(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }
-  postDepartment(obj:{id?:number , name:string , description: string , vision:string , message:string , goals:string , headSpeech:string}|Object):Observable<Object>
+  postDepartment(obj:{id?:number , name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string}|Object):Observable<Object>
   {
     return this.http.post(`${this.baseUrl}`,obj );
   }
-  putDepartment(obj:{id?:number,name:string , description: string , vision:string , message:string , goals:string , headSpeech:string}|Object):Observable<Object>{
+  putDepartment(obj:{id?:number,name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string}|Object):Observable<Object>{
    return this.http.put(`${this.baseUrl}`, obj);
   }
   deleteDepartment(id:number):Observable<any> {

@@ -65,9 +65,10 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
 
     this.route.params.subscribe(
       (data)=>{
-        if(data['id']){
+        if(data['sid']&&data['did']){
           this.edit = true;
-          this.id = +data['id'];
+          let temp  = data['sid'] + data['did'];
+          this.id = +temp;
           this.subSer.getSingleSubject(this.id).subscribe(
             (res)=>{
               this.subject = res;
@@ -75,10 +76,8 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
                 if(s.id == this.subject.id){
                   this.subDependForm.get('subject').setValue([{id:s.id , name:s.name}]);
                 }
-              }
-              for(let sd of this.subjectList){
-                if(sd.id == this.subject.dependID){
-                  this.subDependForm.get('depend').setValue([{id:sd.id , name:sd.name}]);
+                if(s.id == this.subject.dependID){
+                  this.subDependForm.get('depend').setValue([{id:s.id , name:s.name}]);
                 }
               }
                 this.load = false;
@@ -93,22 +92,65 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   }
   onSubmit(){
     document.documentElement.scrollTop = 0;
-    // console.log(this.subDependForm.value);
+    this.load = true;
+    let dataToPost:{subjectID:number , dependID:number} = {
+      subjectID:+this.subDependForm.get('subject').value[0].id,
+      dependID:+this.subDependForm.get('depend').value[0].id
+    }
+
     if(this.edit){
       if(this.subDependForm.valid){
-        this.toastr.success('لقد تم  إضافة المتطلب بنجاح');
-        console.log(this.subDependForm.value);
+        this.subSer.putSubDepend(dataToPost).subscribe(
+          (res)=>{
+            this.toastr.success('لقد تم  تعديل المتطلب بنجاح');
+            document.documentElement.scrollTop = 0;
+            this.router.navigate(['subDependTable']);
+          },
+          (error)=>{
+            this.toastr.error('لقد حدث خطأ أثناء تعديل المتطلب');
+            this.toastr.info('حاول مرة اخري');
+            this.load= false;
+            console.log(error);
+          }
+        );
       }
     }else{
       if(this.subDependForm.valid){
-        this.toastr.success('لقد تم  تعديل المتطلب بنجاح');
-        console.log(this.subDependForm.value);
+        this.subSer.postSubDepend(dataToPost).subscribe(
+          (res)=>{
+            this.toastr.success('لقد تم  إضافة المتطلب بنجاح');
+            document.documentElement.scrollTop = 0;
+            this.router.navigate(['subDependTable']);
+          },
+          (error)=>{
+            this.toastr.error('لقد حدث خطأ أثناء إضافة المتطلب');
+            this.toastr.info('حاول مرة اخري');
+            this.load= false;
+            console.log(error);
+          }
+        );
       }
     }
   }
 
   deleteDepend(id:number|any){
-    this.toastr.success('لقد تم مسح المتطلب بنجاح');
+    this.load = true;
+    this.subSer.deleteSubDepend(id).subscribe(
+      (res)=>{
+        if(res){
+          this.toastr.success('لقد تم مسح المتطلب  بنجاح');
+          this.load = false;
+          this.delete = false;
+          document.documentElement.scrollTop = 0;
+          this.router.navigate(['subDependTable']);
+        }
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء مسح المتطلب  ');
+        this.toastr.info('حاول مرة اخري');
+        this.load=false;
+      }
+    );
     this.subDependForm.reset();
     this.onCancel();
   }
@@ -123,9 +165,10 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
     this.edit = false;
   }
   onSelect(item:any){
+
     var temp =[];
     for(let l of this.subjectList){
-      if(l != item){
+      if(l.id != item.id){
         temp.push(l);
       }
     }

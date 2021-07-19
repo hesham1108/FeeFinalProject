@@ -9,7 +9,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 @Component({
   selector: 'app-department-form',
   templateUrl: './department-form.component.html',
-  styleUrls: ['./department-form.component.scss']
+  styleUrls: ['./department-form.component.scss'],
 })
 export class DepartmentFormComponent implements OnInit , OnDestroy {
 
@@ -32,7 +32,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
       name:[null , [Validators.required]],
       about:[null , [Validators.required]],
       sight:[null , [Validators.required]],
-      message:[null , [Validators.required]],
+      massage:[null , [Validators.required]],
       goal:[null , [Validators.required]],
       bossWord:[null , [Validators.required]],
     })
@@ -47,10 +47,12 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
           this.depSer.getSingleDepartment(this.id).subscribe(
             (res)=>{
               this.department = res;
+              console.log(res);
+
               this.departmentForm.get('name').setValue(this.department.name);
               this.departmentForm.get('about').setValue(this.department.description);
               this.departmentForm.get('sight').setValue(this.department.vision);
-              this.departmentForm.get('message').setValue(this.department.message);
+              this.departmentForm.get('massage').setValue(this.department.massage);
               this.departmentForm.get('goal').setValue(this.department.goals);
               this.departmentForm.get('bossWord').setValue(this.department.headSpeech);
               this.load = false;
@@ -74,12 +76,12 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
 
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number , name:string , description:string , vision:string,message:string,goals:string,headSpeech:string}={
+    let dataToPost:{id?:number , name:string , description:string , vision:string,massage:string,goals:string,headSpeech:string}={
       id:this.id,
       name:this.departmentForm.get('name').value,
       description:this.departmentForm.get('about').value,
       vision:this.departmentForm.get('sight').value,
-      message:this.departmentForm.get('message').value,
+      massage:this.departmentForm.get('massage').value,
       goals:this.departmentForm.get('goal').value,
       headSpeech:this.departmentForm.get('bossWord').value
     };
@@ -89,6 +91,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
           (res)=>{
             this.toastr.success('لقد تم  تعديل القسم بنجاح');
             document.documentElement.scrollTop = 0;
+            this.depSer.getDeps();
             this.router.navigate(['departmentTable']);
           },
           (error)=>{
@@ -104,6 +107,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
           (res)=>{
             this.toastr.success('لقد تم إضافة القسم بنجاح');
             document.documentElement.scrollTop = 0;
+            this.depSer.getDeps();
             this.router.navigate(['departmentTable']);
           },
           (error)=>{

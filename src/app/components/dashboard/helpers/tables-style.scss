@@ -22,3 +22,24 @@ $mainColor: #14213D;
     cursor: pointer;
     background-color: #14213dc4;
 }
+
+.b {
+    font-weight: 400;
+    font-size: 19px;
+    padding-right: 1%;
+    .back {
+        background-color: #14213D;
+        padding: 5%;
+        border-radius: 5px;
+        height: 100%;
+        cursor: pointer;
+        margin-left: 0;
+    }
+    .back:hover {
+        cursor: pointer;
+        background-color: #14213dc4;
+    }
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1%;
+}

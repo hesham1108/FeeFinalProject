@@ -3,6 +3,8 @@
 </h3>
 <hr class="orange">
 
-<div class="content">
-    المحتوى
+<div class="content" *ngIf="!load">
+    {{department.headSpeech}}
 </div>
+
+<app-loader *ngIf="load"></app-loader>

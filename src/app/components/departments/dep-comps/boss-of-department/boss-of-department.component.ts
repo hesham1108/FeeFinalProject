@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DepartmentService } from 'src/app/services/departments/department-service.service';
 
 @Component({
   selector: 'app-boss-of-department',
@@ -8,15 +9,32 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class BossOfDepartmentComponent implements OnInit {
 
-  constructor(private router:Router,private route:ActivatedRoute) { }
+  department:any;
   id:number|any;
-  ngOnInit(): void {
+  load:boolean=true;
+  constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService) { }
 
-    this.route.params.subscribe(
-      (data)=>{
-        this.id = +data['id'];
-      }
-    )
+
+  ngOnInit(): void {
+    this.reloadData();
   }
 
+  reloadData(){
+    this.route.params.subscribe(
+      (data)=>{
+        if(data['id']){
+        this.id = +data['id'];
+        this.depSer.getSingleDepartment(this.id).subscribe(
+        (res)=>{
+          this.department = res;
+          this.load = false;
+        },
+        (error)=>{
+          console.log('shit');
+        }
+    );
+      }
+  }
+  );
+  }
 }

@@ -11,7 +11,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
   styleUrls: ['../tables-style.scss']
 })
 export class NewsTableComponent implements OnInit {
-
+  search:string='';
   allNews: Observable<Card[]>|any;
   load:boolean = true;
   delete:boolean = false;
@@ -44,6 +44,8 @@ export class NewsTableComponent implements OnInit {
 
   /// delete from the table
   deleteMyNews(id:number){
+    console.log(id);
+
     document.documentElement.scrollTop = 0;
     this.load=true;
     this.newsSer.deleteNews(id).subscribe(

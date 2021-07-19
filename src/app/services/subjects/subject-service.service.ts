@@ -11,8 +11,10 @@ export class SubjectService {
 
   Subjects: Subject[] = [];
   private subjectUrl ='http://ahmed1500019-001-site1.dtempurl.com/api/Subject';
+  private subDependUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/SubjectDepedance';
   constructor(private http: HttpClient){}
 
+  //subjects
   getAllSubjects():Observable<any>{
     return this.http.get(`${this.subjectUrl}`);
   }
@@ -28,5 +30,22 @@ export class SubjectService {
   }
   deleteSubject(id:number):Observable<any> {
     return this.http.delete(`${this.subjectUrl}/${id}`);
+  }
+  //subject dependance
+  getAllSubDepends():Observable<any>{
+    return this.http.get(`${this.subDependUrl}`);
+  }
+  getSingleSubDepend(id:number): Observable<any>{
+    return this.http.get(`${this.subDependUrl}/${id}`);
+  }
+  postSubDepend(obj:{subjectID:number , dependID:number }|Object):Observable<Object>
+  {
+    return this.http.post(`${this.subDependUrl}`,obj );
+  }
+  putSubDepend(obj:{subjectID:number , dependID:number }|Object):Observable<Object>{
+   return this.http.put(`${this.subDependUrl}`, obj);
+  }
+  deleteSubDepend(id:number):Observable<any> {
+    return this.http.delete(`${this.subDependUrl}/${id}`);
   }
 }

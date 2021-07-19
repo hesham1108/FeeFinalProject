@@ -1,21 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { DepartmentService } from 'src/app/services/departments/department-service.service';
+import { Department } from 'src/app/services/departments/department.model';
 
 @Component({
   selector: 'app-about-department',
   templateUrl: './about-department.component.html',
   styleUrls: ['./about-department.component.scss']
 })
-export class AboutDepartmentComponent implements OnInit {
+export class AboutDepartmentComponent implements OnInit  {
 
-  constructor(private router:Router,private route:ActivatedRoute) { }
+  department:Observable<Department>|any;
   id:number|any;
-  ngOnInit(): void {
+  load:boolean=true;
+  constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService) { }
 
+
+  ngOnInit(): void {
+    this.reloadData();
+  }
+
+  reloadData(){
     this.route.params.subscribe(
       (data)=>{
+        if(data['id']){
         this.id = +data['id'];
+        this.depSer.getSingleDepartment(this.id).subscribe(
+        (res)=>{
+          this.department = res;
+          this.load = false;
+        },
+        (error)=>{
+          console.log('shit');
+        }
+    );
       }
-    )
+  }
+  );
   }
 }

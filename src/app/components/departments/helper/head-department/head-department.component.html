@@ -1,10 +1,5 @@
-<a class="dropdown-item waves-light" mdbWavesEffect dir="rtl" lang="ar" (click)="goToDepartment(i)" *ngFor="let dep of departments ; let i = index" [ngClass]="{'drop': dep.children}">
+<a class="dropdown-item waves-light" mdbWavesEffect dir="rtl" lang="ar" (click)="goToDepartment(dep.id)" *ngFor="let dep of departments">
       {{dep.name}}
-
-      <!-- <i class="fas fa-arrow-left" *ngIf="dep.children" style="float: left; margin-top: 5%;"></i> -->
 </a>
-<!-- <ul class="menu" dir="rtl">
-    <li *ngFor="let child of children ; let i = index" (click)="goToChild(child)">
-        {{child.name}}
-    </li>
-</ul> -->
+
+<!-- <app-loader *ngIf="load"></app-loader> -->

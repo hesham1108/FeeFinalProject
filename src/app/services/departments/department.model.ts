@@ -3,7 +3,7 @@ export class Department{
   name:string;
   description:string;
   vision:string;
-  message:string;
+  massage:string;
   goals:string;
   headSpeech:string;
   constructor(
@@ -19,7 +19,7 @@ export class Department{
     this.name = name;
     this.description = description;
     this.vision=vision;
-    this.message=message;
+    this.massage=message;
     this.goals=goals;
     this.headSpeech=headSpeech;
   }
