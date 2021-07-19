@@ -97,7 +97,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ExamTableComponent } from './components/dashboard/helpers/exam-table/exam-table.component';
 import { ExamFormComponent } from './components/dashboard/forms/exam-form/exam-form.component';
 import { NewsFilter } from './components/dashboard/helpers/news-table/newsFilter.pipe';
-import { EventsFilter } from './components/dashboard/helpers/events-table/eventsFilter.pipe';
+import { EventFilter } from './components/dashboard/helpers/events-table/eventFilter.pipe';
+import { DepFilter } from './components/dashboard/helpers/department-table/depFiltter.pipe';
+import { CouncilFilter } from './components/dashboard/helpers/council-table/councilTable.pipe';
 
 
 @NgModule({
@@ -177,8 +179,10 @@ import { EventsFilter } from './components/dashboard/helpers/events-table/events
     TablesTableComponent,
     ExamTableComponent,
     ExamFormComponent,
+    EventFilter,
     NewsFilter,
-    EventsFilter,
+    DepFilter,
+    CouncilFilter
 
 
   ],

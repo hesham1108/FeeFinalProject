@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  الحدث" [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
+        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  الحدث" [(ngModel)]="s" class="col-sm-7 form-control form-control-lg">
 
         <div class="col-sm-2 b">
 
@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let e of (events); let i = index">
+                    <tr *ngFor="let e of (events| efilter:s); let i = index;">
                         <th scope="row"> {{i+1}} </th>
                         <td> {{e.title}} </td>
                         <td> {{e.createdAt}} </td>
@@ -65,6 +65,9 @@
                 </tbody>
 
             </table>
+            <h1 *ngIf="(events | filter:s).length <1" style="text-align: center;">
+                ! Not Found
+            </h1>
         </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { DepartmentService } from 'src/app/services/departments/department-servi
   styleUrls: ['../tables-style.scss']
 })
 export class CouncilTableComponent implements OnInit {
+  search = '';
   depCouncils:Observable<{id:number ,title:string , departmentID:number , departmentName:string , details:string}[]>|any=[];
   load:boolean = true;
   delete:boolean = false;

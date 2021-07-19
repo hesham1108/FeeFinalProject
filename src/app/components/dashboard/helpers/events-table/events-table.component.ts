@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EventCardService } from 'src/app/services/events/event-card.service';
+import { EventFilter } from './eventFilter.pipe';
 
 @Component({
   selector: 'app-events-table',
@@ -10,8 +11,8 @@ import { EventCardService } from 'src/app/services/events/event-card.service';
   styleUrls: ['../tables-style.scss']
 })
 export class EventsTableComponent implements OnInit {
-  search:string ='';
-  events:Observable<Event[]>|any = [];
+  s ='';
+  events:Observable<Event[]>|any;
   load:boolean = true;
   delete:boolean = false;
 

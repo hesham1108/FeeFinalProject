@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-sm-3 offset-sm-2 add " style="text-align: right;" (click)="goTo('dash/addDepartment')">
+        <div class="col-sm-2 add " style="text-align: right;" (click)="goTo('dash/addDepartment')">
             <div class="row justify-content-around ">
                 <div class="col-sm-3 icon">
                     <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
@@ -14,6 +14,16 @@
                     <p style="display: inline;">إضافة قسم جديد</p>
                 </div>
             </div>
+        </div>
+        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  القسم" [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
+
+        <div class="col-sm-2 b">
+
+            <div class="col-sm-11 back" (click)="goTo('dash')">
+                <!-- <i class="fas fa-backspace"></i> -->
+                <i class="fa fa-sign-out-alt fa-2x" style="margin-left: 10%;"></i>
+            </div>
+
         </div>
     </div>
     <div class="row table-responsive">
@@ -29,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let d of departments; let i = index">
+                    <tr *ngFor="let d of (departments | depFilter:search); let i = index">
 
                         <th scope="row"> {{i+1}} </th>
                         <td> {{d.name}} </td>
@@ -46,6 +56,9 @@
 
                 </tbody>
             </table>
+            <h1 *ngIf="(departments| depFilter:search)<1" style="text-align: center;">
+                ! Not Found
+            </h1>
         </div>
     </div>
 </div>

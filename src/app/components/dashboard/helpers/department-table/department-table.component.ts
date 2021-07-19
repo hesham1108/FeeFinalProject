@@ -11,6 +11,7 @@ import { Department } from 'src/app/services/departments/department.model';
   styleUrls: ['../tables-style.scss']
 })
 export class DepartmentTableComponent implements OnInit {
+  search = '';
   departments:Observable<Department[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
