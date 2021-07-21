@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user/user-service';
   styleUrls: ['../tables-style.scss']
 })
 export class PostionTableComponent implements OnInit {
-
+  search='';
   load:boolean = true;
   delete:boolean = false;
   postions:Observable<{id:number , name:string}[]>|any=[];
@@ -29,7 +29,7 @@ export class PostionTableComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.userSer.getAllPostions().subscribe(
       (res)=>{
-        this.postions = res;
+        this.postions = res.reverse();
         this.load=false;
       },
       (error)=>{

@@ -116,6 +116,8 @@ export class NewsFormComponent implements OnInit , OnDestroy{
         this.newsSer.postNews(dataToPost).subscribe(
           (respo)=>{
             if(respo){
+              console.log(respo);
+
               this.toastr.success('لقد تم إضافة الخبر بنجاح');
               document.documentElement.scrollTop = 0;
               this.router.navigate(['newsTable']);
@@ -123,6 +125,8 @@ export class NewsFormComponent implements OnInit , OnDestroy{
 
           },
           (error)=>{
+            console.log(error);
+
             this.toastr.error('حدث خطأ أثناء إضافة الخبر ');
             this.toastr.info('حاول مرة اخري');
             this.load=false;
@@ -174,6 +178,9 @@ export class NewsFormComponent implements OnInit , OnDestroy{
       reader.readAsDataURL(file);
       reader.onload = ()=>{
         this.imgSrc = reader.result as string;
+        this.newsFrom.patchValue({
+          imagePath: reader.result
+        })
         console.log(this.imgSrc);
 
       }

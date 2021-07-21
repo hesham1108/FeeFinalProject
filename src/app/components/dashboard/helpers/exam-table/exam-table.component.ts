@@ -8,7 +8,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['../tables-style.scss']
 })
 export class ExamTableComponent implements OnInit {
-
+  search='';
+  deleteId:number|any;
   load:boolean = false;
   delete:boolean = false;
   constructor(
@@ -22,11 +23,12 @@ export class ExamTableComponent implements OnInit {
   editExam(id:number){
     this.router.navigate(['dash/addExam' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteExam(id:number){
-    console.log(id);
+  deleteExam(){
+    console.log(this.deleteId);
     this.toastr.success('لقد تم مسح المادة بنجاح')
   }
   onCancel(){

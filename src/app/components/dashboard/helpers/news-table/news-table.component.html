@@ -11,7 +11,7 @@
                     <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
                 </div>
                 <div class="col-sm-9 text">
-                    <p style="display: inline;">إضافة خبر جديد</p>
+                    <p style="display: inline;">إضافة خبر </p>
                 </div>
             </div>
         </div>
@@ -60,9 +60,9 @@
                             <i class="btn btn-success fa fa-edit" (click)="editMyNews(news.id)"></i>
                         </td>
                         <td>
-                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
-                            <app-confirm-deletion *ngIf="delete" content="الخبر" (cancel)="onCancel()" (res)="deleteMyNews(news.id)"></app-confirm-deletion>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete(news.id)"></i>
                         </td>
+
 
                     </tr>
 
@@ -78,3 +78,4 @@
 </div>
 
 <app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="الخبر" (cancel)="onCancel()" (res)="deleteMyNews()"></app-confirm-deletion>

@@ -5,14 +5,23 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-sm-3 offset-sm-2 add " style="text-align: right;" (click)="goTo('dash/addPostion')">
+        <div class="col-sm-2 add " style="text-align: right;" (click)="goTo('dash/addPostion')">
             <div class="row justify-content-around ">
                 <div class="col-sm-3 icon">
                     <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
                 </div>
                 <div class="col-sm-9 text">
-                    <p style="display: inline;">إضافة منصب جديد</p>
+                    <p style="display: inline;">إضافة منصب </p>
                 </div>
+            </div>
+        </div>
+
+        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  القسم" [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
+
+        <div class="col-sm-2 b">
+            <div class="col-sm-11 back" (click)="goTo('dash')">
+                <!-- <i class="fas fa-backspace"></i> -->
+                <i class="fa fa-sign-out-alt fa-2x" style="margin-left: 10%;"></i>
             </div>
         </div>
     </div>
@@ -28,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of postions; let i = index">
+                    <tr *ngFor="let p of (postions | depFilter:search); let i = index">
 
                         <th scope="row"> {{i+1}} </th>
                         <td> {{p.name}} </td>
@@ -44,6 +53,9 @@
 
                 </tbody>
             </table>
+            <h1 *ngIf="(postions| depFilter:search).length <1" style="text-align: center;">
+                ! Not Found
+            </h1>
         </div>
     </div>
 </div>

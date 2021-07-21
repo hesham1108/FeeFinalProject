@@ -15,6 +15,8 @@ export class SubDependTableComponent implements OnInit {
   subDepends:Observable<{subjectID:number , dependID:number , subject:Subject , depend:Subject}[]>|any;
   load:boolean = true;
   delete:boolean = false;
+  deleteId:number|any;
+  search ='';
   constructor(
     private router:Router,
     private toastr:ToastrService,
@@ -29,7 +31,7 @@ export class SubDependTableComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.subSer.getAllSubDepends().subscribe(
       (res)=>{
-        this.subDepends = res;
+        this.subDepends = res.reverse();
         this.subSer.getSingleSubject(this.subDepends.subjectID).subscribe(
           (res0)=>{
             this.subDepends.subject = res0;
@@ -49,17 +51,17 @@ export class SubDependTableComponent implements OnInit {
       }
     );
   }
-  ondelete(){
+  ondelete(id:number){
     this.delete = true;
   }
   editMySubDepend(sid:number , did:number){
     this.router.navigate(['dash/addSubDepend' , sid , did]);
   }
-  deleteSubDepend(sid:number, did:number){
-    let temp = `${sid}`+`${did}`;
-    let id = +temp;
+  deleteSubDepend(){
+    // let temp = `${sid}`+`${did}`;
+    // let id = +temp;
     this.load = true;
-    this.subSer.deleteSubDepend(id).subscribe(
+    this.subSer.deleteSubDepend(this.deleteId).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح المتطلب بنجاح');

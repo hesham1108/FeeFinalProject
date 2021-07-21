@@ -24,7 +24,7 @@
         </div>
 
         <!-- image -->
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="image">صورة الحدث</label> :
             <input type='file' accept="image/*" id="image" style="display:none" formControlName="imagePath">
             <button style="display:block;" type="button" class="file-btn" onclick="document.getElementById('image').click()">
@@ -32,8 +32,19 @@
       </button>
 
             <span class="file-value">{{eventForm.get('imagePath').value}}</span>
+        </div> -->
+        <div class="form-group">
+            <label for="image">صورة الخبر</label> :
+            <input type='file' accept="image/*" (change)="onImageChange($event)" id="image" style="display:none">
+            <button style="display:block;" type="button" class="file-btn" onclick="document.getElementById('image').click()">
+            اختر صورة
+          </button>
+
         </div>
 
+        <div class="form-group" *ngIf="imgSrc">
+            <img [src]="imgSrc" style="height: 300px; width:500px ; border-radius: 20px;">
+        </div>
         <!-- description -->
         <div class="form-group">
             <label for="desc">وصف الحدث</label> :

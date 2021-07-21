@@ -18,12 +18,10 @@
         <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  القسم" [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
 
         <div class="col-sm-2 b">
-
             <div class="col-sm-11 back" (click)="goTo('dash')">
                 <!-- <i class="fas fa-backspace"></i> -->
                 <i class="fa fa-sign-out-alt fa-2x" style="margin-left: 10%;"></i>
             </div>
-
         </div>
     </div>
     <div class="row table-responsive">
@@ -57,9 +55,9 @@
                             <i class="btn btn-success fa fa-edit" (click)="editMyCouncil(c.id)"></i>
                         </td>
                         <td>
-                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete(c.id)"></i>
                         </td>
-                        <app-confirm-deletion *ngIf="delete" content="المحضر" (cancel)="onCancel()" (res)="deleteCouncil(c.id)"></app-confirm-deletion>
+
                     </tr>
                 </tbody>
             </table>
@@ -72,3 +70,4 @@
 
 
 <app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="المحضر" (cancel)="onCancel()" (res)="deleteCouncil()"></app-confirm-deletion>

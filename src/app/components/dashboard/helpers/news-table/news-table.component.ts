@@ -12,9 +12,10 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 })
 export class NewsTableComponent implements OnInit {
   search:string='';
-  allNews: Observable<Card[]>|any;
+  allNews: Observable<Card[]>|any = [];
   load:boolean = true;
   delete:boolean = false;
+  deleteId:number|any;
   constructor(private newsSer: HomeNewsCardServiceService , private router: Router , private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -24,8 +25,7 @@ export class NewsTableComponent implements OnInit {
   reloadData(){
     this.newsSer.getAllCards().subscribe(
       (res)=>{
-        this.allNews = res;
-        this.allNews.reverse();
+        this.allNews = res.reverse();
         this.load = false;
       },
       (error)=>{
@@ -43,12 +43,11 @@ export class NewsTableComponent implements OnInit {
   }
 
   /// delete from the table
-  deleteMyNews(id:number){
-    console.log(id);
+  deleteMyNews(){
 
     document.documentElement.scrollTop = 0;
     this.load=true;
-    this.newsSer.deleteNews(id).subscribe(
+    this.newsSer.deleteNews(this.deleteId).subscribe(
       (resp)=>{
       if(resp){
         this.toastr.success('لقد تم مسح الخبر بنجاح');
@@ -70,7 +69,8 @@ export class NewsTableComponent implements OnInit {
   }
 
 
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
       this.delete = true;
   }
   onCancel(){

@@ -12,7 +12,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
   styleUrls: ['./event-form.component.scss']
 })
 export class EventFormComponent implements OnInit , OnDestroy {
-
+  imgSrc:string|any;
   eventForm:any;
   id:number|any;
   edit:boolean =false;
@@ -147,5 +147,20 @@ export class EventFormComponent implements OnInit , OnDestroy {
   }
   onCancel(){
     this.delete=false;
+  }
+  onImageChange(event:any){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length){
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = ()=>{
+        this.imgSrc = reader.result as string;
+        this.eventForm.patchValue({
+          imagePath: reader.result
+        })
+        console.log(this.imgSrc);
+
+      }
+    }
   }
 }

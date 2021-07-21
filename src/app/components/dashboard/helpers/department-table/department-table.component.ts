@@ -12,6 +12,7 @@ import { Department } from 'src/app/services/departments/department.model';
 })
 export class DepartmentTableComponent implements OnInit {
   search = '';
+  deleteId:number|any;
   departments:Observable<Department[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
@@ -30,9 +31,8 @@ export class DepartmentTableComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.depSer.getAllDepartments().subscribe(
       (res)=>{
-        this.departments = res;
+        this.departments = res.reverse();
         this.load=false;
-        console.log('get ... done');
 
       },
       (error)=>{
@@ -45,13 +45,14 @@ export class DepartmentTableComponent implements OnInit {
   editMyDepartment(id:number){
     this.router.navigate(['dash/addDepartment' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteDepartment(id:number|any){
+  deleteDepartment(){
     document.documentElement.scrollTop = 0;
     this.load = true;
-    this.depSer.deleteDepartment(id).subscribe(
+    this.depSer.deleteDepartment(this.deleteId).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح القسم بنجاح');

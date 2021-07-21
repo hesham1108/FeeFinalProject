@@ -23,8 +23,6 @@ export class HomeNewsCardComponent implements OnInit {
         // console.log(res);
         if(res.length < 3){
           this.homeCards = res;
-          console.log(res);
-
         }else{
           for(let i = 0 ; i<3 ; i++){
             firstThreeCards.push(res[i]);

@@ -15,6 +15,8 @@ export class SubjectTableComponent implements OnInit {
   subjects:Observable<Subject[]>|any = [];
   load:boolean = true;
   delete:boolean = false;
+  search='';
+  deleteId:number|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
@@ -30,7 +32,7 @@ export class SubjectTableComponent implements OnInit {
       document.documentElement.scrollTop = 0;
       this.subSer.getAllSubjects().subscribe(
         (res)=>{
-          this.subjects = res;
+          this.subjects = res.reverse();
           this.load=false;
         },
         (error)=>{
@@ -43,13 +45,14 @@ export class SubjectTableComponent implements OnInit {
   editMySubject(id:number){
     this.router.navigate(['dash/addSubject' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteSubject(id:number){
+  deleteSubject(){
    document.documentElement.scrollTop = 0;
    this.load = true;
-   this.subSer.deleteSubject(id).subscribe(
+   this.subSer.deleteSubject(this.deleteId).subscribe(
      (res)=>{
        if(res){
          this.toastr.success('لقد تم مسح المادة بنجاح');

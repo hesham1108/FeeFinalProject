@@ -92,11 +92,27 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   }
   onSubmit(){
     document.documentElement.scrollTop = 0;
+    console.log(this.subDependForm.value);
+
     this.load = true;
-    let dataToPost:{subjectID:number , dependID:number} = {
+     let subject:any;
+     let dep:any;
+     for(let s of this.subjectList){
+       if(s.id == +this.subDependForm.get('subject').value[0].id){
+         subject = s;
+       }
+       if(s.id == +this.subDependForm.get('depend').value[0].id){
+          dep = s;
+       }
+     }
+    let dataToPost:{subjectID:number , dependID:number , subject:any , dependOn:any} = {
       subjectID:+this.subDependForm.get('subject').value[0].id,
-      dependID:+this.subDependForm.get('depend').value[0].id
-    }
+      dependID:+this.subDependForm.get('depend').value[0].id,
+      subject: subject,
+      dependOn: dep
+    };
+    console.log(dataToPost);
+
 
     if(this.edit){
       if(this.subDependForm.valid){

@@ -12,7 +12,7 @@ import { Department } from 'src/app/services/departments/department.model';
 export class HeadDepartmentComponent implements OnInit {
 
   departments:Observable<Department>| any=[];
-  // load:boolean = true;
+  load:boolean = true;
   constructor(private depSer :DepartmentService , private router: Router ) { }
 
   ngOnInit(): void {
@@ -22,10 +22,10 @@ export class HeadDepartmentComponent implements OnInit {
     this.depSer.getAllDepartments().subscribe(
       (res)=>{
         this.departments = res;
-        // this.load = false;
+        this.load = false;
       },
       (error)=>{
-        // this.load = false;
+        this.load = false;
         this.reloadData();
       }
     );

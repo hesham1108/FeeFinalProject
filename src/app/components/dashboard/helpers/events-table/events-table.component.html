@@ -57,9 +57,9 @@
                             <i class="btn btn-success fa fa-edit" (click)="editMyEvent(e.id)"></i>
                         </td>
                         <td>
-                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete(e.id)"></i>
                         </td>
-                        <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteMyEvent(e.id)"></app-confirm-deletion>
+
                     </tr>
 
                 </tbody>
@@ -73,3 +73,4 @@
 </div>
 
 <app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="الحدث" (cancel)="onCancel()" (res)="deleteMyEvent()"></app-confirm-deletion>

@@ -10,6 +10,7 @@ import { DepartmentService } from 'src/app/services/departments/department-servi
 export class CouncilOfDepartmentComponent implements OnInit {
 
   department:any;
+  councils :{title:string , details:string }[]|any = [];
   load:boolean = true;
   constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService) { }
   id:number|any;
@@ -24,7 +25,10 @@ export class CouncilOfDepartmentComponent implements OnInit {
         this.id = +data['id'];
         this.depSer.getSingleDepartment(this.id).subscribe(
         (res)=>{
+          console.log(res);
           this.department = res;
+          this.councils = res.departmentReports;
+
           this.load = false;
         },
         (error)=>{

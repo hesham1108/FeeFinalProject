@@ -100,6 +100,9 @@ import { NewsFilter } from './components/dashboard/helpers/news-table/newsFilter
 import { EventFilter } from './components/dashboard/helpers/events-table/eventFilter.pipe';
 import { DepFilter } from './components/dashboard/helpers/department-table/depFiltter.pipe';
 import { CouncilFilter } from './components/dashboard/helpers/council-table/councilTable.pipe';
+import { SubFilter } from './components/dashboard/helpers/subject-table/subFilter.pipe';
+import { LabFilter } from './components/dashboard/helpers/labs-table/labFilter.pipe';
+import { SubDependFilter } from './components/dashboard/helpers/sub-depend-table/subDependFilter.pipe';
 
 
 @NgModule({
@@ -182,7 +185,10 @@ import { CouncilFilter } from './components/dashboard/helpers/council-table/coun
     EventFilter,
     NewsFilter,
     DepFilter,
-    CouncilFilter
+    CouncilFilter,
+    SubFilter,
+    LabFilter,
+    SubDependFilter
 
 
   ],

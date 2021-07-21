@@ -12,13 +12,12 @@ export class LabsOfDepartmentComponent implements OnInit {
   department:any;
   id:number|any;
   load:boolean=true;
+  labs:{name:string , roomNum:number , description:string}[]|any = [];
   constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService) { }
-
 
   ngOnInit(): void {
     this.reloadData();
   }
-
   reloadData(){
     this.route.params.subscribe(
       (data)=>{
@@ -26,16 +25,21 @@ export class LabsOfDepartmentComponent implements OnInit {
         this.id = +data['id'];
         this.depSer.getSingleDepartment(this.id).subscribe(
         (res)=>{
+          console.log(res);
+
           this.department = res;
+          this.labs = res.departmentLaps;
+          console.log(this.labs);
+
           this.load = false;
         },
         (error)=>{
           console.log('shit');
+          this.load = false;
         }
     );
       }
   }
   );
   }
-
 }

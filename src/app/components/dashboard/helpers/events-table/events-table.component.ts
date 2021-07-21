@@ -12,9 +12,10 @@ import { EventFilter } from './eventFilter.pipe';
 })
 export class EventsTableComponent implements OnInit {
   s ='';
-  events:Observable<Event[]>|any;
+  events:Observable<Event[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
+  deleteId:number|any;
 
   constructor(private eventSer: EventCardService, private router:Router, private toastr:ToastrService) { }
 
@@ -27,8 +28,7 @@ export class EventsTableComponent implements OnInit {
     document.documentElement.scrollTop = 0;
     this.eventSer.getAllEvents().subscribe(
       (res)=>{
-        this.events = res;
-        this.events.reverse();
+        this.events = res.reverse();
         this.load = false;
       },
       (error)=>{
@@ -41,13 +41,14 @@ export class EventsTableComponent implements OnInit {
   editMyEvent(id:number){
     this.router.navigate(['dash/addEvent' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteMyEvent(id:number){
+  deleteMyEvent(){
     document.documentElement.scrollTop = 0;
     this.load=true;
-    this.eventSer.deleteEvent(id).subscribe(
+    this.eventSer.deleteEvent(this.deleteId).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح الحدث بنجاح');

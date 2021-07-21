@@ -9,7 +9,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
   styleUrls: ['./left-nav.component.scss']
 })
 export class LeftNavComponent implements OnInit {
-
+  tokenValue = localStorage.getItem("token");
   login : boolean = false;
   admin: boolean = true;
   constructor(
@@ -21,8 +21,10 @@ export class LeftNavComponent implements OnInit {
   ngOnInit(): void {
     this.profileSer.login.subscribe(
       (data:boolean)=>{
-        this.login = data;
-        console.log('login :',data);
+        if(data && this.tokenValue){
+          this.login = data;
+        }
+
 
       }
     );

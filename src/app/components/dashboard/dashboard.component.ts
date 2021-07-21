@@ -11,7 +11,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 export class DashboardComponent implements OnInit {
 
-
+  tokenValue = localStorage.getItem("token");
   nothing = true;
   admin:boolean|any;
   constructor(
@@ -32,25 +32,9 @@ export class DashboardComponent implements OnInit {
       }
 
   ngOnInit(): void {
-    this.profileSer.role.subscribe(
-      (data)=>{
-        console.log(data);
-        if(data){
-          console.log('data from true');
-          this.admin = true;
-          console.log('admin =',this.admin);
 
-        }else{
-          // this.router.navigate(['notfound']);
-          this.admin=false;
-          console.log('admin =',this.admin);
-          console.log('data from false');
-        }
-      }
-    );
-    console.log(this.admin);
-
-    // this.closeleftmenu();
+    if(this.tokenValue){
+     this.closeleftmenu();
     if(this.router.url == '/dash'){
       this.newsSer.nothing.next(true);
     }else{
@@ -62,7 +46,10 @@ export class DashboardComponent implements OnInit {
 
         this.nothing = data;
       }
-    );
+    );}else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['home']);
+    }
   }
 
   goTo(dest:string){

@@ -13,6 +13,8 @@ export class LabsTableComponent implements OnInit {
   depLabs:Observable<{id:number ,name:string , departmentID:number , departmentName:string , description:string}[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
+  search = '';
+  deleteId:number|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
@@ -39,7 +41,7 @@ export class LabsTableComponent implements OnInit {
     );
   }
   getDepName(res:any){
-    this.depLabs = res;
+    this.depLabs = res.reverse();
     for(let l of this.depLabs ){
       this.depSer.getSingleDepartment(l.departmentID).subscribe(
         (data)=>{
@@ -55,13 +57,14 @@ export class LabsTableComponent implements OnInit {
   editLab(id:number){
     this.router.navigate(['dash/addLab' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteLab(id:number){
+  deleteLab(){
     document.documentElement.scrollTop = 0;
     this.load = true;
-    this.depSer.deleteDepLab(id).subscribe(
+    this.depSer.deleteDepLab(this.deleteId).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح المعمل بنجاح');

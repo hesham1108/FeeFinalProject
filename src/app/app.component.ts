@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   load:boolean = true;
+  // tokenValue = localStorage.getItem("token")
   constructor(){}
-  ngOnInit(){}
+  ngOnInit(){
+    // localStorage.setItem("token",'');
+  }
 }

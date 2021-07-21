@@ -14,6 +14,7 @@ export class CouncilTableComponent implements OnInit {
   depCouncils:Observable<{id:number ,title:string , departmentID:number , departmentName:string , details:string}[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
+  deleteId:number|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
@@ -40,7 +41,7 @@ export class CouncilTableComponent implements OnInit {
     );
   }
   getDepName(res:any){
-    this.depCouncils = res;
+    this.depCouncils = res.reverse();
     for(let l of this.depCouncils ){
       this.depSer.getSingleDepartment(l.departmentID).subscribe(
         (data)=>{
@@ -56,13 +57,14 @@ export class CouncilTableComponent implements OnInit {
   editMyCouncil(id:number){
     this.router.navigate(['dash/addCouncil' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId = id;
     this.delete = true;
   }
-  deleteCouncil(id:number){
+  deleteCouncil(){
     document.documentElement.scrollTop = 0;
     this.load = true;
-    this.depSer.deleteDepCouncil(id).subscribe(
+    this.depSer.deleteDepCouncil(this.deleteId).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح محضر المجلس بنجاح');
