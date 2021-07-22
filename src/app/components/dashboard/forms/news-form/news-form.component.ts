@@ -40,13 +40,8 @@ export class NewsFormComponent implements OnInit , OnDestroy{
       (data)=>{
         if(data['id']){
           console.log(this.edit);
-
           this.edit = true;
           this.id = +data['id'];
-          console.log(this.id);
-          console.log(this.edit);
-
-
           this.newsSer.getCardFromAllCards(this.id).subscribe(
             (res)=> {
               if(res.status == 200){
@@ -55,6 +50,7 @@ export class NewsFormComponent implements OnInit , OnDestroy{
                 this.newsFrom.get('date').setValue(this.news.createdAt);
                 this.newsFrom.get('description').setValue(this.news.description);
                 this.newsFrom.get('imagePath').setValue(this.news.imagePath);
+                this.imgSrc = this.news.imagePath as string;
                 this.load=false;
               }
             },

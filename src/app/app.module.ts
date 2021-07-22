@@ -103,6 +103,8 @@ import { CouncilFilter } from './components/dashboard/helpers/council-table/coun
 import { SubFilter } from './components/dashboard/helpers/subject-table/subFilter.pipe';
 import { LabFilter } from './components/dashboard/helpers/labs-table/labFilter.pipe';
 import { SubDependFilter } from './components/dashboard/helpers/sub-depend-table/subDependFilter.pipe';
+import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
+import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe';
 
 
 @NgModule({
@@ -188,7 +190,9 @@ import { SubDependFilter } from './components/dashboard/helpers/sub-depend-table
     CouncilFilter,
     SubFilter,
     LabFilter,
-    SubDependFilter
+    SubDependFilter,
+    PrivilageFormComponent,
+    UserFilter
 
 
   ],

@@ -49,6 +49,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
                 this.eventForm.get('date').setValue(this.event.createdAt);
                 this.eventForm.get('description').setValue(this.event.description);
                 this.eventForm.get('imagePath').setValue(this.event.imagePath);
+                this.imgSrc = this.event.imagePath as string;
                 this.load=false;
             },
             (error)=>{

@@ -5,14 +5,22 @@
         </div>
     </div>
     <div class="row ">
-        <div class="col-sm-3 offset-sm-2 add " style="text-align: right;" (click)="goTo('dash/addUser')">
+        <div class="col-sm-2 add " style="text-align: right;" (click)="goTo('dash/addPrivilage')">
             <div class="row justify-content-around ">
                 <div class="col-sm-3 icon">
                     <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
                 </div>
                 <div class="col-sm-9 text">
-                    <p style="display: inline;">إضافة مستخدم جديد</p>
+                    <p style="display: inline;">إضافة صلاحية</p>
                 </div>
+            </div>
+        </div>
+        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث عن  القسم" [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
+
+        <div class="col-sm-2 b">
+            <div class="col-sm-11 back" (click)="goTo('dash')">
+                <!-- <i class="fas fa-backspace"></i> -->
+                <i class="fa fa-sign-out-alt fa-2x" style="margin-left: 10%;"></i>
             </div>
         </div>
     </div>
@@ -23,36 +31,22 @@
                     <tr>
                         <th scope="col" style="border-top-right-radius:5px;">#</th>
                         <th scope="col">الإسم </th>
-                        <th scope="col">نعديل</th>
-
-                        <th scope="col" style="border-top-left-radius:5px;">مسح </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr *ngFor="let e of events; let i = index">
+                    <tr *ngFor="let p of (privilages | depFilter:search); let i = index">
 
-                <th scope="row"> {{i+1}} </th>
-                <td> {{e.title}} </td>
-                <td> {{e.createdAt}} </td>
-                <td>
-                    <img [src]="e.imagePath" width="110px" height="110px" alt="photo" style="border-radius: 75px;">
-                </td>
-                <td>
-                    <div style="width: 150px; height:150px ; overflow: hidden;">
-                        {{e.description}}
-                    </div>
-                </td>
-                <td>
-                    <i class="btn btn-success fa fa-edit" (click)="editMyEvent(e.id)"></i>
-                </td>
-                <td>
-                    <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete()"></i>
-                </td>
-                <app-confirm-deletion *ngIf="delete" content="الحدث" [id]="e.i" (cancel)="onCancel()" (res)="deleteMyEvent(e.id)"></app-confirm-deletion>
-            </tr> -->
-                    <app-confirm-deletion *ngIf="delete" content="المستخدم" (cancel)="onCancel()" (res)="deleteUser(1)"></app-confirm-deletion>
+                        <th scope="row"> {{i+1}} </th>
+                        <td> {{p.name}} </td>
+
+
+                    </tr>
+
                 </tbody>
             </table>
+            <h1 *ngIf="(privilages| depFilter:search).length <1" style="text-align: center;">
+                ! Not Found
+            </h1>
         </div>
     </div>
 </div>

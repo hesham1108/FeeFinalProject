@@ -20,7 +20,8 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   dropdownSettings:IDropdownSettings = {};
   subject:any;
   subDependForm:any;
-  id:number|any;
+  sid:number|any;
+  did:number|any;
   load:boolean = false;
   edit:boolean = false;
   delete:boolean = false;
@@ -67,9 +68,10 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
       (data)=>{
         if(data['sid']&&data['did']){
           this.edit = true;
-          let temp  = data['sid'] + data['did'];
-          this.id = +temp;
-          this.subSer.getSingleSubject(this.id).subscribe(
+
+          this.sid = +data['sid'];
+          this.did = + data['did'];
+          this.subSer.getSingleSubDepend(this.sid , this.did).subscribe(
             (res)=>{
               this.subject = res;
               for(let s of this.subjectList){
@@ -149,7 +151,7 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
     }
   }
 
-  deleteDepend(id:number|any){
+  deleteDepend(id:number|any , did:number){
     this.load = true;
     this.subSer.deleteSubDepend(id).subscribe(
       (res)=>{

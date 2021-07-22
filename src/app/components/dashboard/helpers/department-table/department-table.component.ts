@@ -32,6 +32,8 @@ export class DepartmentTableComponent implements OnInit {
     this.depSer.getAllDepartments().subscribe(
       (res)=>{
         this.departments = res.reverse();
+        console.log(res);
+
         this.load=false;
 
       },

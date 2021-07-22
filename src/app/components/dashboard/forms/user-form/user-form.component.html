@@ -42,54 +42,74 @@
             </span>
         </div>
         <br>
-        <!-- role -->
-        <div class="row ">
+        <!-- dataOfBirth -->
+        <div class="row">
             <div class="col-sm-3" style="text-align: right;">
-                <label for="role">الوظيفة</label> :
+                <label for="dataOfBirth">تاريخ الميلاد  </label> :
             </div>
-            <select formControlName="role" id="role" aria-placeholder="اختر وظيفة" class="col-sm-7 form-control form-control-lg">
-                <option id="opt" value="user">مستخدم</option>
-                <option value="student">طالب</option>
-                <option value="prof">عضو هيئة تدريس</option>
-                <option value="admin">مسؤل</option>
-            </select>
-            <span class="error col-sm-2" *ngIf="userForm.get('role').invalid && userForm.get('role').touched">
-            <span class="error" *ngIf="userForm.get('role').errors['required']">
-              رجاء اختر الوظيفة
-            </span>
+            <input type="date" formControlName="dataOfBirth" id="dataOfBirth" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="userForm.get('dataOfBirth').invalid && userForm.get('dataOfBirth').touched">
+                    <span class="error" *ngIf="userForm.get('dataOfBirth').errors['required']">
+                      رجاء أدخل تاريخ الميلاد
+                    </span>
+
             </span>
         </div>
         <br>
         <!--academicNumber  -->
-        <div class="row" *ngIf="userForm.get('role').value == 'student'">
+        <div class="row">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="academicNumber">الرقم الأكاديمي</label> :
             </div>
-            <input type="number" formControlName="academicNumber" id="academicNumber" class="col-sm-7 form-control form-control-lg">
+            <input type="text" formControlName="academicNumber" id="academicNumber" class="col-sm-7 form-control form-control-lg">
 
         </div>
+        <br>
+        <!-- about -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="about">نبذة</label> :
+            </div>
+            <textarea formControlName="about" id="about" class="col-sm-7 form-control form-control-lg"></textarea>
+            <span class="error col-sm-2" *ngIf="
+                userForm.get('about').invalid &&
+                userForm.get('about').touched
+              ">
+              <span
+                class="error"
+                *ngIf="userForm.get('about').errors['required']"
+              >
+                رجاء أدخل  تبذة
+              </span>
+            </span>
+        </div>
+        <br />
+        <!-- role -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="role">الصلاحية</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر الصلاحية'" [settings]="roledropdownSettings" [data]="roleList" formControlName="role" id="role">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="userForm.get('role').invalid && userForm.get('role').touched">
+            <span class="error" *ngIf="userForm.get('role').errors['required']">
+              رجاء اختر الصلاحية
+            </span>
+            </span>
+        </div>
+        <br>
 
-        <!-- postion  -->
+
+        <!-- postion
         <div class="row" *ngIf="userForm.get('role').value == 'prof'">
             <div class="col-sm-3" style="text-align: right;">
                 <label for="postion">المنصب</label> :
             </div>
             <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المنصب'" [settings]="posdropdownSettings" [data]="postionList" formControlName="postion" id="postion">
             </ng-multiselect-dropdown>
-            <!-- <div class="col-sm-7">
-                <input type="text" formControlName="postion" id="postion" class="col-sm-7 form-control form-control-lg">
-            </div> -->
 
-        </div>
+        </div> -->
 
-        <!-- entity -->
-        <div class="row" *ngIf="userForm.get('role').value == 'user'">
-            <div class="col-sm-3" style="text-align: right;">
-                <label for="entity">الكيان</label> :
-            </div>
-            <input type="text" formControlName="entity" id="entity" class="col-sm-7 form-control form-control-lg">
-        </div>
-        <br>
         <!-- department -->
         <div class="row" *ngIf="userForm.get('role').value != 'admin'">
             <div class="col-sm-3" style="text-align: right;">
@@ -97,12 +117,6 @@
             </div>
             <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر القسم'" [settings]="dropdownSettings" [data]="departmentsList" formControlName="department" id="department">
             </ng-multiselect-dropdown>
-            <!-- <select formControlName="department" id="department" class="col-sm-7 form-control form-control-lg">
-              <option value="CSE">حاسبات</option>
-              <option value="Control">تحكم</option>
-              <option value="communication">اتصالات</option>
-              <option value="Biomedical">طبية</option>
-          </select> -->
 
             <span class="error col-sm-2" *ngIf="userForm.get('department').invalid && userForm.get('department').touched">
           <span class="error" *ngIf="userForm.get('department').errors['required']">
@@ -111,20 +125,7 @@
             </span>
         </div>
         <br>
-        <!--username  -->
-        <div class="row ">
-            <div class="col-sm-3" style="text-align: right;">
-                <label for="username">اسم المستخدم</label> :
-            </div>
-            <input type="text" formControlName="username" id="username" class="col-sm-7 form-control form-control-lg">
-            <span class="error col-sm-2" *ngIf="userForm.get('username').invalid && userForm.get('username').touched">
-            <span class="error" *ngIf="userForm.get('username').errors['required']">
-              رجاء أدخل اسم المستخدم
-            </span>
 
-            </span>
-        </div>
-        <br>
         <!-- email  -->
         <div class="row ">
             <div class="col-sm-3" style="text-align: right;">
@@ -153,6 +154,22 @@
                 هذا البريد غير صالح
               </span>
             </span>
+        </div>
+        <br>
+
+
+        <!-- image -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="file">الصورة الشخصية</label> :
+            </div>
+            <input type='file' accept="image/*" (change)="onImageChange($event)" id="image" style="display:none">
+            <button type="button" class="file-btn" onclick="document.getElementById('image').click()">
+                          اختر صورة
+                  </button>
+            <div class="col-sm-5" *ngIf="imgSrc">
+                <img [src]="imgSrc" style="height: 100px; width:100px ; border-radius: 50%;">
+            </div>
         </div>
         <br>
 

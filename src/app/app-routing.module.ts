@@ -14,6 +14,7 @@ import { LabsFormComponent } from './components/dashboard/forms/department-form/
 import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
 import { ExamFormComponent } from './components/dashboard/forms/exam-form/exam-form.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
+import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
@@ -108,6 +109,7 @@ const routes: Routes = [
     {path: 'addTable/:id' , component:TableFormComponent},
     {path: 'addExam' , component:ExamFormComponent},
     {path: 'addExam/:id' , component:ExamFormComponent},
+    {path: 'addPrivilage' , component:PrivilageFormComponent},
   ]},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},

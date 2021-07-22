@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-users-table',
@@ -8,24 +9,44 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['../tables-style.scss']
 })
 export class UsersTableComponent implements OnInit {
-
-  load:boolean = false;
+  users:any=[];
+  load:boolean = true;
   delete:boolean = false;
+  search='';
+  deleteId:number|any;
   constructor(
     private router:Router,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private userSer:UserService
   ) { }
 
   ngOnInit(): void {
+    this.userSer.getUsers().subscribe(
+      (res)=>{
+        this.users = res.reverse();
+        console.log(this.users);
+        this.load=false;
+
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
+          this.toastr.info('حاول مرة اخري');
+          this.load = false;
+      }
+    );
+  }
+  reloadData(){
+
   }
   editMyUser(id:number){
     this.router.navigate(['dash/addUser' , id]);
   }
-  ondelete(){
+  ondelete(id:number){
+    this.deleteId=id;
     this.delete = true;
   }
-  deleteUser(id:number){
-    console.log(id);
+  deleteUser(){
+
     this.toastr.success('لقد تم مسح الصلاحية بنجاح')
   }
   onCancel(){

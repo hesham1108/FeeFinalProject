@@ -69,4 +69,4 @@
 </div>
 
 <app-loader *ngIf="load"></app-loader>
-<app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteDepend(id)"></app-confirm-deletion>
+<app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteDepend(sid,did)"></app-confirm-deletion>

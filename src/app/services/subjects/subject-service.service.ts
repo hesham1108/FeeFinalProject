@@ -35,8 +35,8 @@ export class SubjectService {
   getAllSubDepends():Observable<any>{
     return this.http.get(`${this.subDependUrl}`);
   }
-  getSingleSubDepend(id:number): Observable<any>{
-    return this.http.get(`${this.subDependUrl}/${id}`);
+  getSingleSubDepend(sid:number , did:number): Observable<any>{
+    return this.http.get(`${this.subDependUrl}/${sid}/${did}`);
   }
   postSubDepend(obj:{subjectID:number , dependID:number , subject:any , dependOn:any }|Object):Observable<Object>
   {

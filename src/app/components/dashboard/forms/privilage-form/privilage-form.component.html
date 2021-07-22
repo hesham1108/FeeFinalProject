@@ -1,0 +1,33 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <br>
+    <br><br><br><br>
+    <!-- Labs Form -->
+    <form [formGroup]="privilageForm" (ngSubmit)="onSubmit()">
+
+
+        <!-- name -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="name">الصلاحية </label> :
+            </div>
+            <input type="text" formControlName="name" id="name" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="privilageForm.get('name').invalid && privilageForm.get('name').touched">
+          <span class="error" *ngIf="privilageForm.get('name').errors['required']">
+            رجاء أدخل الصلاحية
+          </span>
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;">
+            <button type="submit" class="submit-btn" [disabled]="privilageForm.invalid">تأكيد</button>
+        </div>
+
+        <br>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
