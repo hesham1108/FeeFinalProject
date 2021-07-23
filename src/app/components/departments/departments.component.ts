@@ -12,10 +12,10 @@ import { Department } from 'src/app/services/departments/department.model';
   providers:[DepartmentService]
 
 })
-export class DepartmentsComponent implements OnInit {
+export class DepartmentsComponent implements OnInit , OnChanges , OnDestroy{
 
   department:Observable<Department>|any =null;
-  num:number = 1;
+  num:number|any;
   id:number|any = null;
   init:boolean|any;
   load:boolean = true;
@@ -27,30 +27,35 @@ export class DepartmentsComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnChanges(){
+    console.log('hi');
 
-    // this.depSer.loadDep.subscribe(
-    //   (data)=>{
-    //     this.load = data;
-    //   }
-    // );
+  }
+  ngOnInit(): void {
+    this.depSer.loadDep.subscribe(
+      (res)=>{
+        this.load=res;
+      }
+    );
+    this.num = 1;
     this.reloadData();
   }
   reloadData(){
+    this.num = 1;
     this.route.params.subscribe(
       (data)=>{
         this.id = +data['id'];
-    this.depSer.getSingleDepartment(this.id).subscribe(
-      (res)=>{
-        this.department = res;
-        this.init = true;
-        this.load = false;
-        this.depSer.loadDep.next(false);
-      },
-      (error)=>{
-        // this.load =false;
-        this.reloadData();
-      }
+        this.depSer.getSingleDepartment(this.id).subscribe(
+        (res)=>{
+          this.department = res;
+          this.init = true;
+          this.load = false;
+          this.depSer.loadDep.next(false);
+        },
+        (error)=>{
+          // this.load =false;
+          this.reloadData();
+        }
     );
   }
   );
@@ -62,4 +67,9 @@ export class DepartmentsComponent implements OnInit {
     document.documentElement.scrollTop = 350;
     this.router.navigate([dest , this.id],{relativeTo: this.route}   ) ;
   }
+
+  ngOnDestroy(){
+    this.num=1;
+  }
+
 }

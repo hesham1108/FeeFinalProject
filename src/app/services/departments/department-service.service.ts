@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {  Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { Department } from "./department.model";
@@ -14,12 +14,15 @@ export class DepartmentService{
   private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Departments';
   private depLabUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/DepartmentLap';
   private depCouncil = 'http://ahmed1500019-001-site1.dtempurl.com/api/DepartmentReport';
-
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  });
   constructor(private http:HttpClient){}
 
   // Departments
   getDeps(){
-    this.departments = this.http.get(`${this.baseUrl}`);
+    this.departments = this.http.get(`${this.baseUrl}` ,{headers:this.headers});
     return this.departments;
   }
   getDep(id:number){
@@ -27,7 +30,7 @@ export class DepartmentService{
     return department
   }
   getAllDepartments():Observable<any>{
-    return this.http.get(`${this.baseUrl}`);
+    return this.http.get(`${this.baseUrl}`,{headers:this.headers});
   }
   getSingleDepartment(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);

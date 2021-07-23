@@ -47,8 +47,8 @@
                         <td> {{u.email}} </td>
                         <td> {{u.roles.toString()}} </td>
 
-                        <td *ngIf="u.department"> {{u.department.name}} </td>
-                        <td *ngIf="!u.department"> لا يوجد</td>
+                        <td> {{u.department.name}} </td>
+
                         <td>
                             <i class="btn btn-success fa fa-edit" (click)="editMyUser(u.id)"></i>
                         </td>

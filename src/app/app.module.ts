@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { FormTest } from './components/test/form.components.ts/form-test.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,7 +28,6 @@ import { AllEventsComponent } from './components/all-events/all-events.component
 import { EventComponent } from './components/all-events/event/event.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SingleEventComponent } from './components/home/home-events-card/single-event/single-event.component';
-import { MainHeaderComponent } from './components/main-header/main-header.component';
 
 import { AboutTabsComponent } from './components/about/children/about-tabs/about-tabs.component';
 import { DiplayContentComponent } from './components/about/children/diplay-content/diplay-content.component';
@@ -105,12 +103,12 @@ import { LabFilter } from './components/dashboard/helpers/labs-table/labFilter.p
 import { SubDependFilter } from './components/dashboard/helpers/sub-depend-table/subDependFilter.pipe';
 import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
 import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe';
+import { ContactEmailComponent } from './components/dashboard/forms/contact-email/contact-email.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormTest,
     HeaderComponent,
     AboutComponent,
     DepartmentsComponent,
@@ -130,8 +128,6 @@ import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe
     EventComponent,
     PaginationComponent,
     SingleEventComponent,
-    MainHeaderComponent,
-
     AboutTabsComponent,
     DiplayContentComponent,
     HeadDepartmentComponent,
@@ -192,7 +188,8 @@ import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe
     LabFilter,
     SubDependFilter,
     PrivilageFormComponent,
-    UserFilter
+    UserFilter,
+    ContactEmailComponent
 
 
   ],

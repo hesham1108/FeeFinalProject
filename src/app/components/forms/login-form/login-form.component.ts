@@ -42,9 +42,11 @@ export class LoginFormComponent implements OnInit {
     this.logSer.postLogin(account).subscribe(
       (res:any)=>{
           if(res['success']){
-            console.log(res);
+            // console.log(res);
 
             var authToken = res['token'];
+            console.log(atob(authToken.split('.')[1]));
+
             localStorage.setItem("token",authToken);
             this.profileSer.login.next(true);
             this.taostr.success('تم تسجيل الدخول بنجاح');
@@ -59,29 +61,6 @@ export class LoginFormComponent implements OnInit {
         this.taostr.error('حدث خطأ أُثناء تسجيل الدخول');
       }
     );
-    // if(this.checkAuth()){
-    //   this.profileSer.role.next(true);
-    //   this.profileSer.login.next(true);
-    //   setTimeout(() => {
-    //     console.log('2 sec');
-    //     this.profileSer.role.subscribe(
-    //       (data)=>{
-    //         console.log(data);
-    //         if(data){
-    //           this.router.navigate(['dash']);
-    //         }else{
-    //           this.router.navigate(['home']);
-    //         }
-    //       }
-    //     );
-    //     }
-    //   , 2000);
-    // }else{
-    //   this.load = false;
-    //   this.taostr.error('not allowed')
-    //   this.loginForm.reset();
-    // }
-
 }
 
 checkAuth():boolean|any{

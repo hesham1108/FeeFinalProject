@@ -23,6 +23,13 @@ export class UsersTableComponent implements OnInit {
   ngOnInit(): void {
     this.userSer.getUsers().subscribe(
       (res)=>{
+        // let temp =[];
+        for(let r of res){
+          if(!r.department ){
+            r.department = {name:'لا يوجد'};
+          }
+        }
+        // this.users = res.reverse();
         this.users = res.reverse();
         console.log(this.users);
         this.load=false;

@@ -3,21 +3,44 @@
 </h3>
 <hr class="orange">
 
+
+
 <div class="content" *ngIf="!load">
-    <div class="row" *ngFor="let l of labs; let i = index">
-        <div class="col-sm-3">
-            <h4> name :{{l[i].name}}</h4>
+    <div class="row">
+        <div class="col-sm-1 h">
+            #
         </div>
-        <div class="col-sm-2">
-            <h3>{{l[i].roomNum}}</h3>
+        <div class="col-sm-2 h">
+            المعمل
         </div>
-        <div class="col-sm-7">
-            <div class="row">
-                <div class="col-sm-12" style="text-overflow: ellipsis;">
-                    {{l[i].description}}
-                </div>
-            </div>
+        <div class="col-sm-3 h">
+            رقم الغرفة
+        </div>
+        <div class="col-sm-6 h">
+            الوصف
         </div>
     </div>
+    <div class="row" style="border-bottom: 1px solid #14213D; border-right:1px solid #14213D;" *ngFor="let l of labs;let i = index">
+        <div class="col-sm-1 b">
+            {{i+1}}
+        </div>
+        <div class="col-sm-2 b">
+            {{l.name}}
+        </div>
+        <div class="col-sm-3 b" style="text-align: center;">
+            {{l.roomNum}}
+        </div>
+        <div class="col-sm-6 b">
+            {{l.description}}
+        </div>
+    </div>
+
+    <div class="row b justify-content-center" style="border-bottom: 1px solid #14213D; border-right:1px solid #14213D;" *ngIf="!f">
+        <h1>
+            لا يوجد
+        </h1>
+    </div>
+
 </div>
+
 <app-loader *ngIf="load"></app-loader>

@@ -12,7 +12,8 @@ export class UserFilter implements PipeTransform{
       (u:any)=>
           u.userName.toLowerCase().indexOf(searchVal.toLowerCase()) > -1 ||
           u.email.toLowerCase().indexOf(searchVal.toLowerCase())>-1 ||
-          u.roles.toString().toLowerCase().indexOf(searchVal.toLowerCase())>-1
+          u.roles.toString().toLowerCase().indexOf(searchVal.toLowerCase())>-1 ||
+          u.department.name.toLowerCase().indexOf(searchVal.toLowerCase())>-1
       )
 
   }

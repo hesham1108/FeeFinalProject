@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/departments/department-service.service';
 
 @Component({
@@ -12,8 +13,9 @@ export class LabsOfDepartmentComponent implements OnInit {
   department:any;
   id:number|any;
   load:boolean=true;
-  labs:{name:string , roomNum:number , description:string}[]|any = [];
-  constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService) { }
+  labs:any = [];
+  f:boolean|any;
+  constructor(private router:Router,private route:ActivatedRoute,private depSer:DepartmentService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.reloadData();
@@ -25,16 +27,18 @@ export class LabsOfDepartmentComponent implements OnInit {
         this.id = +data['id'];
         this.depSer.getSingleDepartment(this.id).subscribe(
         (res)=>{
-          console.log(res);
-
-          this.department = res;
-          this.labs = res.departmentLaps;
-          console.log(this.labs);
-
+          if(res.departmentLabs.length){
+            this.labs = res.departmentLabs;
+            this.f=true
+          }else{
+            this.f= false;
+          }
           this.load = false;
         },
         (error)=>{
-          console.log('shit');
+          console.log(error);
+          this.toastr.error('حدث خطأ أثناء تحميل محاضر المجالس')
+          this.toastr.info('حاول مرة أخرى')
           this.load = false;
         }
     );

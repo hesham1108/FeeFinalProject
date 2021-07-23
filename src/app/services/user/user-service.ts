@@ -74,4 +74,5 @@ postPrivilage(obj:{name:string}|Object):Observable<Object>{
 getPrivilage():Observable<any>{
   return this.http.get(`${this.rolrUrl}`,{headers:this.headers})
 }
+
 }

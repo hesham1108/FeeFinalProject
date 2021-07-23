@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DepartmentService } from 'src/app/services/departments/department-service.service';
@@ -9,7 +9,7 @@ import { Department } from 'src/app/services/departments/department.model';
   templateUrl: './about-department.component.html',
   styleUrls: ['./about-department.component.scss']
 })
-export class AboutDepartmentComponent implements OnInit  {
+export class AboutDepartmentComponent implements OnInit , OnDestroy {
 
   department:Observable<Department>|any;
   id:number|any;
@@ -39,4 +39,8 @@ export class AboutDepartmentComponent implements OnInit  {
   }
   );
   }
+  ngOnDestroy(){
+    this.load = true;
+  }
+
 }

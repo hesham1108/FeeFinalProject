@@ -8,6 +8,7 @@ import { AllNewsComponent } from './components/all-news/all-news.component';
 import { NewsComponent } from './components/all-news/news/news.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ContactEmailComponent } from './components/dashboard/forms/contact-email/contact-email.component';
 import { CouncilFormComponent } from './components/dashboard/forms/department-form/council-form/council-form.component';
 import { DepartmentFormComponent } from './components/dashboard/forms/department-form/department-form.component';
 import { LabsFormComponent } from './components/dashboard/forms/department-form/labs-form/labs-form.component';
@@ -61,7 +62,7 @@ const routes: Routes = [
   {path:'myprofile', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
 
-
+  // {path:'todeps/:id' , redirectTo:'departments/:id' , pathMatch:'full'},
   {path:'departments/:id',component: DepartmentsComponent,  children:[
     {path:'about/:id' , component:AboutDepartmentComponent },
     {path:'boss/:id' , component:BossOfDepartmentComponent},
@@ -110,6 +111,7 @@ const routes: Routes = [
     {path: 'addExam' , component:ExamFormComponent},
     {path: 'addExam/:id' , component:ExamFormComponent},
     {path: 'addPrivilage' , component:PrivilageFormComponent},
+    {path: 'contact' , component:ContactEmailComponent},
   ]},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},

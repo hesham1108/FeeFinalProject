@@ -1,0 +1,52 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <br>
+    <br><br>
+    <div class="row  justify-content-right" style="text-align: right; border: 1px solid rgba(75, 75, 75, 0.473); border-radius: 10px; padding: 2%;  margin-left: 10px ; margin-right: 10px;">
+        <div class="col-sm-3">
+            <h2>
+                البريد الحالي :
+
+            </h2>
+        </div>
+        <div class="col-sm-5">
+            <h2>
+                {{email.email}}
+            </h2>
+        </div>
+    </div>
+    <br><br><br><br><br>
+    <!-- Labs Form -->
+    <form [formGroup]="contact" (ngSubmit)="onSubmit()">
+
+
+        <!-- email -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="email">البريد الإلكتروني </label> :
+            </div>
+            <input type="email" formControlName="email" id="email" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="contact.get('email').invalid && contact.get('email').touched">
+            <span class="error" *ngIf="contact.get('email').errors['required']">
+              رجاء أدخل البريد
+            </span>
+            <span class="error" *ngIf="contact.get('email').errors['email']">
+              البريد غير صالح
+            </span>
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;">
+            <button type="submit" class="submit-btn" [disabled]="contact.invalid">تأكيد</button>
+        </div>
+
+        <br>
+    </form>
+    <br>
+    <br>
+</div>
+
+<app-loader *ngIf="load"></app-loader>

@@ -2,20 +2,58 @@
     مجالس القسم
 </h3>
 <hr class="orange">
-
+<!--
 <div class="content" *ngIf="!load">
-    <div class="row" *ngFor="let c of councils; let i = index">
-        <div class="col-sm-3">
-            <h4>{{c[i].title}}</h4>
+    <div class="row">
+        <div class="col-sm-1 h">
+            #
         </div>
-        <div class="col-sm-9">
-            <div class="row">
-                <div class="col-sm-12" style="text-overflow: ellipsis;">
-                    {{c[i].details}
-                </div>
-            </div>
+        <div class="col-sm-3 h">
+            العنوان
+        </div>
+
+        <div class="col-sm-8 h">
+            التفاصيل
+        </div>
+    </div>
+
+    <div class="row" style="border-bottom: 1px solid #14213D; border-right:1px solid #14213D;" *ngFor="let c of councils;let i = index">
+
+        <div class="col-sm-1 b">
+            {{i+1}}
+        </div>
+        <div class="col-sm-3 b">
+            {{c.title}}
+        </div>
+
+        <div class="col-sm-8 b">
+            {{c.details}}
+        </div>
+    </div>
+
+</div> -->
+
+<div class="content" *ngFor="let c of councils ; let i = index">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 style="font-weight: 400;">
+                {{c.title}}
+            </h1>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>{{c.details}}</p>
         </div>
     </div>
 </div>
 
+<div class="content" *ngIf="!f">
+    <div class="row justify-content-center">
+        <h1>
+            لا يوجد
+        </h1>
+    </div>
+</div>
 <app-loader *ngIf="load"></app-loader>
