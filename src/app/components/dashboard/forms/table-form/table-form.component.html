@@ -127,13 +127,13 @@
         <br>
         <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
-            <button type="submit" class="submit-btn" [disabled]="tableForm.invalid">تأكيد</button>
+            <button type="submit" id="stable" class="submit-btn" [disabled]="tableForm.invalid">تأكيد</button>
         </div>
         <!-- edit & delete -->
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
-                <button type="submit" class="submit-btn" [disabled]="tableForm.invalid">تعديل</button>
-                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+                <button type="submit" id="etable" class="submit-btn" [disabled]="tableForm.invalid">تعديل</button>
+                <button type="button" id="dtable" class="btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
         <br>

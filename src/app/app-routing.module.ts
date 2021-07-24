@@ -52,16 +52,12 @@ import { MyProfileComponent } from './components/profiles/my-profile/my-profile.
 import { ProfComponent } from './components/profiles/prof/prof.component';
 import { SearchComponent } from './components/search/search.component';
 
-
-
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:"home", component:HomeComponent},
   {path:"search", component: SearchComponent},
   {path:'myprofile', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
-
-  // {path:'todeps/:id' , redirectTo:'departments/:id' , pathMatch:'full'},
   {path:'departments/:id',component: DepartmentsComponent,  children:[
     {path:'about/:id' , component:AboutDepartmentComponent },
     {path:'boss/:id' , component:BossOfDepartmentComponent},
@@ -74,8 +70,6 @@ const routes: Routes = [
     {path:'labs/:id' , component:LabsOfDepartmentComponent},
     {path:'council/:id' , component:CouncilOfDepartmentComponent},
   ]},
-
-
   {path:"about", component:AboutComponent},
   {path:"prof/:id", component:ProfComponent},
   {path:"news", component:AllNewsComponent },
@@ -83,7 +77,6 @@ const routes: Routes = [
   {path:"events", component:AllEventsComponent },
   {path:'events/:id' , component:EventComponent },
   {path:'loginForm' , component:LoginFormComponent},
-
   {path:"dash" , component:DashboardComponent , children:[
     {path: 'addNews' , component:NewsFormComponent},
     {path: 'addNews/:id' , component:NewsFormComponent},
@@ -126,7 +119,6 @@ const routes: Routes = [
   {path:'examTable' , component: ExamTableComponent},
   {path:"**", component:NotFoundComponent},
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

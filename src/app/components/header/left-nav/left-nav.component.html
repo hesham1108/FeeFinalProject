@@ -18,11 +18,11 @@
     <ng-template #logged>
         <li class="nav-item dropdown" dropdown>
             <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-                <mdb-icon fas icon="user"></mdb-icon> الملف الشخصي<span class="caret"></span></a>
+                <mdb-icon fas icon="user" id="logm"></mdb-icon> الملف الشخصي<span class="caret"></span></a>
             <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-                <a class="dropdown-item waves-light" mdbWavesEffect (click)="goTo('myprofile')"> الصفحة الشخصية </a>
-                <a *ngIf="admin" class="dropdown-item waves-light" (click)="goTo('dash')" mdbWavesEffect>لوحة القيادة</a>
-                <a class="dropdown-item waves-light" (click)="logOut()" mdbWavesEffect>تسجيل الخروج</a>
+                <a class="dropdown-item waves-light" id="prof" mdbWavesEffect (click)="goTo('myprofile')"> الصفحة الشخصية </a>
+                <a *ngIf="admin" class="dropdown-item waves-light" id="dash" (click)="goTo('dash')" mdbWavesEffect>لوحة القيادة</a>
+                <a class="dropdown-item waves-light" id="logout" (click)="logOut()" mdbWavesEffect>تسجيل الخروج</a>
             </div>
         </li>
     </ng-template>

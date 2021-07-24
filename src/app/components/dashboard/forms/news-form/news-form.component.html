@@ -56,15 +56,15 @@
             </div>
         </div>
         <!-- submit -->
-        <div class="form-group row justify-content-between" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+        <div class="form-group row justify-content-between" id="snews" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" [disabled]="newsFrom.invalid">تأكيد</button>
         </div>
 
         <!-- edit & delete -->
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
-                <button type="submit" class="submit-btn" [disabled]="newsFrom.invalid">تعديل</button>
-                <button type="button" class=" btn btn-danger" (click)="ondelete()">مسح</button>
+                <button type="submit" id="enews" class="submit-btn" [disabled]="newsFrom.invalid">تعديل</button>
+                <button type="button" id="dnews" class=" btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
         <br>

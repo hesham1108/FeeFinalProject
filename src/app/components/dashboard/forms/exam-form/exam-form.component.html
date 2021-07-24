@@ -63,13 +63,13 @@
 
         <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
-            <button type="submit" class="submit-btn" [disabled]="examForm.invalid">تأكيد</button>
+            <button type="submit" id="sExam" class="submit-btn" [disabled]="examForm.invalid">تأكيد</button>
         </div>
         <!-- edit & delete -->
         <ng-template #inEdit>
             <div class="form-group row justify-content-between" style="margin-top:8%;">
-                <button type="submit" class="submit-btn" [disabled]="examForm.invalid">تعديل</button>
-                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+                <button type="submit" id="dexam" class="submit-btn" [disabled]="examForm.invalid">تعديل</button>
+                <button type="button" id="dExam" class="btn btn-danger" (click)="ondelete()">مسح</button>
             </div>
         </ng-template>
         <br>

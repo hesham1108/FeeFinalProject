@@ -104,6 +104,8 @@ import { SubDependFilter } from './components/dashboard/helpers/sub-depend-table
 import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
 import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe';
 import { ContactEmailComponent } from './components/dashboard/forms/contact-email/contact-email.component';
+import { PageFormComponent } from './components/dashboard/forms/page-form/page-form.component';
+import { MainBarFormComponent } from './components/dashboard/forms/page-form/main-bar-form/main-bar-form.component';
 
 
 @NgModule({
@@ -189,7 +191,9 @@ import { ContactEmailComponent } from './components/dashboard/forms/contact-emai
     SubDependFilter,
     PrivilageFormComponent,
     UserFilter,
-    ContactEmailComponent
+    ContactEmailComponent,
+    PageFormComponent,
+    MainBarFormComponent
 
 
   ],
