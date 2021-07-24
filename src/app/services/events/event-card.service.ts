@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
@@ -11,39 +11,30 @@ export class EventCardService {
 
   currentPage = new Subject<number>();
   currentPageNumber: number = 1;
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  });
   private baseUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Events';
   load = new Subject<boolean>();
-  // allEvents:Observable<Event[]>|any = [];
-
   constructor( private http: HttpClient) { }
-
-
-
   getAllEvents():Observable<any>{
     return this.http.get(`${this.baseUrl}`);
   }
-
-
   getEventFromAllEvents(id:number): Observable<any>{
     return this.http.get(`${this.baseUrl}/${id}`);
   }
-
-  postEvent(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>
+  postEvent(obj:{id?:number , title:string ,  imagePath:string , description:string}|Object):Observable<Object>
   {
-    return this.http.post(`${this.baseUrl}`,obj);
+    return this.http.post(`${this.baseUrl}`,obj, { headers: this.headers });
   }
-
-  putEvent(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}|Object):Observable<Object>{
-   return this.http.put(`${this.baseUrl}`, obj);
+  putEvent(obj:{id?:number,title:string ,  imagePath:string , description:string}|Object):Observable<Object>{
+   return this.http.put(`${this.baseUrl}`, obj, { headers: this.headers });
   }
-
-
   deleteEvent(id:number):Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+
+    return this.http.delete(`${this.baseUrl}/${id}`, { headers: this.headers });
   }
-
-
-
 
 
   // events:Events[] = [

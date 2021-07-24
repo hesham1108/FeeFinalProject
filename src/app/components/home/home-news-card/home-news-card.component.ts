@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EventCardService } from 'src/app/services/events/event-card.service';
 import { Card } from '../../../services/news/card.model';
 import { HomeNewsCardServiceService } from '../../../services/news/home-news-card-service.service';
@@ -12,10 +13,8 @@ import { HomeNewsCardServiceService } from '../../../services/news/home-news-car
 export class HomeNewsCardComponent implements OnInit {
 
   homeCards:Card[]=[];
-  constructor( private router:Router , private cardSer: HomeNewsCardServiceService , private eventSer:EventCardService)  {
-
+  constructor( private router:Router , private cardSer: HomeNewsCardServiceService , private eventSer:EventCardService , private toastr:ToastrService)  {
   }
-
   ngOnInit(): void {
     var firstThreeCards:Card[]=[];
     this.cardSer.getAllCards().subscribe(
@@ -29,13 +28,12 @@ export class HomeNewsCardComponent implements OnInit {
           }
           this.homeCards = firstThreeCards;
       }
-
         this.cardSer.newsload.next(false);
-
       },
       (error)=>{
         console.log(error);
-
+        this.toastr.error('لقد حدث خطأ أثناء تحميل الأخبار');
+        this.toastr.show('حاول مرة اخري');
       }
     );
 

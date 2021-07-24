@@ -12,19 +12,19 @@ import { HomeNewsCardServiceService } from '../../services/news/home-news-card-s
 export class PaginationComponent implements OnInit {
 
   @Input() numberOfPages : number | any;
+
   indexes: any=[];
-  url:string|any;
-
   currentPage :number|any = 1;
-  constructor( private newsSer: HomeNewsCardServiceService , private eventSer : EventCardService , private router: Router) {
 
-  }
 
+  constructor( private newsSer: HomeNewsCardServiceService , private eventSer : EventCardService , private router: Router) {}
+
+  url:string|any;
   ngOnInit(): void {
+    this.url = this.router.url;
     for(let i = 1 ; i<= this.numberOfPages ; i++){
       this.indexes.push(i);
     }
-    this.url = this.router.url;
 
     // console.log(this.router.url);
 

@@ -8,21 +8,8 @@ export class Card{
   public createdAt:string;
   public createdUser: string;
   public createdById: number;
-  // public category:string;
-
-
   constructor(
-    title: string,
-    description: string ,
-    imagePath : string ,
-    newsSubImages:[],
-    expired:boolean,
-    id:number ,
-    createdAt:string,
-    createdUser: string,
-    createdById: number,
-    // category:string ,
-    ){
+    title: string,description: string , imagePath : string ,newsSubImages:[],expired:boolean,id:number ,createdAt:string,createdUser: string,createdById: number,){
       this.title          = title;
       this.description    = description;
       this.imagePath      = imagePath;
@@ -32,9 +19,6 @@ export class Card{
       this.createdAt      = createdAt;
       this.createdUser    = createdUser;
       this.createdById    = createdById;
-      // this.category       = category;
-
-
   }
 }
 

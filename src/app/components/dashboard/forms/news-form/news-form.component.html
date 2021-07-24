@@ -9,9 +9,6 @@
               <span class="error" *ngIf="newsFrom.get('title').errors['required']">
                 رجاء أدخل العنوان
               </span>
-            <span class="error" *ngIf="newsFrom.get('title').errors['maxlength']">
-                تخطيت عدد الحروف المسموح به
-              </span>
             </span>
         </div>
 
@@ -33,7 +30,6 @@
             </button>
 
         </div>
-
         <div class="form-group" *ngIf="imgSrc">
             <img [src]="imgSrc" style="height: 300px; width:500px ; border-radius: 20px;">
         </div>
@@ -46,6 +42,19 @@
             </span>
         </div>
 
+        <!-- subImages -->
+        <div class="form-group">
+            <label for="subImages">صورة إضافية</label> :
+            <input type='file' accept="image/*" (change)="onSubImagesChange($event)" multiple id="subImages" style="display:none">
+            <button style="display:block;" type="button" class="file-btn" onclick="document.getElementById('subImages').click()">
+            اختر صورة
+          </button>
+        </div>
+        <div class="row" *ngIf="subImages">
+            <div class="col-sm-3" *ngFor="let s of subImages">
+                <img [src]="s" style="height: 120px; width:100% ; border-radius: 20px;" alt="image">
+            </div>
+        </div>
         <!-- submit -->
         <div class="form-group row justify-content-between" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" [disabled]="newsFrom.invalid">تأكيد</button>

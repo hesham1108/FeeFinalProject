@@ -51,7 +51,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
 import { ProfComponent } from './components/profiles/prof/prof.component';
 import { SearchComponent } from './components/search/search.component';
-import { DepResolver } from './services/departments/dep-resolver.service';
 
 
 

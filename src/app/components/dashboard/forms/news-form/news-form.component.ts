@@ -11,8 +11,9 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
   styleUrls: ['./news-form.component.scss']
 })
 export class NewsFormComponent implements OnInit , OnDestroy{
-
+  subImages:any[] = [];
   imgSrc:string|any;
+  subImgSrc:string|any;
   newsFrom:any;
   id:number|any;
   edit:boolean =false;
@@ -27,10 +28,11 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     private toastr: ToastrService
     ) {
     this.newsFrom = this.fb.group({
-      title: [null , [Validators.required , Validators.maxLength(50)]],
+      title: [null , [Validators.required ]],
       date:[null , [Validators.required ]],
       imagePath:[null,[Validators.required]],
-      description:[null,[Validators.required]]
+      description:[null,[Validators.required]],
+      newsSubImages:[null]
     })
    }
 
@@ -76,12 +78,13 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
+    let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string , newsSubImages:any[]} = {
       id : this.id,
       title : this.newsFrom.get('title').value,
       createdAt: this.newsFrom.get('date').value,
       imagePath: this.newsFrom.get('imagePath').value,
       description : this.newsFrom.get('description').value,
+      newsSubImages:this.newsFrom.get('newsSubImages').value
     };
 
     console.log(this.newsFrom.value);
@@ -168,18 +171,42 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
 
   onImageChange(event:any){
+    // creating  an object of the  file reader
     const reader = new FileReader();
+    //check if we have a value or not
     if(event.target.files && event.target.files.length){
+      // store the comming file into a var
       const [file] = event.target.files;
+      //convert the file with file reader to a string
       reader.readAsDataURL(file);
       reader.onload = ()=>{
         this.imgSrc = reader.result as string;
-        this.newsFrom.patchValue({
-          imagePath: reader.result
-        })
-        console.log(this.imgSrc);
-
+        // send the result to the object that will
+        // be posted to the server
+        this.newsFrom.patchValue({imagePath: reader.result})
       }
     }
   }
-}
+
+  onSubImagesChange(event:any){
+
+
+    if(event.target.files && event.target.files.length){
+      const file = event.target.files;
+
+
+      for(let f of file){
+        let reader = new FileReader();
+        reader.readAsDataURL(f);
+
+        reader.onload = ()=>{
+          this.subImages.push(reader.result);
+
+        }
+      }
+      this.newsFrom.patchValue({
+        newsSubImages:this.subImages
+      })
+
+  }
+  }}

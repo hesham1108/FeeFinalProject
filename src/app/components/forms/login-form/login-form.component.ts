@@ -38,15 +38,14 @@ export class LoginFormComponent implements OnInit {
       email:this.loginForm.get('email').value,
       password:this.loginForm.get('password').value
     }
-
     this.logSer.postLogin(account).subscribe(
       (res:any)=>{
           if(res['success']){
-            // console.log(res);
-
+            // we recieve the token here
             var authToken = res['token'];
+            // see the role
             console.log(atob(authToken.split('.')[1]));
-
+            // store the token value on the localstorage to easly use it again
             localStorage.setItem("token",authToken);
             this.profileSer.login.next(true);
             this.taostr.success('تم تسجيل الدخول بنجاح');

@@ -28,8 +28,7 @@ export class EventFormComponent implements OnInit , OnDestroy {
     private toastr:ToastrService
   ) {
     this.eventForm = this.fb.group({
-      title: [null , [Validators.required , Validators.maxLength(50)]],
-      date:[null , [Validators.required ]],
+      title: [null , [Validators.required ]],
       imagePath:[null,[Validators.required]],
       description:[null,[Validators.required]]
     });
@@ -46,7 +45,6 @@ export class EventFormComponent implements OnInit , OnDestroy {
             (res)=> {
                 this.event = res;
                 this.eventForm.get('title').setValue(this.event.title) ;
-                this.eventForm.get('date').setValue(this.event.createdAt);
                 this.eventForm.get('description').setValue(this.event.description);
                 this.eventForm.get('imagePath').setValue(this.event.imagePath);
                 this.imgSrc = this.event.imagePath as string;
@@ -72,10 +70,9 @@ export class EventFormComponent implements OnInit , OnDestroy {
 
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string} = {
+    let dataToPost:{id?:number,title:string , imagePath:string , description:string} = {
       id : this.id,
       title : this.eventForm.get('title').value,
-      createdAt: this.eventForm.get('date').value,
       imagePath: this.eventForm.get('imagePath').value,
       description : this.eventForm.get('description').value,
     };

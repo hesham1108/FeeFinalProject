@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EventCardService } from '../../../services/events/event-card.service';
 import { Event } from '../../../services/events/event.model';
@@ -13,7 +14,7 @@ export class HomeEventsCardComponent implements OnInit {
 
   homeEvents : Observable<Event[]>|any=[];
 
-  constructor( private eventSrv: EventCardService , private router: Router ) { }
+  constructor( private eventSrv: EventCardService , private router: Router , private toastr:ToastrService) { }
 
   ngOnInit(): void {
    this.loadData();
@@ -32,6 +33,11 @@ export class HomeEventsCardComponent implements OnInit {
       }
         this.eventSrv.load.next(false);
 
+      },
+      (error)=>{
+        console.log(error);
+        this.toastr.error('لقد حدث خطأ أثناء تحميل الأحداث');
+        this.toastr.show('حاول مرة اخري');
       }
     );
 

@@ -13,7 +13,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 })
 export class DepartmentFormComponent implements OnInit , OnDestroy {
 
-
+  imgSrc:any;
   departmentForm:any;
   id:number|any;
   load:boolean = true;
@@ -35,6 +35,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
       massage:[null , [Validators.required]],
       goal:[null , [Validators.required]],
       bossWord:[null , [Validators.required]],
+      image:[null,[Validators.required]]
     })
   }
   ngOnInit(): void {
@@ -55,6 +56,8 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
               this.departmentForm.get('massage').setValue(this.department.massage);
               this.departmentForm.get('goal').setValue(this.department.goals);
               this.departmentForm.get('bossWord').setValue(this.department.headSpeech);
+              this.departmentForm.get('image').setValue(this.department.image );
+              this.imgSrc = this.department.image as string;
               this.load = false;
             },
             (error)=>{
@@ -76,14 +79,15 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
 
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number , name:string , description:string , vision:string,massage:string,goals:string,headSpeech:string}={
+    let dataToPost:{id?:number , name:string , description:string , vision:string,massage:string,goals:string,headSpeech:string,image:string}={
       id:this.id,
       name:this.departmentForm.get('name').value,
       description:this.departmentForm.get('about').value,
       vision:this.departmentForm.get('sight').value,
       massage:this.departmentForm.get('massage').value,
       goals:this.departmentForm.get('goal').value,
-      headSpeech:this.departmentForm.get('bossWord').value
+      headSpeech:this.departmentForm.get('bossWord').value,
+      image:this.departmentForm.get('image').value
     };
     if(this.edit){
       if(this.departmentForm.valid){
@@ -91,7 +95,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
           (res)=>{
             this.toastr.success('لقد تم  تعديل القسم بنجاح');
             document.documentElement.scrollTop = 0;
-            this.depSer.getDeps();
+            // this.depSer.getDeps();
             this.router.navigate(['departmentTable']);
           },
           (error)=>{
@@ -107,7 +111,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
           (res)=>{
             this.toastr.success('لقد تم إضافة القسم بنجاح');
             document.documentElement.scrollTop = 0;
-            this.depSer.getDeps();
+            // this.depSer.getDeps();
             this.router.navigate(['departmentTable']);
           },
           (error)=>{
@@ -154,19 +158,18 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
     this.edit = false;
   }
 
-  // addLab(){
-  //   const control = new FormControl(null,[Validators.required]);
-  //   this.departmentForm.get('labs').push(control);
-  // }
-  // addCouncil(){
-  //   const control = new FormControl(null,[Validators.required]);
-  //   this.departmentForm.get('council').push(control);
-  // }
-  // deleteLab(i:any){
-  //   this.departmentForm.get('labs').removeAt(i);
-  // }
-  // deleteCouncil(i:number){
-  //   this.departmentForm.get('council').removeAt(i);
-  // }
+  onImageChange(event:any){
+    const reader = new FileReader();
+    if(event.target.files && event.target.files.length){
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = ()=>{
+        this.imgSrc = reader.result as string;
+        this.departmentForm.patchValue({
+          image: reader.result
+        })
+      }
+    }
+  }
 
 }

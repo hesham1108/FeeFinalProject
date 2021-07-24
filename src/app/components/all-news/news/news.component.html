@@ -8,21 +8,16 @@
                     <i style="margin-left:15px ; padding-top: 5px" class="fas fa-angle-double-left "></i>
                     <a style="color:#FCA311 ">الأخبار</a>
                 </div>
-                <div class="col-sm-2 edit " *ngIf="admin">
 
-                    <i class="fa fa-edit" (click)="goToEdit('dash/addNews')"> تعديل   </i>
-
-
-                </div>
             </div>
             <div class="row" style="  margin-top: 4%;  overflow:auto;">
-                <h3 style="font-weight: bold;"> {{news.title}} </h3>
+                <h3 style="font-weight: bold; text-align: right;"> {{news.title}} </h3>
             </div>
             <div class="row" style="  margin-top: 5%;  ">
                 <p> تاريخ النشر : {{news.createdAt}} </p>
             </div>
             <div class="row" style="  margin-top: 4%; overflow: hidden; border-radius: 5px;">
-                <img [src]="news.imagePath" alt="hhh">
+                <img [src]="news.imagePath" alt="hhh" width="100%">
             </div>
             <div class="row" style="  margin-top: 5%; text-align: right; ">
                 <p style="word-break: break-word;"> {{news.description}}</p>

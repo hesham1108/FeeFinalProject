@@ -121,6 +121,20 @@ label {
     font-weight: bold;
 }
 
+.file-btn {
+    padding: 2%;
+    border-radius: 5px;
+    background-color: transparent;
+    // font-size: 15px;
+}
+
+.file-btn:focus,
+.file-btn:hover {
+    border-color: #235ad3;
+    color: #235ad3;
+    outline: 0;
+}
+
 .new {
     i {
         padding-top: 4%;

@@ -32,11 +32,9 @@ export class ContactUsComponent implements OnInit {
       subject:this.contactForm.get('topic').value,
       description:this.contactForm.get('message').value
     };
-
     this.conSer.postContact(dataToPost).subscribe(
       (res)=>{
         console.log(res);
-
         this.toastr.success('لقد تم ارسال رسالتك بنجاح');
         this.toastr.success('تشرفنا بتواصلك معنا');
         this.load=false;
@@ -44,15 +42,11 @@ export class ContactUsComponent implements OnInit {
       },
       (error)=>{
         console.log(error);
-
         this.toastr.error('لقد حدث خطأ أثناء إرسال الرسالة');
         this.toastr.show('حاول مرة اخري');
         this.load=false;
       }
     );
-
-
-
   }
 
 }

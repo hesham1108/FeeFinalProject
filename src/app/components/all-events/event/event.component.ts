@@ -19,10 +19,12 @@ export class EventComponent implements OnInit {
   constructor(private eventSer: EventCardService , private route: ActivatedRoute , private router: Router , private newsSer : HomeNewsCardServiceService) { }
 
   ngOnInit(): void {
-    // this.eventsLength = this.eventSer.getAllEventsLength();
+    // here we subscribe for the comming ID .
     this.route.params.subscribe(
       (p: Params) => {
+        // here we convert the id from string to number
         this.id = +p['id'];
+        // here we get the single event related to the id
         this.eventSer.getEventFromAllEvents(this.id).subscribe(
           (data)=>{
             this.event = data;

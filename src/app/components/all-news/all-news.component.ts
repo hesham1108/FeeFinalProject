@@ -50,9 +50,7 @@ export class AllNewsComponent implements OnInit , OnDestroy{
         for(let i = (id*this.divider - this.divider) ; i < id*this.divider && i< this.news_cards.length ;  i++ ){
             this.cardsToDisplay.push(this.news_cards[i]);
         }
-
         document.documentElement.scrollTop = 0;
-
   }
 
   ngOnDestroy():void{

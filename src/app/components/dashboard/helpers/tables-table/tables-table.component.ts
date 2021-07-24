@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['../tables-style.scss']
 })
 export class TablesTableComponent implements OnInit {
+  search='';
   load:boolean = false;
   delete:boolean = false;
   constructor(

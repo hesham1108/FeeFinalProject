@@ -68,8 +68,6 @@ export class DashboardComponent implements OnInit {
     leftmenu.style.display = "block";
     var leftmenubtn: HTMLElement|any = document.getElementById('open');
     leftmenubtn.style.display ="none";
-
-
   }
   closeleftmenu(){
     var leftmenu:HTMLElement |any= document.getElementById('leftmenu');

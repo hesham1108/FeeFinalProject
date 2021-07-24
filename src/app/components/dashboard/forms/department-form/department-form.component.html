@@ -114,70 +114,20 @@
             </span>
         </div>
         <br />
-
-        <!-- labs -->
-        <!-- <div class="row" formArrayName="labs">
-            <div class="col-sm-12">
-                <div class="row " style="text-align: right;">
-                    <div class="col-sm-3">
-                        <label>معامل القسم </label>:
-                    </div>
-                    <div class="col-sm-4" style="padding: 0;">
-                        <p class="search">
-                            * اضغط على إضافة قسم و أضف معمل
-                        </p>
-                    </div>
-                    <div class="col-sm-3 " style="padding-left: 0;">
-                        <button type="button" class="add" (click)="addLab()">
-                      <i class="fa fa-plus" style="margin-left:4px;"></i>
-                      إضافة معمل
-                    </button>
-                    </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-3 new" *ngFor="let sub of departmentForm.get('labs').controls; let i =index">
-                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="اسم المعمل" style="float: right;">
-                        <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteLab(i)"></i>
-                        <br>
-                        <br>
-                    </div>
-                </div>
+        <!-- image -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="file">الصورة الشخصية</label> :
             </div>
-
-
-        </div>
-        <br> -->
-
-        <!-- Council -->
-        <!-- <div class="row" formArrayName="council">
-            <div class="col-sm-12">
-                <div class="row " style="text-align: right;">
-                    <div class="col-sm-3">
-                        <label>مجالس القسم </label>:
-                    </div>
-                    <div class="col-sm-4" style="padding: 0;">
-                        <p class="search">
-                            * اضغط على إضافة مجلس و أضف مجلس
-                        </p>
-                    </div>
-                    <div class="col-sm-3 " style="padding-left: 0;">
-                        <button type="button" class="add" (click)="addCouncil()">
-                    <i class="fa fa-plus" style="margin-left:4px;"></i>
-                    إضافة مجلس
-                  </button>
-                    </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-3 new" *ngFor="let sub of departmentForm.get('council').controls; let i =index">
-                        <input type="text" class="form-control col-sm-10" [formControlName]="i" placeholder="اسم المجلس" style="float: right;">
-                        <i class="fa fa-times  col-sm-2" style=" cursor: pointer;" (click)="deleteCouncil(i)"></i>
-                        <br>
-                        <br>
-                    </div>
-                </div>
+            <input type='file' accept="image/*" (change)="onImageChange($event)" id="image" style="display:none">
+            <button type="button" class="file-btn" onclick="document.getElementById('image').click()">
+                        اختر صورة
+                </button>
+            <div class="col-sm-5" *ngIf="imgSrc">
+                <img [src]="imgSrc" style="height: 100px; width:100px ; border-radius: 50%;">
             </div>
-
-
         </div>
-        <br> -->
+        <br>
 
         <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">

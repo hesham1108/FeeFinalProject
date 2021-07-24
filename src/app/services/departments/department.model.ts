@@ -6,6 +6,7 @@ export class Department{
   massage:string;
   goals:string;
   headSpeech:string;
+  image:any;
   constructor(
     id:number ,
     name:string,
@@ -14,6 +15,7 @@ export class Department{
     message:string,
     goals:string,
     headSpeech:string,
+    image:any
   ){
     this.id = id;
     this.name = name;
@@ -22,5 +24,6 @@ export class Department{
     this.massage=message;
     this.goals=goals;
     this.headSpeech=headSpeech;
+    this.image = image;
   }
 }
