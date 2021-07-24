@@ -111,6 +111,18 @@
                         </ul>
                     </div>
                 </li>
+                <!-- الصفحات -->
+                <li>
+                    <i class="fa fa-caret-left "></i> الصفحات
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('mainBarTable')">العناوين </li>
+                            <li id="dropi" (click)="goTo('addMainBar')"> إضافة عناون </li>
+                            <li id="dropi" (click)="goToOut('pageTable')"> الصفحات الحالية </li>
+                            <li id="dropi" (click)="goTo('addPage')"> إضافة صفحة </li>
+                        </ul>
+                    </div>
+                </li>
                 <!-- الجداول -->
                 <!-- جدول المحاضرات -->
                 <li>
@@ -150,7 +162,6 @@
                         </ul>
                     </div>
                 </li>
-
                 <li (click)="goTo('contact')">
                     <i class="fa fa-caret-left "></i> بريد التواصل
                 </li>

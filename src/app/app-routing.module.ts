@@ -15,6 +15,8 @@ import { LabsFormComponent } from './components/dashboard/forms/department-form/
 import { EventFormComponent } from './components/dashboard/forms/event-form/event-form.component';
 import { ExamFormComponent } from './components/dashboard/forms/exam-form/exam-form.component';
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
+import { MainBarFormComponent } from './components/dashboard/forms/page-form/main-bar-form/main-bar-form.component';
+import { PageFormComponent } from './components/dashboard/forms/page-form/page-form.component';
 import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
@@ -28,7 +30,9 @@ import { DepartmentTableComponent } from './components/dashboard/helpers/departm
 import { EventsTableComponent } from './components/dashboard/helpers/events-table/events-table.component';
 import { ExamTableComponent } from './components/dashboard/helpers/exam-table/exam-table.component';
 import { LabsTableComponent } from './components/dashboard/helpers/labs-table/labs-table.component';
+import { MainBarTableComponent } from './components/dashboard/helpers/main-bar-table/main-bar-table.component';
 import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
+import { PageTableComponent } from './components/dashboard/helpers/page-table/page-table.component';
 import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
 import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
@@ -104,6 +108,10 @@ const routes: Routes = [
     {path: 'addExam/:id' , component:ExamFormComponent},
     {path: 'addPrivilage' , component:PrivilageFormComponent},
     {path: 'contact' , component:ContactEmailComponent},
+    {path: 'addMainBar' , component:MainBarFormComponent},
+    {path: 'addMainBar/:id' , component:MainBarFormComponent},
+    {path: 'addPage' , component:PageFormComponent},
+    {path: 'addPage/:id' , component:PageFormComponent},
   ]},
   {path:'newsTable' , component: NewsTableComponent},
   {path:'eventsTable' , component: EventsTableComponent},
@@ -117,6 +125,8 @@ const routes: Routes = [
   {path:'postionTable', component:PostionTableComponent},
   {path:'Tables', component:TablesTableComponent},
   {path:'examTable' , component: ExamTableComponent},
+  {path:'mainBarTable' , component: MainBarTableComponent},
+  {path:'pageTable' , component: PageTableComponent},
   {path:"**", component:NotFoundComponent},
 ];
 @NgModule({

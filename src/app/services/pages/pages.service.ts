@@ -16,9 +16,12 @@ export class PageService {
   });
 
   constructor(private http:HttpClient){}
-
+  //mainBar
   postMainBar(obj:{title:string }|Object):Observable<Object>{
     return this.http.post(`${this.mainBarUrl}`,obj , {headers:this.headers});
+  }
+  putMainBar(obj:{id:number,title:string}|Object):Observable<Object>{
+    return this.http.put(`${this.mainBarUrl}`,obj,{headers:this.headers});
   }
   getMainBar():Observable<any>{
     return this.http.get(`${this.mainBarUrl}`,{headers:this.headers});
@@ -26,4 +29,25 @@ export class PageService {
   getSingleMainBar(id:number):Observable<any>{
     return this.http.get(`${this.mainBarUrl}/${id}`,{headers:this.headers})
   }
+  deleteMainBar(id:number):Observable<any> {
+    return this.http.delete(`${this.mainBarUrl}/${id}`, { headers: this.headers });
+  }
+
+  //pages
+  postPage(obj:{title:string , image:string , descriptions:string ,mainBarId:number}|Object):Observable<Object>{
+    return this.http.post(`${this.pageUrl}`,obj , {headers:this.headers});
+  }
+  putPage(obj:{id:number,title:string, image:string , descriptions:string,mainBarId:number }|Object):Observable<Object>{
+    return this.http.put(`${this.pageUrl}`,obj,{headers:this.headers});
+  }
+  getPages():Observable<any>{
+    return this.http.get(`${this.pageUrl}`,{headers:this.headers});
+  }
+  getPage(id:number):Observable<any>{
+    return this.http.get(`${this.pageUrl}/${id}`,{headers:this.headers})
+  }
+  deletePage(id:number):Observable<any> {
+    return this.http.delete(`${this.pageUrl}/${id}`, { headers: this.headers });
+  }
+
 }

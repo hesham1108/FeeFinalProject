@@ -1,1 +1,43 @@
-<p>main-bar-form works!</p>
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <br>
+    <br><br><br><br>
+    <!-- Labs Form -->
+    <form [formGroup]="mainBarForm" (ngSubmit)="onSubmit()">
+
+
+        <!-- title -->
+        <div class="row ">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="title">العنوان </label> :
+            </div>
+            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control form-control-lg">
+            <span class="error col-sm-2" *ngIf="mainBarForm.get('title').invalid && mainBarForm.get('title').touched">
+            <span class="error" *ngIf="mainBarForm.get('title').errors['required']">
+              رجاء أدخل العنوان
+            </span>
+
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!-- submit or edit&delete -->
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" [disabled]="mainBarForm.invalid">تأكيد</button>
+        </div>
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" class="submit-btn" [disabled]="mainBarForm.invalid">تعديل</button>
+                <button type="button" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="العنوان" (cancel)="onCancel()" (res)="deleteMainBar(id)"></app-confirm-deletion>

@@ -106,6 +106,11 @@ import { UserFilter } from './components/dashboard/helpers/users-table/user.pipe
 import { ContactEmailComponent } from './components/dashboard/forms/contact-email/contact-email.component';
 import { PageFormComponent } from './components/dashboard/forms/page-form/page-form.component';
 import { MainBarFormComponent } from './components/dashboard/forms/page-form/main-bar-form/main-bar-form.component';
+import { PageTableComponent } from './components/dashboard/helpers/page-table/page-table.component';
+import { MainBarTableComponent } from './components/dashboard/helpers/main-bar-table/main-bar-table.component';
+import { MainBarFilter } from './components/dashboard/helpers/main-bar-table/mainBarFilter.pipe';
+import { PageFilter } from './components/dashboard/helpers/page-table/pageFilter.pipe';
+import { NewPageComponent } from './components/new-page/new-page.component';
 
 
 @NgModule({
@@ -193,7 +198,12 @@ import { MainBarFormComponent } from './components/dashboard/forms/page-form/mai
     UserFilter,
     ContactEmailComponent,
     PageFormComponent,
-    MainBarFormComponent
+    MainBarFormComponent,
+    PageTableComponent,
+    MainBarTableComponent,
+    MainBarFilter,
+    PageFilter,
+    NewPageComponent
 
 
   ],

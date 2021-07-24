@@ -1,1 +1,88 @@
-<p>page-form works!</p>
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+    <form [formGroup]="pageForm" (ngSubmit)="onSubmit()">
+        <!-- mainBarId -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="mainBarId">العنايون</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر العنوان'" [settings]="mainBarSettings" [data]="mainBarsList" formControlName="mainBarId" id="mainBarId">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="pageForm.get('mainBarId').invalid && pageForm.get('mainBarId').touched">
+                    <span class="error" *ngIf="pageForm.get('mainBarId').errors['required']">
+                      رجاء اختر العنوان
+                    </span>
+            </span>
+        </div>
+        <br>
+        <!-- title -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="title">عنوان الصفحة</label> :
+            </div>
+            <input type="text" formControlName="title" id="title" class="col-sm-7 form-control form-control-lg" />
+            <span class="error col-sm-2" *ngIf="
+              pageForm.get('title').invalid &&
+              pageForm.get('title').touched
+                  ">
+            <span
+              class="error"
+              *ngIf="pageForm.get('title').errors['required']"
+            >
+              رجاء أدخل عنوان الصفحة
+            </span>
+            </span>
+        </div>
+        <br />
+        <!-- image -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="file">الصورة </label> :
+            </div>
+            <input type='file' accept="image/*" (change)="onImageChange($event)" id="image" style="display:none">
+            <button type="button" class="file-btn" onclick="document.getElementById('image').click()">
+                اختر صورة
+        </button>
+            <div class="col-sm-5" *ngIf="imgSrc">
+                <img [src]="imgSrc" style="height: 100px; width:100px ; border-radius: 50%;">
+            </div>
+        </div>
+        <br>
+        <!-- descriptions -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right">
+                <label for="descriptions">الوصف</label> :
+            </div>
+            <textarea formControlName="descriptions" id="descriptions" class="col-sm-7 form-control form-control-lg"></textarea>
+            <span class="error col-sm-2" *ngIf="
+    pageForm.get('descriptions').invalid &&
+    pageForm.get('descriptions').touched
+  ">
+  <span
+    class="error"
+    *ngIf="pageForm.get('descriptions').errors['required']"
+  >
+    رجاء أدخل الوصف
+  </span>
+            </span>
+        </div>
+        <br />
+
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
+            <button type="submit" class="submit-btn" id="subdep" [disabled]="pageForm.invalid">تأكيد</button>
+        </div>
+
+        <!-- edit & delete -->
+        <ng-template #inEdit>
+            <div class="form-group row justify-content-between" style="margin-top:8%;">
+                <button type="submit" id="editdep" class="submit-btn" [disabled]="pageForm.invalid">تعديل</button>
+                <button type="button" id="deleteDep" class="btn btn-danger" (click)="ondelete()">مسح</button>
+            </div>
+        </ng-template>
+        <br>
+    </form>
+
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="القسم" (cancel)="onCancel()" (res)="deletePage(id)"></app-confirm-deletion>

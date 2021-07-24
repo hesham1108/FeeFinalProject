@@ -1,0 +1,83 @@
+<div class="container" dir="rtl" style="padding:0; margin-top:2% ; margin-bottom: 5%;" *ngIf="!load">
+    <div class="row justify-content-center">
+        <div class="col-sm-6" style="text-align: center; padding: 2%;">
+            <h1>الصفحات</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 add" style="text-align: right;" (click)="goTo('dash/addPage')">
+            <div class="row justify-content-around">
+                <div class="col-sm-3 icon">
+                    <i class="fa fa-plus fa-2x" style="margin-left: 10%;"></i>
+                </div>
+                <div class="col-sm-9 text">
+                    <p style="display: inline;">إضافة صفحة </p>
+                </div>
+            </div>
+        </div>
+
+        <input type="search" style="padding:2.5% ; margin-right: auto; margin-left: auto;" placeholder="ابحث " [(ngModel)]="search" class="col-sm-7 form-control form-control-lg">
+
+        <div class="col-sm-2 b">
+
+            <div class="col-sm-11 back" (click)="goTo('dash')">
+                <!-- <i class="fas fa-backspace"></i> -->
+                <i class="fa fa-sign-out-alt fa-2x" style="margin-left: 10%;"></i>
+            </div>
+
+        </div>
+    </div>
+    <div class="row table-responsive">
+        <div class="col-sm-12" style="padding: 0;">
+            <table class="table table-striped">
+                <thead style="background-color: #14213D; color: #fff; ">
+                    <tr>
+                        <th scope="col" style="border-top-right-radius:5px;">#</th>
+                        <th scope="col">عنوان الصفحة </th>
+                        <th scope="col">الصورة </th>
+                        <th scope="col">الوصف </th>
+                        <th scope="col">العنوان </th>
+                        <th scope="col">تعديل </th>
+                        <th scope="col" style="border-top-left-radius:5px;">مسح </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- *ngFor="let f of (folderObjs | filter:search) -->
+                    <tr *ngFor="let p of (pages | pFilter:search ); let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td> {{p.title}} </td>
+                        <td>
+                            <img [src]="p.image" width="120px" height="120px" alt="photo" style="border-radius: 75px;">
+                        </td>
+                        <td>
+                            <div style="width: 150px; height:150px ;overflow: hidden;">
+                                {{p.descriptions}}
+                            </div>
+                        </td>
+                        <td>
+                            {{p.mainBar.title}}
+                        </td>
+                        <td>
+                            <i class="btn btn-success fa fa-edit" (click)="editPage(p.id)"></i>
+                        </td>
+                        <td>
+                            <i class="btn btn-danger fa fa-trash-alt" (click)="ondelete(p.id)"></i>
+                        </td>
+
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+            <h1 *ngIf="(pages | pFilter:search).length <1" style="text-align: center;">
+                ! Not Found
+            </h1>
+        </div>
+    </div>
+</div>
+
+<app-loader *ngIf="load"></app-loader>
+<app-confirm-deletion *ngIf="delete" content="الخبر" (cancel)="onCancel()" (res)="deletePage()"></app-confirm-deletion>
