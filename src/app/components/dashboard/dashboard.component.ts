@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginServiceService } from 'src/app/services/login/login-service.service';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,8 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 export class DashboardComponent implements OnInit {
 
-  tokenValue = localStorage.getItem("token");
+  tokenValue :string|any;
+  userId :string|any;
   nothing = true;
   admin:boolean|any;
   constructor(
@@ -21,7 +23,8 @@ export class DashboardComponent implements OnInit {
     private newsSer: HomeNewsCardServiceService,
     private profileSer: ProfileService,
     private toastr:ToastrService,
-    private logSer:LoginServiceService
+    private logSer:LoginServiceService,
+    private userSer:UserService
       ) {
         this.newsSer.nothing.subscribe(
           (data)=>{
@@ -35,20 +38,32 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.tokenValue =  localStorage.getItem("token");
+
     if(this.tokenValue){
-     this.closeleftmenu();
-      if(this.router.url == '/dash'){
-        this.newsSer.nothing.next(true);
-      }else{
-        this.newsSer.nothing.next(false);
-      }
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.roles.includes('Admin')||res.roles.includes('SuperAdmin')){
+            this.closeleftmenu();
+            if(this.router.url == '/dash'){
+              this.newsSer.nothing.next(true);
+            }else{
+              this.newsSer.nothing.next(false);
+            }
 
-      this.newsSer.nothing.subscribe(
-        (data)=>{
+            this.newsSer.nothing.subscribe(
+              (data)=>{
 
-          this.nothing = data;
+                this.nothing = data;
+              }
+          );
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
         }
-    );}else{
+      )
+     }else{
       this.toastr.error('غير مسموح لك بالدخول هنا ');
       this.router.navigate(['']);
     }

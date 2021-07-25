@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { EventCardService } from 'src/app/services/events/event-card.service';
+import { UserService } from 'src/app/services/user/user-service';
 import { EventFilter } from './eventFilter.pipe';
 
 @Component({
@@ -16,11 +17,28 @@ export class EventsTableComponent implements OnInit {
   load:boolean = true;
   delete:boolean = false;
   deleteId:number|any;
+  tokenValue:string|any;
 
-  constructor(private eventSer: EventCardService, private router:Router, private toastr:ToastrService) { }
+  constructor(private eventSer: EventCardService, private router:Router, private toastr:ToastrService,private userSer:UserService) { }
 
   ngOnInit(): void {
-    this.reloadData();
+    this.tokenValue =  localStorage.getItem("token");
+
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.reloadData();
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
   }
 
   reloadData(){

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { SubjectService } from 'src/app/services/subjects/subject-service.service';
 import { Subject } from 'src/app/services/subjects/subject.model';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-subject-table',
@@ -17,14 +18,31 @@ export class SubjectTableComponent implements OnInit {
   delete:boolean = false;
   search='';
   deleteId:number|any;
+  tokenValue:string|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
-    private subSer:SubjectService
+    private subSer:SubjectService,
+    private userSer:UserService
     ) { }
 
     ngOnInit(): void {
-      this.reloadData();
+      this.tokenValue =  localStorage.getItem("token");
+      if(this.tokenValue){
+        this.userSer.getSingleUser(this.tokenValue).subscribe(
+          (res)=>{
+            if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+              this.reloadData();
+            }else{
+              this.toastr.error('غير مسموح لك بالدخول هنا ');
+              this.router.navigate(['']);
+            }
+          }
+        )
+       }else{
+        this.toastr.error('غير مسموح لك بالدخول هنا ');
+        this.router.navigate(['']);
+      }
     }
 
   reloadData(){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PageService } from 'src/app/services/pages/pages.service';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-page-table',
@@ -14,12 +15,28 @@ export class PageTableComponent implements OnInit {
   load:boolean = true;
   delete:boolean = false;
   deleteId:number|any;
+  tokenValue:string|any;
   constructor(
-    private pageSer: PageService , private router: Router , private toastr:ToastrService
+    private pageSer: PageService , private router: Router , private toastr:ToastrService,private userSer:UserService
   ) { }
 
   ngOnInit(): void {
-    this.reloadData();
+    this.tokenValue =  localStorage.getItem("token");
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.reloadData();
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
    }
 
    reloadData(){

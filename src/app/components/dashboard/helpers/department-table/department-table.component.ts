@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { DepartmentService } from 'src/app/services/departments/department-service.service';
 import { Department } from 'src/app/services/departments/department.model';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-department-table',
@@ -16,14 +17,32 @@ export class DepartmentTableComponent implements OnInit {
   departments:Observable<Department[]>|any=[];
   load:boolean = true;
   delete:boolean = false;
+  tokenValue:string|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
-    private depSer:DepartmentService
+    private depSer:DepartmentService,
+    private userSer:UserService
     ) { }
 
   ngOnInit(): void {
-    this.reloadData();
+    this.tokenValue =  localStorage.getItem("token");
+
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.reloadData();
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
   }
 
   reloadData(){

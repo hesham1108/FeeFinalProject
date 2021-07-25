@@ -14,6 +14,7 @@ export class UsersTableComponent implements OnInit {
   delete:boolean = false;
   search='';
   deleteId:number|any;
+  tokenValue:string|any;
   constructor(
     private router:Router,
     private toastr:ToastrService,
@@ -21,26 +22,43 @@ export class UsersTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userSer.getUsers().subscribe(
-      (res)=>{
-        // let temp =[];
-        for(let r of res){
-          if(!r.department ){
-            r.department = {name:'لا يوجد'};
+    this.tokenValue =  localStorage.getItem("token");
+
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.userSer.getUsers().subscribe(
+              (res)=>{
+                // let temp =[];
+                for(let r of res){
+                  if(!r.department ){
+                    r.department = {name:'لا يوجد'};
+                  }
+                }
+                // this.users = res.reverse();
+                this.users = res.reverse();
+                console.log(this.users);
+                this.load=false;
+
+              },
+              (error)=>{
+                this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
+                  this.toastr.info('حاول مرة اخري');
+                  this.load = false;
+              }
+            );
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
           }
         }
-        // this.users = res.reverse();
-        this.users = res.reverse();
-        console.log(this.users);
-        this.load=false;
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
 
-      },
-      (error)=>{
-        this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
-          this.toastr.info('حاول مرة اخري');
-          this.load = false;
-      }
-    );
   }
   reloadData(){
 

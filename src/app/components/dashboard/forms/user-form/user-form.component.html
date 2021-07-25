@@ -89,7 +89,7 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="role">الصلاحية</label> :
             </div>
-            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر الصلاحية'" [settings]="roledropdownSettings" [data]="roleList" formControlName="role" id="role">
+            <ng-multiselect-dropdown [disabled]='edit' class="col-md-7" [placeholder]="'اختر الصلاحية'" [settings]="roledropdownSettings" [data]="roleList" formControlName="role" id="role">
             </ng-multiselect-dropdown>
             <span class="error col-sm-2" *ngIf="userForm.get('role').invalid && userForm.get('role').touched">
             <span class="error" *ngIf="userForm.get('role').errors['required']">
@@ -100,15 +100,7 @@
         <br>
 
 
-        <!-- postion
-        <div class="row" *ngIf="userForm.get('role').value == 'prof'">
-            <div class="col-sm-3" style="text-align: right;">
-                <label for="postion">المنصب</label> :
-            </div>
-            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المنصب'" [settings]="posdropdownSettings" [data]="postionList" formControlName="postion" id="postion">
-            </ng-multiselect-dropdown>
 
-        </div> -->
 
         <!-- department -->
         <div class="row" *ngIf="userForm.get('role').value != 'admin'">
@@ -131,7 +123,7 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="email">البريد الإلكترونى</label> :
             </div>
-            <input type="text" formControlName="email" id="email" class="col-sm-7 form-control form-control-lg">
+            <input type="text" [disabled]="edit" formControlName="email" id="email" class="col-sm-7 form-control form-control-lg">
             <span class="error col-sm-2" *ngIf="userForm.get('email').invalid && userForm.get('email').touched">
           <span class="error" *ngIf="userForm.get('email').errors['required']">
             رجاء أدخل البريد الإلكترونى
@@ -145,7 +137,7 @@
             <div class="col-sm-3" style="text-align: right;">
                 <label for="password">الرقم السري</label> :
             </div>
-            <input type="text" formControlName="password" id="password" class="col-sm-7 form-control form-control-lg">
+            <input type="text" [disabled]="edit" formControlName="password" id="password" class="col-sm-7 form-control form-control-lg">
             <span class="error col-sm-2" *ngIf="userForm.get('password').invalid && userForm.get('password').touched">
               <span class="error" *ngIf="userForm.get('password').errors['required']">
                  رجاء أدخل الرقم السري

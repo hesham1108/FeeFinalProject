@@ -12,6 +12,7 @@ export class AllPrivilagesComponent implements OnInit {
   load:boolean = true;
   delete:boolean = false;
   privilages:any=[];
+  tokenValue:string|any;
   search = '';
   constructor(
     private router:Router,
@@ -20,20 +21,38 @@ export class AllPrivilagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userSer.getRoles().subscribe(
-      (res)=>{
-        console.log(res);
 
-        this.privilages = res.reverse();
-        this.load=false;
-      },
-      (error)=>{
-        this.toastr.error('حدث خطأ أثناء تحميل الصلاحيات');
-        this.toastr.info('حاول مرة اخري');
-        this.load = false;
-        console.log(error);
-      }
-    );
+    this.tokenValue =  localStorage.getItem("token");
+
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.userSer.getRoles().subscribe(
+              (res)=>{
+                console.log(res);
+
+                this.privilages = res.reverse();
+                this.load=false;
+              },
+              (error)=>{
+                this.toastr.error('حدث خطأ أثناء تحميل الصلاحيات');
+                this.toastr.info('حاول مرة اخري');
+                this.load = false;
+                console.log(error);
+              }
+            );
+
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
 
 
   }

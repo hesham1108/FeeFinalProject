@@ -128,7 +128,20 @@
             </div>
         </div>
         <br>
-
+        <!-- headId -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="headId">رئيس القسم</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر المستخدم'" [settings]="userSet" [data]="users" formControlName="headId" id="headId">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="departmentForm.get('headId').invalid && departmentForm.get('headId').touched">
+                    <span class="error" *ngIf="departmentForm.get('headId').errors['required']">
+                      رجاء اختر رئيس القسم
+                    </span>
+            </span>
+        </div>
+        <br>
         <!-- submit -->
         <div class="form-group row justify-content-center" style="margin-top:8%;" *ngIf="!edit ; else inEdit">
             <button type="submit" class="submit-btn" id="subdep" [disabled]="departmentForm.invalid">تأكيد</button>

@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { DepartmentService } from 'src/app/services/departments/department-service.service';
 import { Department } from 'src/app/services/departments/department.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-department-form',
@@ -20,13 +22,16 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
   edit:boolean =false;
   delete:boolean = false;
   department:Department|any;
+  users:any[]=[];
+  userSet:IDropdownSettings ={};
   constructor(
     private fb:FormBuilder,
     private route:ActivatedRoute,
     private router:Router,
     private newsSer:HomeNewsCardServiceService,
     private toastr:ToastrService,
-    private depSer:DepartmentService
+    private depSer:DepartmentService,
+    private userSer:UserService
     ) {
     this.departmentForm = this.fb.group({
       name:[null , [Validators.required]],
@@ -35,11 +40,33 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
       massage:[null , [Validators.required]],
       goal:[null , [Validators.required]],
       bossWord:[null , [Validators.required]],
-      image:[null,[Validators.required]]
+      image:[null,[Validators.required]],
+      headId:[null,[Validators.required]]
     })
   }
   ngOnInit(): void {
     this.newsSer.nothing.next(false);
+    this.userSer.getUsers().subscribe(
+      (res)=>{
+        this.users = res;
+      },
+      (error)=>{
+        this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
+        this.toastr.info('حاول مرة اخري');
+        this.load= false;
+      }
+    );
+    this.userSet={
+      idField: 'id',
+      textField:'arabicName',
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن المستخدم',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true,
+      closeDropDownOnSelection:true,
+      allowRemoteDataSearch:true
+    }
     this.route.params.subscribe(
       (data)=>{
         if(data['id']){
@@ -49,7 +76,6 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
             (res)=>{
               this.department = res;
               console.log(res);
-
               this.departmentForm.get('name').setValue(this.department.name);
               this.departmentForm.get('about').setValue(this.department.description);
               this.departmentForm.get('sight').setValue(this.department.vision);
@@ -57,6 +83,11 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
               this.departmentForm.get('goal').setValue(this.department.goals);
               this.departmentForm.get('bossWord').setValue(this.department.headSpeech);
               this.departmentForm.get('image').setValue(this.department.image );
+              for(let u of this.users){
+                if(u.id == this.departmentForm.departmentID){
+                  this.departmentForm.get('headId').setValue([{id:u.id , arabicName:u.arabicName}]);
+                }
+              }
               this.imgSrc = this.department.image as string;
               this.load = false;
             },
@@ -79,7 +110,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
 
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number , name:string , description:string , vision:string,massage:string,goals:string,headSpeech:string,image:string}={
+    let dataToPost:{id?:number,headId:string , name:string , description:string , vision:string,massage:string,goals:string,headSpeech:string,image:string}={
       id:this.id,
       name:this.departmentForm.get('name').value,
       description:this.departmentForm.get('about').value,
@@ -87,7 +118,8 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
       massage:this.departmentForm.get('massage').value,
       goals:this.departmentForm.get('goal').value,
       headSpeech:this.departmentForm.get('bossWord').value,
-      image:this.departmentForm.get('image').value
+      image:this.departmentForm.get('image').value,
+      headId:this.departmentForm.get('headId').value[0].id
     };
     if(this.edit){
       if(this.departmentForm.valid){

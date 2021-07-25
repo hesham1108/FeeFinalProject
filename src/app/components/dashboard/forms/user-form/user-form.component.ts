@@ -55,9 +55,20 @@ export class UserFormComponent implements OnInit , OnDestroy{
         if(data['id']){
           this.id = data['id'];
           this.edit=true;
+          this.userSer.getSingleUser(this.id).subscribe(
+            (res)=>{
+              this.userForm.get('nameAr').setValue(res.arabicName);
+              this.userForm.get('nameEn').setValue(res.englishName);
+              this.userForm.get('phone').setValue(res.phone);
+              this.userForm.get('academicNumber').setValue(res.academicNumber);
+              this.userForm.get('department').setValue(res.department);
+              this.userForm.get('imagePath').setValue(res.imagePath);
+              this.userForm.get('about').setValue(res.about);
+
+            }
+          );
         }else{
           this.edit= false;
-
         }
       }
     );
@@ -115,7 +126,6 @@ export class UserFormComponent implements OnInit , OnDestroy{
     document.documentElement.scrollTop = 0;
     this.load = true;
     let dataToPost :{
-      name:string,
       arabicName:string,
       englishName:string,
       phone:string,
@@ -128,7 +138,6 @@ export class UserFormComponent implements OnInit , OnDestroy{
       dataOfBirth:string,
       about:string
     }={
-      name:'7mada',
       arabicName:this.userForm.get('nameAr').value,
       englishName:this.userForm.get('nameEn').value,
       phone:this.userForm.get('phone').value,
@@ -146,7 +155,13 @@ export class UserFormComponent implements OnInit , OnDestroy{
 
     if(this.edit){
       if(this.userForm.valid){
-        this.toastr.success('لقد تم  تعديل المستخدم بنجاح');
+        this.userSer.updateUser(dataToPost).subscribe(
+          (res)=>{
+            this.toastr.success('لقد تم  تعديل المستخدم بنجاح');
+            this.router.navigate(['usersTable']);
+          }
+        );
+
       }
     }else{
       if(this.userForm.valid){
@@ -154,7 +169,7 @@ export class UserFormComponent implements OnInit , OnDestroy{
           (res)=>{
             console.log(res);
             this.toastr.success(' لقد تم إضافة المستخدم بنجاح ');
-            this.load = false;
+            this.router.navigate(['usersTable']);
           },
           (error)=>{
             console.log(error);

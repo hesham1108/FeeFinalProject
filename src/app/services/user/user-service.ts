@@ -60,6 +60,20 @@ export class UserService {
     })});
   }
 
+  updateUser(obj:{
+    arabicName:string,
+    englishName:string,
+    phone:string,
+    academicNumber:string,
+    departmentId:number,
+    imagePath:string,
+    dataOfBirth:string,
+    about:string}|Object):Observable<Object>{
+    return this.http.post(`${this.UpdateUserUrl}`,obj,{headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    })})
+  }
 
 
 

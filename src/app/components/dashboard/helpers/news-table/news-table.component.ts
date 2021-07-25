@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Card } from 'src/app/services/news/card.model';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-news-table',
@@ -16,10 +17,26 @@ export class NewsTableComponent implements OnInit {
   load:boolean = true;
   delete:boolean = false;
   deleteId:number|any;
-  constructor(private newsSer: HomeNewsCardServiceService , private router: Router , private toastr:ToastrService) { }
+  tokenValue:string|any;
+  constructor(private newsSer: HomeNewsCardServiceService , private router: Router , private toastr:ToastrService,private userSer:UserService) { }
 
   ngOnInit(): void {
-   this.reloadData();
+    this.tokenValue =  localStorage.getItem("token");
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+            this.reloadData();
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
   }
 
   reloadData(){

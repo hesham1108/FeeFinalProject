@@ -79,14 +79,14 @@ export class DepartmentService{
   getSingleDepartment(id:number): Observable<any>{
     return this.http.get(`${this.departmentUrl}/${id}`);
   }
-  postDepartment(obj:{id?:number , name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string , image:string}|Object):Observable<Object>
+  postDepartment(obj:{headId:string , name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string , image:string}|Object):Observable<Object>
   {
     return this.http.post(`${this.departmentUrl}`,obj, { headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   }) } );
   }
-  putDepartment(obj:{id?:number,name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string, image:string}|Object):Observable<Object>{
+  putDepartment(obj:{id?:number,headId:string ,name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string, image:string}|Object):Observable<Object>{
    return this.http.put(`${this.departmentUrl}`, obj, { headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
