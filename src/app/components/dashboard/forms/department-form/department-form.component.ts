@@ -49,6 +49,8 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
     this.userSer.getUsers().subscribe(
       (res)=>{
         this.users = res;
+        console.log(res);
+
       },
       (error)=>{
         this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
@@ -58,7 +60,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
     );
     this.userSet={
       idField: 'id',
-      textField:'arabicName',
+      textField:'userName',
       singleSelection:true,
       searchPlaceholderText:'ابحث عن المستخدم',
       allowSearchFilter: true,
@@ -85,7 +87,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
               this.departmentForm.get('image').setValue(this.department.image );
               for(let u of this.users){
                 if(u.id == this.departmentForm.departmentID){
-                  this.departmentForm.get('headId').setValue([{id:u.id , arabicName:u.arabicName}]);
+                  this.departmentForm.get('headId').setValue([{id:u.id , userName:u.userName}]);
                 }
               }
               this.imgSrc = this.department.image as string;
