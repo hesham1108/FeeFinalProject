@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AboutComponent } from './components/about/about.component';
 import { AllEventsComponent } from './components/all-events/all-events.component';
 import { EventComponent } from './components/all-events/event/event.component';
@@ -17,12 +16,12 @@ import { ExamFormComponent } from './components/dashboard/forms/exam-form/exam-f
 import { NewsFormComponent } from './components/dashboard/forms/news-form/news-form.component';
 import { MainBarFormComponent } from './components/dashboard/forms/page-form/main-bar-form/main-bar-form.component';
 import { PageFormComponent } from './components/dashboard/forms/page-form/page-form.component';
+import { PermissionFormComponent } from './components/dashboard/forms/permission-form/permission-form.component';
 import { PrivilageFormComponent } from './components/dashboard/forms/privilage-form/privilage-form.component';
 import { ResultFormComponent } from './components/dashboard/forms/result-form/result-form.component';
 import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
 import { SubjectFormComponent } from './components/dashboard/forms/subject-form/subject-form.component';
 import { TableFormComponent } from './components/dashboard/forms/table-form/table-form.component';
-import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
 import { UserFormComponent } from './components/dashboard/forms/user-form/user-form.component';
 import { AllPrivilagesComponent } from './components/dashboard/helpers/all-privilages/all-privilages.component';
 import { CouncilTableComponent } from './components/dashboard/helpers/council-table/council-table.component';
@@ -33,7 +32,6 @@ import { LabsTableComponent } from './components/dashboard/helpers/labs-table/la
 import { MainBarTableComponent } from './components/dashboard/helpers/main-bar-table/main-bar-table.component';
 import { NewsTableComponent } from './components/dashboard/helpers/news-table/news-table.component';
 import { PageTableComponent } from './components/dashboard/helpers/page-table/page-table.component';
-import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
 import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
 import { SubjectTableComponent } from './components/dashboard/helpers/subject-table/subject-table.component';
 import { TablesTableComponent } from './components/dashboard/helpers/tables-table/tables-table.component';
@@ -60,7 +58,7 @@ const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:"home", component:HomeComponent},
   {path:"search", component: SearchComponent},
-  {path:'myprofile', component:MyProfileComponent},
+  {path:'myprofile/:id', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
   {path:'departments/:id',component: DepartmentsComponent,  children:[
     {path:'about/:id' , component:AboutDepartmentComponent },
@@ -100,13 +98,12 @@ const routes: Routes = [
     {path: 'addCouncil/:id' , component:CouncilFormComponent},
     {path: 'addSubDepend' , component:SubDependFormComponent},
     {path: 'addSubDepend/:sid/:did' , component:SubDependFormComponent},
-    {path: 'addPostion' , component:PostionFormComponent},
-    {path: 'addPostion/:id' , component:PostionFormComponent},
     {path: 'addTable' , component:TableFormComponent},
     {path: 'addTable/:id' , component:TableFormComponent},
     {path: 'addExam' , component:ExamFormComponent},
     {path: 'addExam/:id' , component:ExamFormComponent},
-    {path: 'addPrivilage' , component:PrivilageFormComponent},
+    {path: 'addRole' , component:PrivilageFormComponent},
+    {path: 'addPermission' , component:PermissionFormComponent},
     {path: 'contact' , component:ContactEmailComponent},
     {path: 'addMainBar' , component:MainBarFormComponent},
     {path: 'addMainBar/:id' , component:MainBarFormComponent},
@@ -118,11 +115,10 @@ const routes: Routes = [
   {path:'subjectsTable',component: SubjectTableComponent},
   {path:'departmentTable',component: DepartmentTableComponent},
   {path:'usersTable',component:UsersTableComponent},
-  {path:'allPrivilages',component:AllPrivilagesComponent},
+  {path:'allRoles',component:AllPrivilagesComponent},
   {path:'labsTable',component:LabsTableComponent},
   {path:'councilTable',component:CouncilTableComponent},
   {path:'subDependTable',component:SubDependTableComponent},
-  {path:'postionTable', component:PostionTableComponent},
   {path:'Tables', component:TablesTableComponent},
   {path:'examTable' , component: ExamTableComponent},
   {path:'mainBarTable' , component: MainBarTableComponent},

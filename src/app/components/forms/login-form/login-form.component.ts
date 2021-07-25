@@ -12,6 +12,8 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  user:{}|any = {};
+  roles:any[]=[];
   loginForm:any;
   load:boolean=false;
   role:string|any;
@@ -43,13 +45,19 @@ export class LoginFormComponent implements OnInit {
           if(res['success']){
             // we recieve the token here
             var authToken = res['token'];
-            // see the role
-            console.log(atob(authToken.split('.')[1]));
             // store the token value on the localstorage to easly use it again
             localStorage.setItem("token",authToken);
             this.profileSer.login.next(true);
             this.taostr.success('تم تسجيل الدخول بنجاح');
-            this.router.navigate(['home']);
+            // see the role
+            this.user = JSON.parse(atob(authToken.split('.')[1]));
+            this.roles = this.user.role;
+            console.log(this.roles);
+            if(this.roles.includes('SuperAdmin') || this.roles.includes('Admin') ){
+              this.router.navigate(['dash']);
+            }else if(this.roles.includes('Student')){
+              this.router.navigate(['']);
+            }
           }
         this.load=false;
       },

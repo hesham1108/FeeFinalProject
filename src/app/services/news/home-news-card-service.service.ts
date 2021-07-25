@@ -29,10 +29,10 @@ export class HomeNewsCardServiceService  {
   getCardFromAllCards(id:number){
     return this.http.get(`${this.baseUrl}/${id}` , {observe:'response' , headers: this.headers});
   }
-  postNews(obj:{id?:number , title:string , createdAt: string , imagePath:string , description:string , newsSubImages:any[]}): Observable<Object> {
+  postNews(obj:{ title:string , imagePath:string , description:string , newsSubImages:any[]}): Observable<Object> {
     return this.http.post(`${this.baseUrl}`,obj , {headers:this.headers});
   }
-  putNews(obj:{id?:number,title:string , createdAt: string , imagePath:string , description:string}):Observable<Object>{
+  putNews(obj:{id?:number,title:string ,  imagePath:string , description:string}):Observable<Object>{
    return this.http.put(`${this.baseUrl}`, obj, {headers:this.headers});
   }
   deleteNews(id:number):Observable<any> {

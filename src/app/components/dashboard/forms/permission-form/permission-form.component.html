@@ -1,0 +1,48 @@
+<div class="col-sm-12" dir="rtl" *ngIf="!load">
+
+    <!-- Labs Form -->
+    <form [formGroup]="permissionForm" (ngSubmit)="onSubmit()">
+        <!-- roleId -->
+        <div class="row">
+            <div class="col-sm-3" style="text-align: right;">
+                <label for="roleId">الدور</label> :
+            </div>
+            <ng-multiselect-dropdown class="col-md-7" [placeholder]="'اختر الدور'" [settings]="rolesSet" [data]="roles" formControlName="roleId" id="roleId" (onSelect)="onSelect($event)" (onDeSelect)="onDeSelect()">
+            </ng-multiselect-dropdown>
+            <span class="error col-sm-2" *ngIf="permissionForm.get('roleId').invalid && permissionForm.get('roleId').touched">
+                  <span class="error" *ngIf="permissionForm.get('roleId').errors['required']">
+                    رجاء اختر الدور
+                  </span>
+            </span>
+        </div>
+        <br>
+        <!-- <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-3" class="b1" (click)="checkAll()">
+                تحديد الكل
+            </div>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3" class="b2">
+                إلغاء تحديد الكل
+            </div>
+        </div> -->
+        <br>
+        <!-- permissions -->
+        <div class="row justify-content-center">
+            <div class="col-sm-6" *ngFor="let p of selectedPer;let i= index" style="border: 1px solid #000;padding: 2%;word-wrap: break-word;">
+                <div class="row">
+                    <div class="col-sm-10" style="word-wrap: break-word;"> {{p.displayValue}}</div>
+                    <div class="col-sm-2 ">
+                        <input type="checkbox" [value]="p.displayValue" id="in" class="check" [checked]="p.isSelected" (change)="onCheckboxChange($event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- submit -->
+        <div class="form-group row justify-content-center" style="margin-top:8%;">
+            <button type="submit" class="submit-btn" id="submitLab" [disabled]="permissionForm.invalid">تأكيد</button>
+        </div>
+    </form>
+</div>
+
+<app-loader *ngIf="load"></app-loader>

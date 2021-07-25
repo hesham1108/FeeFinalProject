@@ -20,8 +20,10 @@ export class AllPrivilagesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userSer.getPrivilage().subscribe(
+    this.userSer.getRoles().subscribe(
       (res)=>{
+        console.log(res);
+
         this.privilages = res.reverse();
         this.load=false;
       },

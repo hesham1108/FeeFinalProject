@@ -90,26 +90,20 @@
                         </ul>
                     </div>
                 </li>
-
-                <!-- المناصب الإدارية -->
+                <!-- roles -->
                 <li>
-                    <i class="fa fa-caret-left "></i> المناصب الإدارية
+                    <i class="fa fa-caret-left "></i> الأدوار
                     <div id="drop">
                         <ul>
-                            <li id="dropi" (click)="goToOut('postionTable')">كل المناصب </li>
-                            <li id="dropi" (click)="goTo('addPostion')"> إضافة منصب جديد </li>
+                            <li id="dropi" (click)="goToOut('allRoles')">كل الأدوار</li>
+                            <li id="dropi" (click)="goTo('addRole')">إضافة دور جديد</li>
                         </ul>
                     </div>
                 </li>
-                <!-- النتائج -->
-                <li>
-                    <i class="fa fa-caret-left "></i> النتائج
-                    <div id="drop">
-                        <ul>
-                            <li id="dropi" (click)="goToOut('resultTable')">كل النتائج </li>
-                            <li id="dropi" (click)="goTo('addResult')"> إضافة نتيجة الجديدة </li>
-                        </ul>
-                    </div>
+                <!-- permissions -->
+                <li (click)="goTo('addPermission')">
+                    <i class="fa fa-caret-left "></i> الصلاحيات
+
                 </li>
                 <!-- الصفحات -->
                 <li>
@@ -123,6 +117,27 @@
                         </ul>
                     </div>
                 </li>
+                <!-- المناصب الإدارية -->
+                <!-- <li>
+                    <i class="fa fa-caret-left "></i> المناصب الإدارية
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('postionTable')">كل المناصب </li>
+                            <li id="dropi" (click)="goTo('addPostion')"> إضافة منصب جديد </li>
+                        </ul>
+                    </div>
+                </li> -->
+                <!-- النتائج -->
+                <li>
+                    <i class="fa fa-caret-left "></i> النتائج
+                    <div id="drop">
+                        <ul>
+                            <li id="dropi" (click)="goToOut('resultTable')">كل النتائج </li>
+                            <li id="dropi" (click)="goTo('addResult')"> إضافة نتيجة الجديدة </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <!-- الجداول -->
                 <!-- جدول المحاضرات -->
                 <li>
@@ -144,15 +159,8 @@
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <i class="fa fa-caret-left "></i> الصلاحيات
-                    <div id="drop">
-                        <ul>
-                            <li id="dropi" (click)="goToOut('allPrivilages')">كل الصلاحيات </li>
-                            <li id="dropi" (click)="goTo('addPrivilage')"> إضافة صلاحية جديدة </li>
-                        </ul>
-                    </div>
-                </li>
+
+
                 <li>
                     <i class="fa fa-caret-left "></i> تسجيل المواد للطلاب
                     <div id="drop">

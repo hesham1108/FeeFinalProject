@@ -29,7 +29,6 @@ export class NewsFormComponent implements OnInit , OnDestroy{
     ) {
     this.newsFrom = this.fb.group({
       title: [null , [Validators.required ]],
-      date:[null , [Validators.required ]],
       imagePath:[null,[Validators.required]],
       description:[null,[Validators.required]],
       newsSubImages:[null]
@@ -49,7 +48,6 @@ export class NewsFormComponent implements OnInit , OnDestroy{
               if(res.status == 200){
                 this.news = res.body;
                 this.newsFrom.get('title').setValue(this.news.title) ;
-                this.newsFrom.get('date').setValue(this.news.createdAt);
                 this.newsFrom.get('description').setValue(this.news.description);
                 this.newsFrom.get('imagePath').setValue(this.news.imagePath);
                 this.imgSrc = this.news.imagePath as string;
@@ -78,10 +76,9 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
   onSubmit(){
     this.load = true;
-    let dataToPost:{id?:number,title:string , createdAt: string , imagePath:string , description:string , newsSubImages:any[]} = {
+    let dataToPost:{id?:number,title:string , imagePath:string , description:string , newsSubImages:any[]} = {
       id : this.id,
       title : this.newsFrom.get('title').value,
-      createdAt: this.newsFrom.get('date').value,
       imagePath: this.newsFrom.get('imagePath').value,
       description : this.newsFrom.get('description').value,
       newsSubImages:this.newsFrom.get('newsSubImages').value

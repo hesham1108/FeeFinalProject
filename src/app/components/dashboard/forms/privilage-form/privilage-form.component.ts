@@ -39,7 +39,7 @@ export class PrivilageFormComponent implements OnInit {
     let dataToPost:{name:string}={
       name:this.privilageForm.get('name').value
     };
-    this.userSer.postPrivilage(dataToPost).subscribe(
+    this.userSer.postRole(dataToPost).subscribe(
       (res)=>{
         console.log(res);
         this.toastr.success('لقد تم إضافة الصلاحية بنجاح');

@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class LoginServiceService {
 
+  userId = new Subject<string>();
   login = new Subject<boolean>() ;
   private loginUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/AuthManagement/Login';
 
@@ -14,5 +15,15 @@ export class LoginServiceService {
 
   postLogin(obj:{email:string , password:string}|Object):Observable<Object>{
     return this.http.post(`${this.loginUrl}`,obj);
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+  }
+  isUserLoggedIn(): boolean {
+    if (localStorage.getItem("token") != null) {
+      return true;
+    }
+    return false;
   }
 }

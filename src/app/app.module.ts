@@ -84,8 +84,6 @@ import { CouncilTableComponent } from './components/dashboard/helpers/council-ta
 import { LabsTableComponent } from './components/dashboard/helpers/labs-table/labs-table.component';
 import { SubDependFormComponent } from './components/dashboard/forms/subject-form/sub-depend-form/sub-depend-form.component';
 import { SubDependTableComponent } from './components/dashboard/helpers/sub-depend-table/sub-depend-table.component';
-import { PostionTableComponent } from './components/dashboard/helpers/postion-table/postion-table.component';
-import { PostionFormComponent } from './components/dashboard/forms/user-form/postion-form/postion-form.component';
 import { TableFormComponent } from './components/dashboard/forms/table-form/table-form.component';
 import { TablesTableComponent } from './components/dashboard/helpers/tables-table/tables-table.component';
 
@@ -111,6 +109,7 @@ import { MainBarTableComponent } from './components/dashboard/helpers/main-bar-t
 import { MainBarFilter } from './components/dashboard/helpers/main-bar-table/mainBarFilter.pipe';
 import { PageFilter } from './components/dashboard/helpers/page-table/pageFilter.pipe';
 import { NewPageComponent } from './components/new-page/new-page.component';
+import { PermissionFormComponent } from './components/dashboard/forms/permission-form/permission-form.component';
 
 
 @NgModule({
@@ -181,8 +180,6 @@ import { NewPageComponent } from './components/new-page/new-page.component';
     LabsTableComponent,
     SubDependFormComponent,
     SubDependTableComponent,
-    PostionTableComponent,
-    PostionFormComponent,
     TableFormComponent,
     TablesTableComponent,
     ExamTableComponent,
@@ -203,7 +200,8 @@ import { NewPageComponent } from './components/new-page/new-page.component';
     MainBarTableComponent,
     MainBarFilter,
     PageFilter,
-    NewPageComponent
+    NewPageComponent,
+    PermissionFormComponent
 
 
   ],
@@ -226,7 +224,7 @@ import { NewPageComponent } from './components/new-page/new-page.component';
 
   ],
   exports: [],
-  providers: [ProfService , ProfileService ],
+  providers: [ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

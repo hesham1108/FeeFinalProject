@@ -35,20 +35,20 @@ export class DashboardComponent implements OnInit {
 
     if(this.tokenValue){
      this.closeleftmenu();
-    if(this.router.url == '/dash'){
-      this.newsSer.nothing.next(true);
-    }else{
-      this.newsSer.nothing.next(false);
-    }
-
-    this.newsSer.nothing.subscribe(
-      (data)=>{
-
-        this.nothing = data;
+      if(this.router.url == '/dash'){
+        this.newsSer.nothing.next(true);
+      }else{
+        this.newsSer.nothing.next(false);
       }
+
+      this.newsSer.nothing.subscribe(
+        (data)=>{
+
+          this.nothing = data;
+        }
     );}else{
       this.toastr.error('غير مسموح لك بالدخول هنا ');
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
     }
   }
 

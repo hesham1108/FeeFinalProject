@@ -19,13 +19,12 @@ export class LeftNavComponent implements OnInit {
       ) {}
 
   ngOnInit(): void {
+
     this.profileSer.login.subscribe(
       (data:boolean)=>{
-        if(data && this.tokenValue){
+        if(this.tokenValue){
           this.login = data;
         }
-
-
       }
     );
     this.profileSer.role.subscribe(

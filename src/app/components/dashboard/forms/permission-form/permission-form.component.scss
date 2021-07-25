@@ -16,6 +16,7 @@ select {
 .error {
     // margin-top: 2%;
     // display: inline;
+    padding: 1%;
     color: red;
     font-size: medium;
     text-align: right;
@@ -45,4 +46,43 @@ select {
     padding-right: 5%;
     padding-left: 5%;
     font-weight: bold;
+}
+
+.text {
+    text-align: right;
+    font-size: large;
+    font-weight: bold;
+    padding: 1%;
+}
+
+.check:hover {
+    cursor: pointer;
+}
+
+.b1 {
+    text-align: center;
+    word-wrap: break-word;
+    padding: 2%;
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgb(7, 81, 218);
+}
+
+.b1:hover {
+    cursor: pointer;
+    background-color: rgb(26, 97, 228);
+}
+
+.b2 {
+    text-align: center;
+    word-wrap: break-word;
+    padding: 2%;
+    border-radius: 5px;
+    color: #fff;
+    background-color: crimson;
+}
+
+.b2:hover {
+    cursor: pointer;
+    background-color: rgb(230, 64, 97);
 }
