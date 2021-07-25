@@ -186,24 +186,17 @@ export class NewsFormComponent implements OnInit , OnDestroy{
   }
 
   onSubImagesChange(event:any){
-
-
     if(event.target.files && event.target.files.length){
       const file = event.target.files;
-
-
       for(let f of file){
         let reader = new FileReader();
         reader.readAsDataURL(f);
-
         reader.onload = ()=>{
           this.subImages.push(reader.result);
-
         }
       }
       this.newsFrom.patchValue({
         newsSubImages:this.subImages
       })
-
   }
   }}

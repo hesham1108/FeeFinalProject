@@ -54,8 +54,6 @@ export class UserService {
   }
 
   getSingleUser(token:string):Observable<any>{
-    console.log(token);
-
     return this.http.get(`${this.userByIdUrl}/${localStorage.getItem('userId')}`,{headers: new HttpHeaders({
       'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`

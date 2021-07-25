@@ -3,12 +3,14 @@
         <div class="top-card col-sm-12">
             <div class="row">
                 <div class="col-sm-2">
-                    <img src="https://images.unsplash.com/photo-1537816329877-61e16367d627?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njd8fHByb2ZpbGV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="الصورة الشخصية">
+                    <img [src]="user.userData.imagePath" alt="الصورة الشخصية">
                 </div>
                 <div class="col-sm-1" style="padding: 0;"></div>
                 <div class="col-sm-8">
-                    <p>اسم المستخدم</p>
-                    <p>رتبة المستخدم و وظيفته</p>
+                    <p>{{user.userData.arabicName}}</p>
+                    <p> {{user.email}} </p>
+                    <p> {{user.department.name}} </p>
+                    <p> {{user.userData.title}} </p>
                 </div>
             </div>
         </div>
@@ -17,22 +19,20 @@
         <div class="tabs col-sm-12">
             <div class="row">
                 <div class="tab col-sm-2">
-                    عنوان الجزء
+                    البيانات
                 </div>
                 <div class="tab col-sm-2">
-                    عنوان الجزء
+                    المواد
+                </div>
+
+                <div class="tab col-sm-2">
+                    جدول المحاضرات
                 </div>
                 <div class="tab col-sm-2">
-                    عنوان الجزء
+                    جدول الامتحانات
                 </div>
                 <div class="tab col-sm-2">
-                    عنوان الجزء
-                </div>
-                <div class="tab col-sm-2">
-                    عنوان الجزء
-                </div>
-                <div class="tab col-sm-2">
-                    عنوان الجزء
+                    الدرجات
                 </div>
             </div>
         </div>

@@ -69,15 +69,13 @@ export class LoginFormComponent implements OnInit {
               (res)=>{
                 console.log('hey user :-');
                 console.log(res);
-
-
               }
             );
             //============================
 
             if(this.roles.includes('SuperAdmin') || this.roles.includes('Admin') ){
               this.router.navigate(['dash']);
-            }else if(this.roles.includes('Student')){
+            }else {
               this.router.navigate(['']);
             }
           }

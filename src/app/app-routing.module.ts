@@ -49,6 +49,7 @@ import { SubjectsComponent } from './components/departments/dep-comps/subjects/s
 import { DepartmentsComponent } from './components/departments/departments.component';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { HomeComponent } from './components/home/home.component';
+import { NewPageComponent } from './components/new-page/new-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
 import { ProfComponent } from './components/profiles/prof/prof.component';
@@ -58,8 +59,10 @@ const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:"home", component:HomeComponent},
   {path:"search", component: SearchComponent},
-  {path:'myprofile/:id', component:MyProfileComponent},
+  {path:'myprofile', component:MyProfileComponent},
   {path:"contactus", component: ContactUsComponent},
+
+  {path:"newPage/:id", component:NewPageComponent},
   {path:'departments/:id',component: DepartmentsComponent,  children:[
     {path:'about/:id' , component:AboutDepartmentComponent },
     {path:'boss/:id' , component:BossOfDepartmentComponent},

@@ -10,6 +10,7 @@ export class PageService {
 
   private mainBarUrl ='http://ahmed1500019-001-site1.dtempurl.com/api/MainBar';
   private pageUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Pages';
+  private allpagsenyMainIdUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/Pages/GetPageByMainBarId/0?mainPageId=';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
@@ -80,4 +81,10 @@ export class PageService {
   }) });
   }
 
+  getPagesbyMainId(id:number):Observable<any>{
+    return this.http.get(`${this.allpagsenyMainIdUrl}${id}`,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
+  }
 }
