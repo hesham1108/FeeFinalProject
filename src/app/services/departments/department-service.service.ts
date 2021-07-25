@@ -29,13 +29,22 @@ export class DepartmentService{
     return this.http.get(`${this.depCouncil}/${id}`);
   }
   postDepCouncil(obj:{id?:number,title:string,details:string,departmentID:number}|Object):Observable<Object>{
-    return this.http.post(`${this.depCouncil}`, obj, { headers: this.headers });
+    return this.http.post(`${this.depCouncil}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   putDepCouncil(obj:{id?:number,title:string,details:string,departmentID:number}|Object):Observable<Object>{
-    return this.http.put(`${this.depCouncil}`, obj, { headers: this.headers });
+    return this.http.put(`${this.depCouncil}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   deleteDepCouncil(id:number):Observable<any> {
-    return this.http.delete(`${this.depCouncil}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.depCouncil}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
 
   // Labs
@@ -46,13 +55,22 @@ export class DepartmentService{
     return this.http.get(`${this.depLabUrl}/${id}`);
   }
   postDepLab(obj:{id?:number,name:string,roomNum:number,description:string,departmentId:number}|Object):Observable<Object>{
-    return this.http.post(`${this.depLabUrl}`, obj, { headers: this.headers });
+    return this.http.post(`${this.depLabUrl}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   putDepLab(obj:{id?:number,name:string,roomNum:number,description:string,departmentId:number}|Object):Observable<Object>{
-    return this.http.put(`${this.depLabUrl}`, obj, { headers: this.headers });
+    return this.http.put(`${this.depLabUrl}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   deleteDepLab(id:number):Observable<any> {
-    return this.http.delete(`${this.depLabUrl}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.depLabUrl}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   // Departments
   getAllDepartments():Observable<any>{
@@ -63,13 +81,22 @@ export class DepartmentService{
   }
   postDepartment(obj:{id?:number , name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string , image:string}|Object):Observable<Object>
   {
-    return this.http.post(`${this.departmentUrl}`,obj, { headers: this.headers } );
+    return this.http.post(`${this.departmentUrl}`,obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) } );
   }
   putDepartment(obj:{id?:number,name:string , description: string , vision:string , massage:string , goals:string , headSpeech:string, image:string}|Object):Observable<Object>{
-   return this.http.put(`${this.departmentUrl}`, obj, { headers: this.headers });
+   return this.http.put(`${this.departmentUrl}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   deleteDepartment(id:number):Observable<any> {
-    return this.http.delete(`${this.departmentUrl}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.departmentUrl}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
 
 

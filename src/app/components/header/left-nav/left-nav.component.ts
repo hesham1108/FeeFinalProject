@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginServiceService } from 'src/app/services/login/login-service.service';
 
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -15,7 +16,8 @@ export class LeftNavComponent implements OnInit {
   constructor(
      private router: Router ,
       private route: ActivatedRoute,
-      private profileSer: ProfileService
+      private profileSer: ProfileService,
+      private logSer:LoginServiceService
       ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class LeftNavComponent implements OnInit {
 
   logOut(){
     this.profileSer.login.next(false);
+    this.logSer.logout();
     this.goTo('home');
   }
 }

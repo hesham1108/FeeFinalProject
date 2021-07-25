@@ -26,14 +26,23 @@ export class EventCardService {
   }
   postEvent(obj:{id?:number , title:string ,  imagePath:string , description:string}|Object):Observable<Object>
   {
-    return this.http.post(`${this.baseUrl}`,obj, { headers: this.headers });
+    return this.http.post(`${this.baseUrl}`,obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   putEvent(obj:{id?:number,title:string ,  imagePath:string , description:string}|Object):Observable<Object>{
-   return this.http.put(`${this.baseUrl}`, obj, { headers: this.headers });
+   return this.http.put(`${this.baseUrl}`, obj, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
   deleteEvent(id:number):Observable<any> {
 
-    return this.http.delete(`${this.baseUrl}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.baseUrl}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
 
 

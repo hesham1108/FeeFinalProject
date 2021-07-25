@@ -19,6 +19,7 @@ export class LoginServiceService {
 
   logout(){
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
   }
   isUserLoggedIn(): boolean {
     if (localStorage.getItem("token") != null) {

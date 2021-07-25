@@ -18,36 +18,66 @@ export class PageService {
   constructor(private http:HttpClient){}
   //mainBar
   postMainBar(obj:{title:string }|Object):Observable<Object>{
-    return this.http.post(`${this.mainBarUrl}`,obj , {headers:this.headers});
+    return this.http.post(`${this.mainBarUrl}`,obj , {headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   putMainBar(obj:{id:number,title:string}|Object):Observable<Object>{
-    return this.http.put(`${this.mainBarUrl}`,obj,{headers:this.headers});
+    return this.http.put(`${this.mainBarUrl}`,obj,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   getMainBar():Observable<any>{
-    return this.http.get(`${this.mainBarUrl}`,{headers:this.headers});
+    return this.http.get(`${this.mainBarUrl}`,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   getSingleMainBar(id:number):Observable<any>{
-    return this.http.get(`${this.mainBarUrl}/${id}`,{headers:this.headers})
+    return this.http.get(`${this.mainBarUrl}/${id}`,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })})
   }
   deleteMainBar(id:number):Observable<any> {
-    return this.http.delete(`${this.mainBarUrl}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.mainBarUrl}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
 
   //pages
   postPage(obj:{title:string , image:string , descriptions:string ,mainBarId:number}|Object):Observable<Object>{
-    return this.http.post(`${this.pageUrl}`,obj , {headers:this.headers});
+    return this.http.post(`${this.pageUrl}`,obj , {headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   putPage(obj:{id:number,title:string, image:string , descriptions:string,mainBarId:number }|Object):Observable<Object>{
-    return this.http.put(`${this.pageUrl}`,obj,{headers:this.headers});
+    return this.http.put(`${this.pageUrl}`,obj,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   getPages():Observable<any>{
-    return this.http.get(`${this.pageUrl}`,{headers:this.headers});
+    return this.http.get(`${this.pageUrl}`,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })});
   }
   getPage(id:number):Observable<any>{
-    return this.http.get(`${this.pageUrl}/${id}`,{headers:this.headers})
+    return this.http.get(`${this.pageUrl}/${id}`,{headers:new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  })})
   }
   deletePage(id:number):Observable<any> {
-    return this.http.delete(`${this.pageUrl}/${id}`, { headers: this.headers });
+    return this.http.delete(`${this.pageUrl}/${id}`, { headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem("token")}`
+  }) });
   }
 
 }

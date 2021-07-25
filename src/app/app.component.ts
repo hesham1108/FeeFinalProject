@@ -8,6 +8,7 @@ export class AppComponent implements OnInit {
   load:boolean = true;
   constructor(){}
   ngOnInit(){
-    localStorage.setItem("token",'');
+    // localStorage.setItem("token",'');
+    // localStorage.setItem("userId" , '');
   }
 }

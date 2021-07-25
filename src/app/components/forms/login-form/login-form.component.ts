@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { LoginServiceService } from 'src/app/services/login/login-service.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-login-form',
@@ -22,7 +23,8 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private profileSer:ProfileService,
     private taostr: ToastrService,
-    private logSer:LoginServiceService
+    private logSer:LoginServiceService,
+    private userSer:UserService
     ) {
       this.loginForm = this.fb.group({
         email:[null , [Validators.required , Validators.email]],
@@ -51,8 +53,28 @@ export class LoginFormComponent implements OnInit {
             this.taostr.success('تم تسجيل الدخول بنجاح');
             // see the role
             this.user = JSON.parse(atob(authToken.split('.')[1]));
+            console.log(this.user);
+            console.log(authToken);
+
+
+
             this.roles = this.user.role;
             console.log(this.roles);
+            console.log(this.user.Id);
+
+
+            localStorage.setItem("userId" , this.user.Id);
+            //-===========================
+            this.userSer.getSingleUser(authToken).subscribe(
+              (res)=>{
+                console.log('hey user :-');
+                console.log(res);
+
+
+              }
+            );
+            //============================
+
             if(this.roles.includes('SuperAdmin') || this.roles.includes('Admin') ){
               this.router.navigate(['dash']);
             }else if(this.roles.includes('Student')){

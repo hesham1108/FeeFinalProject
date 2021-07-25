@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoginServiceService } from 'src/app/services/login/login-service.service';
 import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card-service.service';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 
@@ -19,7 +20,8 @@ export class DashboardComponent implements OnInit {
     private route: ActivatedRoute ,
     private newsSer: HomeNewsCardServiceService,
     private profileSer: ProfileService,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private logSer:LoginServiceService
       ) {
         this.newsSer.nothing.subscribe(
           (data)=>{
@@ -77,6 +79,7 @@ export class DashboardComponent implements OnInit {
   }
   logOut(){
     this.profileSer.login.next(false);
+    this.logSer.logout();
     this.router.navigate(['home']);
   }
   openRegisterForm(){

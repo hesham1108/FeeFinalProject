@@ -12,7 +12,7 @@ import { HomeNewsCardServiceService } from 'src/app/services/news/home-news-card
 export class ContactEmailComponent implements OnInit {
   contact:any;
   load = true;
-  email:any;
+  myemail:any;
   constructor(private fb:FormBuilder , private contSer: ContactService , private toastr:ToastrService , private newsSer:HomeNewsCardServiceService) {
     this.contact = this.fb.group({
       email:[null,[Validators.required , Validators.email]]
@@ -26,7 +26,7 @@ export class ContactEmailComponent implements OnInit {
   reloadData(){
     this.contSer.getEmail().subscribe(
       (res)=>{
-        this.email = res
+        this.myemail = res
         console.log(res);
         this.contact.reset();
         this.load = false;
@@ -40,7 +40,9 @@ export class ContactEmailComponent implements OnInit {
   }
   onSubmit(){
     this.load = true;
-    this.contSer.postEmail({email: this.contact.get('email').value}).subscribe(
+    console.log(this.contact.get('email').value);
+
+    this.contSer.postEmail(this.contact.get('email').value).subscribe(
       (res)=>{
         this.toastr.success('تم إضافة البريد بنجاح ');
         this.reloadData();
