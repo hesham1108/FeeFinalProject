@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { SubjectService } from 'src/app/services/subjects/subject-service.service';
 import { Subject } from 'src/app/services/subjects/subject.model';
+import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
   selector: 'app-sub-depend-table',
@@ -12,44 +14,66 @@ import { Subject } from 'src/app/services/subjects/subject.model';
 })
 export class SubDependTableComponent implements OnInit {
 
-  subDepends:Observable<{subjectID:number , dependID:number , subject:Subject , depend:Subject}[]>|any;
+  subDepends:Observable<any[]>|any;
   load:boolean = true;
   delete:boolean = false;
   deleteId:number|any;
   search ='';
+  tokenValue:string|any;
+  subjectList:any[]=[];
+  dropdownSettings:IDropdownSettings={};
   constructor(
     private router:Router,
     private toastr:ToastrService,
-    private subSer:SubjectService
+    private subSer:SubjectService,
+    private userSer:UserService
   ) { }
 
   ngOnInit(): void {
-    this.reloadData();
+
+    this.tokenValue =  localStorage.getItem("token");
+    if(this.tokenValue){
+      this.userSer.getSingleUser(this.tokenValue).subscribe(
+        (res)=>{
+          if(res.roles.includes('Admin')||res.roles.includes('SuperAdmin')){
+            this.reloadData();
+          }else{
+            this.toastr.error('غير مسموح لك بالدخول هنا ');
+            this.router.navigate(['']);
+          }
+        }
+      )
+     }else{
+      this.toastr.error('غير مسموح لك بالدخول هنا ');
+      this.router.navigate(['']);
+    }
   }
   reloadData(){
-    this.delete = false;
-    document.documentElement.scrollTop = 0;
-    this.subSer.getAllSubDepends().subscribe(
+    this.subSer.getAllSubjects().subscribe(
       (res)=>{
-        this.subDepends = res.reverse();
-        this.subSer.getSingleSubject(this.subDepends.subjectID).subscribe(
-          (res0)=>{
-            this.subDepends.subject = res0;
-          }
-        );
-        this.subSer.getSingleSubject(this.subDepends.dependID).subscribe(
-          (res1)=>{
-            this.subDepends.depend = res1;
-          }
-        );
-        this.load=false;
+        this.subjectList = res;
+        this.load = false;
       },
       (error)=>{
-        this.toastr.error('لقد حدث خطأ أثناء تحميل المتطلبات');
-        this.toastr.info('حاول مرة أخرى');
-        this.load=false;
+        this.toastr.error('لقد حدث خطأ أثناء تحميل المواد');
+        this.toastr.info('حاول مرة أخري');
+        this.load = false;
       }
     );
+    this.dropdownSettings= {
+      idField: 'id',
+      textField:'name',
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن المادة',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true,
+      closeDropDownOnSelection:true,
+      allowRemoteDataSearch:true
+    };
+    this.delete = false;
+    document.documentElement.scrollTop = 0;
+
   }
   ondelete(id:number){
     this.delete = true;
@@ -84,4 +108,23 @@ export class SubDependTableComponent implements OnInit {
     this.router.navigate([dest]);
   }
 
+  onSelect(event:any){
+    this.load = true
+    console.log(event.id);
+    let d :number[]|any;
+    let ds:any[] = [];
+    this.subSer.getAllSubDepends(event.id).subscribe(
+      (res)=>{
+        this.subDepends = res.dependOn;
+        this.load=false;
+      },
+      (error)=>{
+        this.toastr.error('لقد حدث خطأ أثناء تحميل المتطلبات');
+        this.toastr.info('حاول مرة أخرى');
+        this.load=false;
+      }
+    );
+
+  }
+  // (onSelect)="onItemSelect($event)"
 }

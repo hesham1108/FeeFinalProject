@@ -30,7 +30,7 @@ export class CouncilTableComponent implements OnInit {
     if(this.tokenValue){
       this.userSer.getSingleUser(this.tokenValue).subscribe(
         (res)=>{
-          if(res.role.includes('Admin')||res.role.includes('SuperAdmin')){
+          if(res.roles.includes('Admin')||res.roles.includes('SuperAdmin')){
 
             this.reloadData();
           }else{

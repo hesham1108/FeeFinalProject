@@ -59,6 +59,12 @@ export class UserService {
     'Authorization': `Bearer ${token}`
     })});
   }
+  getUBI(id:string):Observable<any>{
+    return this.http.get(`${this.specificUserUrl}/${id}`,{headers:new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    })});
+  }
 
   updateUser(obj:{
     arabicName:string,

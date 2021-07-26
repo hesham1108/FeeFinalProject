@@ -12,6 +12,7 @@ export class SubjectService {
   Subjects: Subject[] = [];
   private subjectUrl ='http://ahmed1500019-001-site1.dtempurl.com/api/Subject';
   private subDependUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/SubjectDepedance';
+  private getDepUrl = 'http://ahmed1500019-001-site1.dtempurl.com/api/SubjectDepedance?subjectId=';
   constructor(private http: HttpClient){}
 
   //subjects
@@ -44,26 +45,26 @@ export class SubjectService {
   })});
   }
   //subject dependance
-  getAllSubDepends():Observable<any>{
-    return this.http.get(`${this.subDependUrl}`,{headers:new HttpHeaders({
+  getAllSubDepends(subId:number):Observable<any>{
+    return this.http.get(`${this.getDepUrl}${subId}`,{headers:new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   })});
   }
-  getSingleSubDepend(sid:number , did:number): Observable<any>{
-    return this.http.get(`${this.subDependUrl}/${sid}/${did}`,{headers:new HttpHeaders({
+  getSingleSubDepend(id:number): Observable<any>{
+    return this.http.get(`${this.subDependUrl}/${id}`,{headers:new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   })});
   }
-  postSubDepend(obj:{subjectID:number , dependID:number , subject:any , dependOn:any }|Object):Observable<Object>
+  postSubDepend(obj:{subjectId:number , depndencesIds:number}|Object):Observable<Object>
   {
     return this.http.post(`${this.subDependUrl}`,obj,{headers:new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`
   })} );
   }
-  putSubDepend(obj:{subjectID:number , dependID:number }|Object):Observable<Object>{
+  putSubDepend(obj:{id:number,subjectID:number , dependID:number }|Object):Observable<Object>{
    return this.http.put(`${this.subDependUrl}`, obj,{headers:new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem("token")}`

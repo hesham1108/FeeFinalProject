@@ -110,6 +110,8 @@ import { MainBarFilter } from './components/dashboard/helpers/main-bar-table/mai
 import { PageFilter } from './components/dashboard/helpers/page-table/pageFilter.pipe';
 import { NewPageComponent } from './components/new-page/new-page.component';
 import { PermissionFormComponent } from './components/dashboard/forms/permission-form/permission-form.component';
+import { MySubComponent } from './components/profiles/my-profile/my-sub/my-sub.component';
+import { MyDataComponent } from './components/profiles/my-profile/my-data/my-data.component';
 
 
 @NgModule({
@@ -201,7 +203,9 @@ import { PermissionFormComponent } from './components/dashboard/forms/permission
     MainBarFilter,
     PageFilter,
     NewPageComponent,
-    PermissionFormComponent
+    PermissionFormComponent,
+    MySubComponent,
+    MyDataComponent
 
 
   ],

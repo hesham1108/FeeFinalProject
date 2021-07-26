@@ -22,7 +22,7 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
   edit:boolean =false;
   delete:boolean = false;
   department:Department|any;
-  users:any[]=[];
+  users:{id:string , name:string}[]=[];
   userSet:IDropdownSettings ={};
   constructor(
     private fb:FormBuilder,
@@ -45,12 +45,33 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
     })
   }
   ngOnInit(): void {
+    var temp:any[]=[];
+    this.users = [];
+
     this.newsSer.nothing.next(false);
     this.userSer.getUsers().subscribe(
       (res)=>{
-        this.users = res;
+        this.load = true;
+        // this.users = res;
         console.log(res);
+        for(let u of res){
+          this.userSer.getUBI(u.id).subscribe(
+            (data)=>{
+              if(data.roles.includes('Admin')){
+                if(data.userData.arabicName){
+                this.users.push({id:data.id , name:data.userData.arabicName});
+                console.log(this.users);
 
+                }else{
+                  this.users.push({id:data.id , name:data.email});
+                  console.log(this.users);
+
+                }
+              }
+            }
+          );
+        }
+        this.load = false;
       },
       (error)=>{
         this.toastr.error('حدث خطأ أثناء تحميل المستخدمين');
@@ -58,17 +79,8 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
         this.load= false;
       }
     );
-    this.userSet={
-      idField: 'id',
-      textField:'userName',
-      singleSelection:true,
-      searchPlaceholderText:'ابحث عن المستخدم',
-      allowSearchFilter: true,
-      itemsShowLimit: 3,
-      showSelectedItemsAtTop: true,
-      closeDropDownOnSelection:true,
-      allowRemoteDataSearch:true
-    }
+
+
     this.route.params.subscribe(
       (data)=>{
         if(data['id']){
@@ -86,8 +98,8 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
               this.departmentForm.get('bossWord').setValue(this.department.headSpeech);
               this.departmentForm.get('image').setValue(this.department.image );
               for(let u of this.users){
-                if(u.id == this.departmentForm.departmentID){
-                  this.departmentForm.get('headId').setValue([{id:u.id , userName:u.userName}]);
+                if(u.id == this.department.headId){
+                  this.departmentForm.get('headId').setValue([{id:u.id , arabicName:u.name}]);
                 }
               }
               this.imgSrc = this.department.image as string;
@@ -106,7 +118,17 @@ export class DepartmentFormComponent implements OnInit , OnDestroy {
         }
       }
     );
-
+    this.userSet={
+      idField: 'id',
+      textField:"name",
+      singleSelection:true,
+      searchPlaceholderText:'ابحث عن المستخدم',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true,
+      closeDropDownOnSelection:true,
+      allowRemoteDataSearch:true
+    }
   }
 
 

@@ -31,7 +31,7 @@
                 <label for="depend">تعتمد على</label> :
             </div>
             <div class="col-sm-7">
-                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="dropdownSettings" [data]="dependList" placeholder="اختر المادة" [disabled]="!subDependForm.get('subject').dirty || subDependForm.get('subject').invalid">
+                <ng-multiselect-dropdown formControlName="depend" id="depend" [settings]="SubdropdownSettings" [data]="dependList" placeholder="اختر المادة" [disabled]="!subDependForm.get('subject').dirty || subDependForm.get('subject').invalid">
                 </ng-multiselect-dropdown>
 
             </div>
@@ -69,4 +69,4 @@
 </div>
 
 <app-loader *ngIf="load"></app-loader>
-<app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteDepend(sid,did)"></app-confirm-deletion>
+<app-confirm-deletion *ngIf="delete" content="المتطلب" (cancel)="onCancel()" (res)="deleteDepend(id)"></app-confirm-deletion>

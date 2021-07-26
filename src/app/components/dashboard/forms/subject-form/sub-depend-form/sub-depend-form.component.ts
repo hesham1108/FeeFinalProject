@@ -18,10 +18,10 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   subjectList:Observable<Subject[]>|any = [];
   dependList:Observable<Subject[]>|any = [];
   dropdownSettings:IDropdownSettings = {};
+  SubdropdownSettings:IDropdownSettings = {};
   subject:any;
   subDependForm:any;
-  sid:number|any;
-  did:number|any;
+  id:number|any;
   load:boolean = false;
   edit:boolean = false;
   delete:boolean = false;
@@ -63,19 +63,28 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
       closeDropDownOnSelection:true,
       allowRemoteDataSearch:true
     };
+    this.SubdropdownSettings= {
+      idField: 'id',
+      textField:'name',
+      singleSelection:false,
+      searchPlaceholderText:'ابحث عن المادة',
+      allowSearchFilter: true,
+      itemsShowLimit: 3,
+      showSelectedItemsAtTop: true,
+      closeDropDownOnSelection:true,
+      allowRemoteDataSearch:true,
+    };
 
     this.route.params.subscribe(
       (data)=>{
-        if(data['sid']&&data['did']){
+        if(data['id']){
           this.edit = true;
-
-          this.sid = +data['sid'];
-          this.did = + data['did'];
-          this.subSer.getSingleSubDepend(this.sid , this.did).subscribe(
+          this.id = +data['sid'];
+          this.subSer.getSingleSubDepend(this.id).subscribe(
             (res)=>{
               this.subject = res;
               for(let s of this.subjectList){
-                if(s.id == this.subject.id){
+                if(s.id == this.subject.subjectID){
                   this.subDependForm.get('subject').setValue([{id:s.id , name:s.name}]);
                 }
                 if(s.id == this.subject.dependID){
@@ -95,27 +104,18 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
   onSubmit(){
     document.documentElement.scrollTop = 0;
     console.log(this.subDependForm.value);
-
-    this.load = true;
-     let subject:any;
-     let dep:any;
-     for(let s of this.subjectList){
-       if(s.id == +this.subDependForm.get('subject').value[0].id){
-         subject = s;
-       }
-       if(s.id == +this.subDependForm.get('depend').value[0].id){
-          dep = s;
-       }
-     }
-    let dataToPost:{subjectID:number , dependID:number , subject:any , dependOn:any} = {
-      subjectID:+this.subDependForm.get('subject').value[0].id,
-      dependID:+this.subDependForm.get('depend').value[0].id,
-      subject: subject,
-      dependOn: dep
-    };
+    var depends :number[] = [];
+    for( let i of this.subDependForm.get('depend').value){
+      depends.push(+i.id);
+    }
+    let dataToPost:{id?:number , subjectId:number , depndencesIds:number[]}={
+      id:this.id,
+      subjectId:+this.subDependForm.get('subject').value[0].id,
+      depndencesIds:depends
+    }
     console.log(dataToPost);
 
-
+    this.load = true;
     if(this.edit){
       if(this.subDependForm.valid){
         this.subSer.putSubDepend(dataToPost).subscribe(
@@ -151,13 +151,13 @@ export class SubDependFormComponent implements OnInit , OnDestroy {
     }
   }
 
-  deleteDepend(id:number|any , did:number){
+  deleteDepend(id:number|any){
     this.load = true;
     this.subSer.deleteSubDepend(id).subscribe(
       (res)=>{
         if(res){
           this.toastr.success('لقد تم مسح المتطلب  بنجاح');
-          this.load = false;
+          // this.load = false;
           this.delete = false;
           document.documentElement.scrollTop = 0;
           this.router.navigate(['subDependTable']);

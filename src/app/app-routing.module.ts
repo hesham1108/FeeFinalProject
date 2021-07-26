@@ -51,7 +51,9 @@ import { LoginFormComponent } from './components/forms/login-form/login-form.com
 import { HomeComponent } from './components/home/home.component';
 import { NewPageComponent } from './components/new-page/new-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MyDataComponent } from './components/profiles/my-profile/my-data/my-data.component';
 import { MyProfileComponent } from './components/profiles/my-profile/my-profile.component';
+import { MySubComponent } from './components/profiles/my-profile/my-sub/my-sub.component';
 import { ProfComponent } from './components/profiles/prof/prof.component';
 import { SearchComponent } from './components/search/search.component';
 
@@ -59,7 +61,10 @@ const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:"home", component:HomeComponent},
   {path:"search", component: SearchComponent},
-  {path:'myprofile', component:MyProfileComponent},
+  {path:'myprofile', component:MyProfileComponent,children:[
+    {path:"sub",component:MySubComponent},
+    {path:"data",component:MyDataComponent}
+  ]},
   {path:"contactus", component: ContactUsComponent},
 
   {path:"newPage/:id", component:NewPageComponent},

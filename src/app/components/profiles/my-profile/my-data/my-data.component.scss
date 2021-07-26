@@ -1,0 +1,16 @@
+$mainColor: #14213D;
+* {
+    text-align: right;
+}
+
+.col-sm-4 {
+    padding: 2%;
+    background-color: $mainColor;
+    // border-bottom: 1px solid #fff;
+    color: #fff;
+}
+
+.col-sm-8 {
+    padding: 2%;
+    border-bottom: 1px solid #14213D;
+}

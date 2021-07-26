@@ -4,6 +4,16 @@
             <h1>جميع المتطلبات</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-3" style="text-align: right">
+            <label for="subject">المادة</label> :
+        </div>
+        <div class="col-sm-7">
+            <ng-multiselect-dropdown (onSelect)="onSelect($event)" id="subject" [settings]="dropdownSettings" [data]="subjectList" placeholder=" اختر المادة">
+            </ng-multiselect-dropdown>
+        </div>
+    </div>
+    <br />
     <div class="row ">
         <div class="col-sm-2 add " style="text-align: right;" (click)="goTo('dash/addSubDepend')">
             <div class="row justify-content-around ">
@@ -54,9 +64,9 @@
                     </tr>
                 </tbody>
             </table>
-            <h1 *ngIf="(subDepends | subDependFilter:search).length <1" style="text-align: center;">
+            <!-- <h1 *ngIf="(subDepends | subDependFilter:search).length <1" style="text-align: center;">
                 ! Not Found
-            </h1>
+            </h1> -->
         </div>
     </div>
 </div>

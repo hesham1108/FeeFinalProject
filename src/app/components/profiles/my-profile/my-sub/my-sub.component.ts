@@ -1,31 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user/user-service';
 
 @Component({
-  selector: 'app-my-profile',
-  templateUrl: './my-profile.component.html',
-  styleUrls: ['./my-profile.component.scss']
+  selector: 'app-my-sub',
+  templateUrl: './my-sub.component.html',
+  styleUrls: ['./my-sub.component.scss']
 })
-export class MyProfileComponent implements OnInit {
-
-  user:any;
-  load:boolean = true;
-
+export class MySubComponent implements OnInit {
+  load:boolean =true;
   subjects:any[]=[];
   constructor(
     private userSer:UserService,
-    private toastr:ToastrService,
-     private router : Router,
-    private route:ActivatedRoute
-     ) { }
+    private toastr:ToastrService
+  ) { }
 
   ngOnInit(): void {
     var token:string|any = localStorage.getItem("token");
     this.userSer.getSingleUser(token).subscribe(
       (res)=>{
-        this.user = res
+
         if(res.roles.includes("Student")){
           this.subjects = res.userData.studentSubjects;
         }else  if(res.roles.includes("Staff")){
@@ -35,14 +29,10 @@ export class MyProfileComponent implements OnInit {
         this.load=false;
       },
       (error)=>{
-        this.toastr.error('حدث خطأ أثناء تحميل بيانات الملف الشخصي');
+        this.toastr.error('حدث خطأ أثناء تحميل المواد');
         this.toastr.info('حاول مرة اخري');
-        this.router.navigate(['']);
+        this.load = false;
       }
     );
-  }
-
-  goTo(dest:string){
-    this.router.navigate([dest ],{relativeTo:this.route});
   }
 }
